@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PzProjekt", "PzProjekt\PzProjekt.csproj", "{A96AB431-B7D4-45B1-BC48-665131B99920}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForm", "WinForm\WinForm.csproj", "{844DF372-E90F-4F0A-BB49-0D0F526C36AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A96AB431-B7D4-45B1-BC48-665131B99920} = {A96AB431-B7D4-45B1-BC48-665131B99920}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A96AB431-B7D4-45B1-BC48-665131B99920}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A96AB431-B7D4-45B1-BC48-665131B99920}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A96AB431-B7D4-45B1-BC48-665131B99920}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A96AB431-B7D4-45B1-BC48-665131B99920}.Release|Any CPU.Build.0 = Release|Any CPU
+		{844DF372-E90F-4F0A-BB49-0D0F526C36AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{844DF372-E90F-4F0A-BB49-0D0F526C36AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{844DF372-E90F-4F0A-BB49-0D0F526C36AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{844DF372-E90F-4F0A-BB49-0D0F526C36AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9D8C9125-F108-47E8-8650-F5DAFD26C367}
+	EndGlobalSection
+EndGlobal
