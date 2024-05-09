@@ -24,7 +24,7 @@ namespace WinForm.views
 
             for (int i = 0; i < form.SavedGames.Count; i++)
             {
-                panelList[i].
+                // panelList[i].
             }
         }
     }

@@ -1,55 +1,73 @@
 {
   "version": 3,
   "targets": {
-    "net8.0-windows7.0": {}
+    "net7.0-windows7.0": {
+      "PzProjekt/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/PzProjekt.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PzProjekt.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "PzProjekt/1.0.0": {
+      "type": "project",
+      "path": "../PzProjekt/PzProjekt.csproj",
+      "msbuildProject": "../PzProjekt/PzProjekt.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0-windows7.0": []
+    "net7.0-windows7.0": [
+      "PzProjekt >= 1.0.0"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\artur\\.nuget\\packages\\": {}
+    "C:\\Users\\48797\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\artur\\Desktop\\semestr6\\PzProjekt\\WinForm\\WinForm.csproj",
+      "projectUniqueName": "C:\\Users\\48797\\Documents\\GitHub\\PzProjekt\\WinForm\\WinForm.csproj",
       "projectName": "WinForm",
-      "projectPath": "C:\\Users\\artur\\Desktop\\semestr6\\PzProjekt\\WinForm\\WinForm.csproj",
-      "packagesPath": "C:\\Users\\artur\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\artur\\Desktop\\semestr6\\PzProjekt\\WinForm\\obj\\",
+      "projectPath": "C:\\Users\\48797\\Documents\\GitHub\\PzProjekt\\WinForm\\WinForm.csproj",
+      "packagesPath": "C:\\Users\\48797\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\48797\\Documents\\GitHub\\PzProjekt\\WinForm\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\artur\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\48797\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0-windows"
+        "net7.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0-windows7.0": {
-          "targetAlias": "net8.0-windows",
-          "projectReferences": {}
+        "net7.0-windows7.0": {
+          "targetAlias": "net7.0-windows",
+          "projectReferences": {
+            "C:\\Users\\48797\\Documents\\GitHub\\PzProjekt\\PzProjekt\\PzProjekt.csproj": {
+              "projectPath": "C:\\Users\\48797\\Documents\\GitHub\\PzProjekt\\PzProjekt\\PzProjekt.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
-      "net8.0-windows7.0": {
-        "targetAlias": "net8.0-windows",
+      "net7.0-windows7.0": {
+        "targetAlias": "net7.0-windows",
         "imports": [
           "net461",
           "net462",
@@ -69,7 +87,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.405\\RuntimeIdentifierGraph.json"
       }
     }
   }

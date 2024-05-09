@@ -1,3 +1,5 @@
+using PzProjekt;
+
 namespace WinForm
 {
     internal static class Program
@@ -8,10 +10,17 @@ namespace WinForm
         [STAThread]
         static void Main()
         {
+            var player = CharacterFactory.createRandomCharacterBasedOnLevel(1);
+            var enemy = CharacterFactory.createRandomCharacterBasedOnLevel(1);
+            
+            var fight = new Fight(player, enemy);
+            
+            fight.attackEnemy();
+            
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            // ApplicationConfiguration.Initialize();
+            // Application.Run(new Form1());
         }
     }
 }

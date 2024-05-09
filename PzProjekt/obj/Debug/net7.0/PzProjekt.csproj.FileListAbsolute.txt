@@ -1,0 +1,11 @@
+C:\Users\48797\Documents\GitHub\PzProjekt\PzProjekt\bin\Debug\net7.0\PzProjekt.deps.json
+C:\Users\48797\Documents\GitHub\PzProjekt\PzProjekt\bin\Debug\net7.0\PzProjekt.dll
+C:\Users\48797\Documents\GitHub\PzProjekt\PzProjekt\bin\Debug\net7.0\PzProjekt.pdb
+C:\Users\48797\Documents\GitHub\PzProjekt\PzProjekt\obj\Debug\net7.0\PzProjekt.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\48797\Documents\GitHub\PzProjekt\PzProjekt\obj\Debug\net7.0\PzProjekt.AssemblyInfoInputs.cache
+C:\Users\48797\Documents\GitHub\PzProjekt\PzProjekt\obj\Debug\net7.0\PzProjekt.AssemblyInfo.cs
+C:\Users\48797\Documents\GitHub\PzProjekt\PzProjekt\obj\Debug\net7.0\PzProjekt.csproj.CoreCompileInputs.cache
+C:\Users\48797\Documents\GitHub\PzProjekt\PzProjekt\obj\Debug\net7.0\PzProjekt.dll
+C:\Users\48797\Documents\GitHub\PzProjekt\PzProjekt\obj\Debug\net7.0\refint\PzProjekt.dll
+C:\Users\48797\Documents\GitHub\PzProjekt\PzProjekt\obj\Debug\net7.0\PzProjekt.pdb
+C:\Users\48797\Documents\GitHub\PzProjekt\PzProjekt\obj\Debug\net7.0\ref\PzProjekt.dll
