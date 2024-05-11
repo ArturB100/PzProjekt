@@ -19,6 +19,9 @@
     <Compile Update="views\GameSelectView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="views\NewGameView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="views\UserControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>

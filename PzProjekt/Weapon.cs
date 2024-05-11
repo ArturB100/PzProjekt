@@ -12,9 +12,7 @@ namespace PzProjekt
         public int Damage { get; set; }
 
         public event SpecialAttack specialAttack;
-
-
-
+        
         public abstract void NormalAttack(Character enemy);
     }
 }
