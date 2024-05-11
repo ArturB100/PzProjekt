@@ -17,4 +17,11 @@ C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net8.0-windows\WinFo
 C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net8.0-windows\WinForm.genruntimeconfig.cache
 C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net8.0-windows\ref\WinForm.dll
 C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net8.0-windows\WinForm.Properties.Resources.resources
-C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net8.0-windows\WinForm.views.SinglePlayerGameSelectView.resources
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net8.0-windows\WinForm.sourcelink.json
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net8.0-windows\WinForm.components.GameSelectPanel.resources
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net8.0-windows\WinForm.views.GameSelectView.resources
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\bin\Debug\net8.0-windows\PzProjekt.dll
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\bin\Debug\net8.0-windows\PzProjekt.pdb
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net8.0-windows\WinForm.csproj.AssemblyReference.cache
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net8.0-windows\WinForm.views.CreateCharacterView.resources
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net8.0-windows\WinForm.csproj.Up2Date

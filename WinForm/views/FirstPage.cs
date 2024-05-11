@@ -1,10 +1,11 @@
 ﻿using System.Windows.Forms;
+using WinForm.views;
 
 namespace WinForm
 {
     public partial class FirstPage : UserControlBase
     {
-        public FirstPage(Form form) : base(form)
+        public FirstPage(Form1 form) : base(form)
         {
             InitializeComponent();
             backgroundImg.SendToBack();
@@ -14,7 +15,7 @@ namespace WinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            MainForm.ChangeView(new GameSelectView(MainForm));
         }
 
         private void FirstPage_Load(object sender, EventArgs e)

@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v8.0": {
       "WinForm/1.0.0": {
+        "dependencies": {
+          "PzProjekt": "1.0.0"
+        },
         "runtime": {
           "WinForm.dll": {}
+        }
+      },
+      "PzProjekt/1.0.0": {
+        "runtime": {
+          "PzProjekt.dll": {}
         }
       }
     }
   },
   "libraries": {
     "WinForm/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PzProjekt/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

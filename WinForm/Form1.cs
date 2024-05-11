@@ -1,9 +1,18 @@
+
+using PzProjekt;
+
 namespace WinForm
 {
     public partial class Form1 : Form
     {
 
-        private List<string> savedGames = new List<string>() { "gra1", "gra2", "gra3"};
+        private List<string> savedGames = new List<string>() { };
+
+        public PlayableCharacters PlayableCharacters { get; set; }
+
+        public Character SelectedCharacter { get; set; }
+
+
 
         public List<string> SavedGames
         {

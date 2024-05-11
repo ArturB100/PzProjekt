@@ -30,14 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FirstPage));
             newGameBtn = new Button();
-            continueBtn = new Button();
             backgroundImg = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)backgroundImg).BeginInit();
             SuspendLayout();
             // 
             // newGameBtn
             // 
-            newGameBtn.Location = new Point(1181, 703);
+            newGameBtn.Location = new Point(893, 717);
             newGameBtn.Name = "newGameBtn";
             newGameBtn.Size = new Size(112, 34);
             newGameBtn.TabIndex = 0;
@@ -45,21 +44,12 @@
             newGameBtn.UseVisualStyleBackColor = true;
             newGameBtn.Click += button1_Click;
             // 
-            // continueBtn
-            // 
-            continueBtn.Location = new Point(1181, 793);
-            continueBtn.Name = "continueBtn";
-            continueBtn.Size = new Size(112, 34);
-            continueBtn.TabIndex = 1;
-            continueBtn.Text = "kontynuj";
-            continueBtn.UseVisualStyleBackColor = true;
-            // 
             // backgroundImg
             // 
             backgroundImg.Image = (Image)resources.GetObject("backgroundImg.Image");
             backgroundImg.Location = new Point(3, 3);
             backgroundImg.Name = "backgroundImg";
-            backgroundImg.Size = new Size(2523, 1484);
+            backgroundImg.Size = new Size(1917, 1077);
             backgroundImg.SizeMode = PictureBoxSizeMode.StretchImage;
             backgroundImg.TabIndex = 2;
             backgroundImg.TabStop = false;
@@ -69,11 +59,10 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(continueBtn);
             Controls.Add(newGameBtn);
             Controls.Add(backgroundImg);
             Name = "FirstPage";
-            Size = new Size(2540, 1490);
+            Size = new Size(1920, 1080);
             Load += FirstPage_Load;
             ((System.ComponentModel.ISupportInitialize)backgroundImg).EndInit();
             ResumeLayout(false);
@@ -82,7 +71,6 @@
         #endregion
 
         private Button newGameBtn;
-        private Button continueBtn;
         private PictureBox backgroundImg;
     }
 }

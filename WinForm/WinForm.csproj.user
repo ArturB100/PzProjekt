@@ -7,13 +7,16 @@
     <Compile Update="components\WoodButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="views\CreateCharacterView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="views\FirstPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="views\NewGameView.cs">
+    <Compile Update="views\GameSelectView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="views\UserControlBase.cs">

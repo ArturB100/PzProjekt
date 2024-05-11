@@ -482,3 +482,8 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+PzProjekt/obj*
+PzProjekt/bin*
+
+WinForm/obj*
+WinForm/bin*

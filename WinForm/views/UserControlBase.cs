@@ -12,15 +12,15 @@ namespace WinForm
 {
     public partial class UserControlBase : UserControl
     {
-        private Form mainForm;
+        private Form1 mainForm;
 
-        public Form MainForm
+        public Form1 MainForm
         {
             get { return mainForm; }
             set { mainForm = value; }
         }
         public UserControlBase() { }
-        public UserControlBase(Form form)
+        public UserControlBase(Form1 form)
         {
             InitializeComponent();
             this.mainForm = form;

@@ -9,3 +9,4 @@ C:\Users\artur\Desktop\semestr6\PzProjekt\PzProjekt\obj\Debug\net8.0\PzProjekt.d
 C:\Users\artur\Desktop\semestr6\PzProjekt\PzProjekt\obj\Debug\net8.0\refint\PzProjekt.dll
 C:\Users\artur\Desktop\semestr6\PzProjekt\PzProjekt\obj\Debug\net8.0\PzProjekt.pdb
 C:\Users\artur\Desktop\semestr6\PzProjekt\PzProjekt\obj\Debug\net8.0\ref\PzProjekt.dll
+C:\Users\artur\Desktop\semestr6\PzProjekt\PzProjekt\obj\Debug\net8.0\PzProjekt.sourcelink.json
