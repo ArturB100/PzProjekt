@@ -16,7 +16,7 @@ namespace WinForm.views
         List<Panel> panelList = new List<Panel>();
         List<Label> labelList = new List<Label>();
 
-        public GameSelectView() { }
+        
 
         public GameSelectView(Form1 form) : base(form)
         {
@@ -87,6 +87,7 @@ namespace WinForm.views
 
         private void MakeAction (int number)
         {
+            
             if (MainForm.SavedGames.Count > number)
             {
 
@@ -96,6 +97,8 @@ namespace WinForm.views
                 MainForm.SelectedCharacter = new PzProjekt.Character();
                 MainForm.ChangeView(new CreateCharacterView(MainForm));
             }
+
+            
         }
     }
 }

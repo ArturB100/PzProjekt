@@ -19,6 +19,7 @@ namespace WinForm
             get { return mainForm; }
             set { mainForm = value; }
         }
+
         public UserControlBase() { }
         public UserControlBase(Form1 form)
         {

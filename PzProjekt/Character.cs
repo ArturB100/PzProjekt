@@ -21,7 +21,10 @@ namespace PzProjekt
         public int CharacterMoney { get; set; }
         
         private int _minimalDamage;
-        
+
+        public string? HeadImage { get; set; }
+
+
         public int MinimalDamage
         {
             get => _minimalDamage;
@@ -42,7 +45,17 @@ namespace PzProjekt
                 _maximalDamage = CharacterStatistics.Strength * 20;
             }
         }
-        
+        public Character() 
+        {
+            CharacterStatistics = new Statistics();
+            Level = 1;
+            MaxHP = calculateMaxHP();
+            ActualHP = MaxHP;
+            _maximalDamage = CharacterStatistics.Strength * 20;
+            _minimalDamage = CharacterStatistics.Strength * 10;
+            CharacterMoney = 200;
+            PointToInvest = 10;
+        }
         public Character(string name, Statistics characterStatistics, int level)
         {
             Name = name;

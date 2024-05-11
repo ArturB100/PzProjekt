@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PzProjekt.exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,47 +12,144 @@ namespace PzProjekt
         public int Strength
         {
             get { return statisticsDictionary[0]; }
-            set { statisticsDictionary[0] = value; }
+            set 
+            { 
+                if (value < 1)
+                {
+                    throw new NegativeStatisticPointsException();
+                }
+                else
+                {
+                    statisticsDictionary[0] = value;
+                }
+            }
         }
-        public int Agility 
+        public int Agility
         {
             get { return statisticsDictionary[1]; }
-            set { statisticsDictionary[1] = value; }
+            set
+            {
+                if (value < 1)
+                {
+                    throw new NegativeStatisticPointsException();
+                }
+                else
+                {
+                    statisticsDictionary[1] = value;
+                }
+            }
         }
+
         public int Attack
         {
             get { return statisticsDictionary[2]; }
-            set { statisticsDictionary[2] = value; }
+            set
+            {
+                if (value < 1)
+                {
+                    throw new NegativeStatisticPointsException();
+                }
+                else
+                {
+                    statisticsDictionary[2] = value;
+                }
+            }
         }
+
         public int Defence
         {
             get { return statisticsDictionary[3]; }
-            set { statisticsDictionary[3] = value; }
+            set
+            {
+                if (value < 1)
+                {
+                    throw new NegativeStatisticPointsException();
+                }
+                else
+                {
+                    statisticsDictionary[3] = value;
+                }
+            }
         }
+
         public int Vitality
         {
             get { return statisticsDictionary[4]; }
-            set { statisticsDictionary[4] = value; }
+            set
+            {
+                if (value < 1)
+                {
+                    throw new NegativeStatisticPointsException();
+                }
+                else
+                {
+                    statisticsDictionary[4] = value;
+                }
+            }
         }
+
         public int Charisma
         {
             get { return statisticsDictionary[5]; }
-            set { statisticsDictionary[5] = value; }
+            set
+            {
+                if (value < 1)
+                {
+                    throw new NegativeStatisticPointsException();
+                }
+                else
+                {
+                    statisticsDictionary[5] = value;
+                }
+            }
         }
+
         public int Stamina
         {
             get { return statisticsDictionary[6]; }
-            set { statisticsDictionary[6] = value; }
+            set
+            {
+                if (value < 1)
+                {
+                    throw new NegativeStatisticPointsException();
+                }
+                else
+                {
+                    statisticsDictionary[6] = value;
+                }
+            }
         }
+
         public int Magica
         {
             get { return statisticsDictionary[7]; }
-            set { statisticsDictionary[7] = value; }
+            set
+            {
+                if (value < 1)
+                {
+                    throw new NegativeStatisticPointsException();
+                }
+                else
+                {
+                    statisticsDictionary[7] = value;
+                }
+            }
         }
+
         public int Intelligence
         {
             get { return statisticsDictionary[8]; }
-            set { statisticsDictionary[8] = value; }
+            set
+            {
+                if (value < 1)
+                {
+                    throw new NegativeStatisticPointsException();
+                }
+                else
+                {
+                    statisticsDictionary[8] = value;
+                }
+            }
         }
 
         public Dictionary<int, int> statisticsDictionary { get; set; }

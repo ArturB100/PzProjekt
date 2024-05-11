@@ -19,7 +19,7 @@
     <Compile Update="views\GameSelectView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="views\NewGameView.cs">
+    <Compile Update="views\HomeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="views\UserControlBase.cs">

@@ -43,5 +43,15 @@ namespace WinForm
             this.Controls.Clear();
             this.Controls.Add(userControlToDisplay);
         }
+
+        public void WarningMessage (string msg)
+        {
+            MessageBox.Show(msg, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        public void SuccessMessage(string msg)
+        {
+            MessageBox.Show(msg, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
