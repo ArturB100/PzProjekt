@@ -482,11 +482,11 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
-PzProjekt/obj*
-PzProjekt/bin*
+PzProjekt/obj/*
+PzProjekt/bin/*
 
-WinForm/obj*
-WinForm/bin*
+WinForm/obj/*
+WinForm/bin/*
 
 WinForm/obj/WinForm.csproj.nuget.dgspec.json
 WinForm/obj/project.assets.json

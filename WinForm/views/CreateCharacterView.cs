@@ -215,11 +215,21 @@ namespace WinForm.views
             character.Name = nameInp.Text;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void nextViewBtn_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(character.Name) && character.PointToInvest == 0)
             {
+                if (MainForm.PlayableCharacters == null)
+                {
+                    MainForm.WarningMessage("null");
+                }
+                MainForm.PlayableCharacters.Add(character);
                 MainForm.ChangeView(new HomeView(MainForm));
+                
+            }
+            else
+            {
+                MainForm.WarningMessage("Podaj imie, oraz rozdaj wszystkie punkty umiejętności");
             }
 
 

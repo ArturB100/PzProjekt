@@ -69,7 +69,7 @@
             magicaCurrentValue = new Label();
             magicaPlusBtn = new Button();
             magicaMinusBtn = new Button();
-            button1 = new Button();
+            nextViewBtn = new Button();
             characterImage = new PictureBox();
             characterHeadImage = new PictureBox();
             uploadHeadImageBtn = new Button();
@@ -455,15 +455,15 @@
             magicaMinusBtn.UseVisualStyleBackColor = true;
             magicaMinusBtn.Click += magicaMinusBtn_Click;
             // 
-            // button1
+            // nextViewBtn
             // 
-            button1.Location = new Point(1481, 934);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 41;
-            button1.Text = "dalej";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            nextViewBtn.Location = new Point(1481, 934);
+            nextViewBtn.Name = "nextViewBtn";
+            nextViewBtn.Size = new Size(112, 34);
+            nextViewBtn.TabIndex = 41;
+            nextViewBtn.Text = "dalej";
+            nextViewBtn.UseVisualStyleBackColor = true;
+            nextViewBtn.Click += nextViewBtn_Click;
             // 
             // characterImage
             // 
@@ -503,7 +503,7 @@
             Controls.Add(uploadHeadImageBtn);
             Controls.Add(characterHeadImage);
             Controls.Add(characterImage);
-            Controls.Add(button1);
+            Controls.Add(nextViewBtn);
             Controls.Add(label17);
             Controls.Add(magicaCurrentValue);
             Controls.Add(magicaPlusBtn);
@@ -594,7 +594,7 @@
         private Label magicaCurrentValue;
         private Button magicaPlusBtn;
         private Button magicaMinusBtn;
-        private Button button1;
+        private Button nextViewBtn;
         private PictureBox characterImage;
         private PictureBox characterHeadImage;
         private Button uploadHeadImageBtn;

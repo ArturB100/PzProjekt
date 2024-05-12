@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PzProjekt", "PzProjekt\PzProjekt.csproj", "{A96AB431-B7D4-45B1-BC48-665131B99920}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PzProjekt", "PzProjekt\PzProjekt.csproj", "{A96AB431-B7D4-45B1-BC48-665131B99920}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForm", "WinForm\WinForm.csproj", "{844DF372-E90F-4F0A-BB49-0D0F526C36AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinForm", "WinForm\WinForm.csproj", "{844DF372-E90F-4F0A-BB49-0D0F526C36AD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A96AB431-B7D4-45B1-BC48-665131B99920} = {A96AB431-B7D4-45B1-BC48-665131B99920}
 	EndProjectSection

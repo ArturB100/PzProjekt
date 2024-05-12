@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PzProjekt.exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace PzProjekt
 {
     public class PlayableCharacters
     {
-		private List<Character> characters;
+		private List<Character> characters = new List<Character>();
 
 		public List<Character> Characters
 		{
@@ -21,6 +22,18 @@ namespace PzProjekt
 			get { return characters[index]; }
 			set { characters[index] = value; }
 		}
+
+		public void Add (Character character)
+		{
+			if (characters.Count >= 5) 
+			{
+				throw new TooManySavedGamesException();
+			}
+			characters.Add(character);
+		}
+
+		public int Count { get { return characters.Count; } }
+		
 
 
 

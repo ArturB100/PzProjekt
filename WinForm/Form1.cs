@@ -6,30 +6,54 @@ namespace WinForm
     public partial class Form1 : Form
     {
 
-        private List<string> savedGames = new List<string>() { };
+        //private List<string> savedGames = new List<string>() { };
 
-        public PlayableCharacters PlayableCharacters { get; set; }
+        public PlayableCharacters PlayableCharacters { get; set; } = new PlayableCharacters();
 
-        public Character SelectedCharacter { get; set; }
+        public Character SelectedCharacter { get; set; } = null;
 
 
 
-        public List<string> SavedGames
+        /*public List<string> SavedGames
         {
             get { return savedGames; }
         }
+        */
 
         public Form1()
         {
             InitializeComponent();
+            LoadSavedGame();
             this.ChangeView(new FirstPage(this));
         }
 
+        public void SaveGame ()
+        {
+            GameSaverService.WriteToFile(this.PlayableCharacters);
+        }
+
+        public void LoadSavedGame ()
+        {
+            try
+            {
+                PlayableCharacters = GameSaverService.ReadFromFile<PlayableCharacters>();
+            } 
+            catch (Exception ex) 
+            {
+                WarningMessage(ex.Message);
+            }
+            if (PlayableCharacters == null)
+            {
+                PlayableCharacters = new PlayableCharacters();
+
+            }
+        }
        
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
+            SaveGame();
             Application.Exit();
         }
 

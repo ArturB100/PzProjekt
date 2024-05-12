@@ -33,15 +33,15 @@ namespace WinForm.views
             labelList.Add(label4);
             labelList.Add(label5);
 
-            for (int i = 0; i < form.SavedGames.Count; i++)
+            for (int i = 0; i < form.PlayableCharacters.Count; i++)
             {
-                labelList[i].Text = form.SavedGames[i];
+                labelList[i].Text = $"{form.PlayableCharacters[i].Name}, Level-{form.PlayableCharacters[i].Level}";
             }
 
-            if (form.SavedGames.Count < 5)
+            if (form.PlayableCharacters.Count < 5)
             {
-                int timesToLoop = 5 - form.SavedGames.Count;
-                for (int i = form.SavedGames.Count; i < 5; i++)
+                int timesToLoop = 5 - form.PlayableCharacters.Count;
+                for (int i = form.PlayableCharacters.Count; i < 5; i++)
                 {
                     labelList[i].Text = "Nowa gra";
                 }
@@ -67,30 +67,31 @@ namespace WinForm.views
 
         private void woodButton2_Click(object sender, EventArgs e)
         {
-
+            MakeAction(1);
         }
 
         private void woodButton3_Click(object sender, EventArgs e)
         {
-
+            MakeAction(2);
         }
 
         private void woodButton4_Click(object sender, EventArgs e)
         {
-
+            MakeAction(3);
         }
 
         private void woodButton5_Click(object sender, EventArgs e)
         {
-
+            MakeAction(4);
         }
 
         private void MakeAction (int number)
         {
             
-            if (MainForm.SavedGames.Count > number)
+            if (MainForm.PlayableCharacters.Count > number)
             {
-
+                MainForm.SelectedCharacter = MainForm.PlayableCharacters[number];
+                MainForm.ChangeView(new HomeView(MainForm));
             }
             else
             {

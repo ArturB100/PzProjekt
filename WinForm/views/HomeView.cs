@@ -23,5 +23,17 @@ namespace WinForm.views
         {
             InitializeComponent();
         }
+
+        private void zapiszToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainForm.SaveGame();
+        }
+
+        private void wyjdzToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainForm.SaveGame();
+            MainForm.SelectedCharacter = null;
+            MainForm.ChangeView(new FirstPage(MainForm));
+        }
     }
 }
