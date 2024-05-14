@@ -13,15 +13,20 @@ namespace PzProjekt
         public Armour Leggings { get; set; }
         public Armour Boots { get; set; }
         
-        public int ActualArmorPoints { get; set; }
-        
-        private int _maxArmorPoints;
-        
-        public int MaxArmorPoints { get => _maxArmorPoints;
+        private int _actualArmorPoints;
+
+        public int ActualArmorPoints
+        {
+            get => _actualArmorPoints;
             set
             {
-                armourSet.Sum(armour => armour.ArmourPoints);
-            } 
+                _actualArmorPoints = value < 0 ? 0 : value;
+            }
+        }
+        
+        public int MaxArmorPoints 
+        { 
+            get => armourSet.Sum(armour => armour.ArmourPoints);
         }
         
         private List<Armour> armourSet = new List<Armour>();

@@ -31,7 +31,8 @@ public class ArmourShop
     };
     
     public void buyArmour(Character character, Armour armour)
-    {
+    {   
+        
         character.CharacterMoney -= armour.ValueInGold;
         
         switch (armour.ArmourType)
@@ -46,6 +47,7 @@ public class ArmourShop
                 character.EquipedArmourSet.Leggings = armour;
                 break;
             case ArmourType.Boots:
+                character.EquipedArmourSet.Boots = armour;
                 break;
         }
     }
