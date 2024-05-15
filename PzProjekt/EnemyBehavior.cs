@@ -16,11 +16,11 @@ public class EnemyBehavior
         if (fight.Enemy.AttackRange > fight.DistanceBetweenCharacters)
         {
             AttackType attackType = (AttackType)random.Next(Enum.GetNames(typeof(AttackType)).Length);
-            fight.AttackPlayer(attackType);
+            fight.CharacterFightActions.Attack(attackType);
         }
         else
         {
-            fight.MoveTowardsEnemy();
+            fight.CharacterFightActions.MoveTowardsEnemy();
         }
     }
 }

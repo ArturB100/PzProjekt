@@ -40,6 +40,6 @@ public class CharacterFactory
         int randomNameIndex = random.Next(characterNames.Count);
         string randomName = characterNames[randomNameIndex];
 
-        return new Character(randomName, statistics, level);    
+        return new Character(randomName, statistics, level, new Sword(0, 10, EffectType.NONE));    
     }
 }

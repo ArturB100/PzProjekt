@@ -9,6 +9,8 @@ namespace PzProjekt
 {
     public class Character
     {
+        public Effect Effect { get; set; }
+
         public string Name { get; set; }
         public int MaxHP { get; set; }
         private int _actualHP;
@@ -59,7 +61,7 @@ namespace PzProjekt
         public ArmourSet EquipedArmourSet { get; set; }
         public Inventory CharacterInventory { get; set; }
 
-        public int PossibleDistance { get { return 50 + CharacterStatistics.Agility * 10; } }
+        public int PossibleDistance { get { return 40 + 8 * CharacterStatistics.Agility; } }
 
         private int _charcterMoney;
         
@@ -91,7 +93,7 @@ namespace PzProjekt
 
         public int AttackRange
         {
-            get => Level + CharacterStatistics.Agility;
+            get => 50 + 10 * CharacterStatistics.Agility;
         }
 
         private int _position;
@@ -116,8 +118,6 @@ namespace PzProjekt
             }
         }
         
-        public List<ActiveEffect> ActiveEffects { get; set; }
-        
         public bool HasArmor
         {
             get => EquipedArmourSet.ActualArmorPoints > 0;
@@ -126,6 +126,15 @@ namespace PzProjekt
         public bool IsAlive 
         {
             get => ActualHP > 0;
+        }
+
+        public List<Spell> CharacterSpells { get; }
+        public List<Spell> AvailableSpells { get; set; }
+
+        public void AddSpell(Spell spell)
+        {
+            CharacterSpells.Add(spell);
+            AvailableSpells.Add(spell);
         }
         
         public Character() 
@@ -138,15 +147,18 @@ namespace PzProjekt
             PointToInvest = 10;
         }
         
-        public Character(string name, Statistics characterStatistics, int level)
+        public Character(string name, Statistics characterStatistics, int level, Weapon weapon)
         {
             Name = name;
             CharacterStatistics = characterStatistics;
             Level = level;
             MaxHP = calculateMaxHP();
             MaxStamina = calculateMaxStamina();
-            Refill();
             CharacterMoney = 200;
+            EquipedArmourSet = new ArmourSet();
+            CharacterSpells = new List<Spell>();
+            AvailableSpells = new List<Spell>();
+            EquipedWeapon = weapon;
         }
         
         private int calculateMaxHP()
@@ -164,6 +176,9 @@ namespace PzProjekt
             if (EquipedArmourSet.ActualArmorPoints == 0)
             {
                 ActualHP -= damage;
+                
+                Console.WriteLine(Name + " took " + damage + " damage!");
+                Console.WriteLine("Actual " + Name + " HP: " + ActualHP + " / " + MaxHP);
             }
             else
             {
@@ -181,6 +196,7 @@ namespace PzProjekt
             ActualHP = MaxHP;
             ActualStamina = MaxStamina;
             EquipedArmourSet.ActualArmorPoints = EquipedArmourSet.MaxArmorPoints;
+            AvailableSpells = new List<Spell>(CharacterSpells);
         }
 
         public void MoveLeft()
@@ -193,11 +209,6 @@ namespace PzProjekt
         {
             ActualStamina -= 20;
             Position += PossibleDistance;
-        }
-
-        public void Sleep()
-        {
-            ActualStamina += Convert.ToInt32(MaxStamina * 0.2);
         }
     }
 }

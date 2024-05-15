@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PzProjekt;
+
+public delegate void UseSpell(Fight fight);
 
 namespace PzProjekt
 {
-    abstract class Spell : InventoryItem
+    public class Spell : InventoryItem
     {
-        public string Description { get; set; }
-
-
-        public abstract void UseSpell(Character owner, Character enemy);
+        public event UseSpell OnUse;
         
-
+        public void Use(Fight fight)
+        {
+            Console.WriteLine("Using spell: " + Name);
+            OnUse?.Invoke(fight);
+        }
     }
 }
