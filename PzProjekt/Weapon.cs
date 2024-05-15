@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace PzProjekt
 {
-    public delegate void SpecialAttack(Character enemy);
-    abstract public class Weapon : InventoryItem
+    public abstract class Weapon : InventoryItem
     {
-        public int Damage { get; set; }
-
-        public event SpecialAttack specialAttack;
+        public event Effect Effect;
         
-        public abstract void NormalAttack(Character enemy);
+        public int MinimalDamage { get; set; }
+        public int MaximalDamage { get; set; }
+        
+        public void TriggerSpecialAttack(Character enemy, Fight fight)
+        {
+            enemy.ActiveEffects.Add(new ActiveEffect(enemy,  fight, 3, Effect));
+        }
     }
 }
