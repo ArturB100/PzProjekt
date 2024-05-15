@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeView));
             pictureBox1 = new PictureBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
+            magicShopBtn = new Button();
+            WeaponSmithBtn = new Button();
+            churchBtn = new Button();
+            armouryBtn = new Button();
+            arenaBtn = new Button();
             menuStrip1 = new MenuStrip();
             menuToolStripMenuItem = new ToolStripMenuItem();
             zapiszToolStripMenuItem = new ToolStripMenuItem();
@@ -53,50 +53,51 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // button1
+            // magicShopBtn
             // 
-            button1.Location = new Point(428, 585);
-            button1.Name = "button1";
-            button1.Size = new Size(255, 53);
-            button1.TabIndex = 1;
-            button1.Text = "magic shop";
-            button1.UseVisualStyleBackColor = true;
+            magicShopBtn.Location = new Point(428, 585);
+            magicShopBtn.Name = "magicShopBtn";
+            magicShopBtn.Size = new Size(255, 53);
+            magicShopBtn.TabIndex = 1;
+            magicShopBtn.Text = "magic shop";
+            magicShopBtn.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // WeaponSmithBtn
             // 
-            button2.Location = new Point(73, 644);
-            button2.Name = "button2";
-            button2.Size = new Size(299, 50);
-            button2.TabIndex = 2;
-            button2.Text = "weaponsmith";
-            button2.UseVisualStyleBackColor = true;
+            WeaponSmithBtn.Location = new Point(73, 644);
+            WeaponSmithBtn.Name = "WeaponSmithBtn";
+            WeaponSmithBtn.Size = new Size(299, 50);
+            WeaponSmithBtn.TabIndex = 2;
+            WeaponSmithBtn.Text = "weaponsmith";
+            WeaponSmithBtn.UseVisualStyleBackColor = true;
+            WeaponSmithBtn.Click += weponsmithBtn_Click;
             // 
-            // button3
+            // churchBtn
             // 
-            button3.Location = new Point(1351, 565);
-            button3.Name = "button3";
-            button3.Size = new Size(171, 41);
-            button3.TabIndex = 3;
-            button3.Text = "church";
-            button3.UseVisualStyleBackColor = true;
+            churchBtn.Location = new Point(1351, 565);
+            churchBtn.Name = "churchBtn";
+            churchBtn.Size = new Size(171, 41);
+            churchBtn.TabIndex = 3;
+            churchBtn.Text = "church";
+            churchBtn.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // armouryBtn
             // 
-            button4.Location = new Point(1582, 793);
-            button4.Name = "button4";
-            button4.Size = new Size(204, 49);
-            button4.TabIndex = 4;
-            button4.Text = "armoury";
-            button4.UseVisualStyleBackColor = true;
+            armouryBtn.Location = new Point(1582, 793);
+            armouryBtn.Name = "armouryBtn";
+            armouryBtn.Size = new Size(204, 49);
+            armouryBtn.TabIndex = 4;
+            armouryBtn.Text = "armoury";
+            armouryBtn.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // arenaBtn
             // 
-            button5.Location = new Point(198, 178);
-            button5.Name = "button5";
-            button5.Size = new Size(356, 55);
-            button5.TabIndex = 5;
-            button5.Text = "arena";
-            button5.UseVisualStyleBackColor = true;
+            arenaBtn.Location = new Point(198, 178);
+            arenaBtn.Name = "arenaBtn";
+            arenaBtn.Size = new Size(356, 55);
+            arenaBtn.TabIndex = 5;
+            arenaBtn.Text = "arena";
+            arenaBtn.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
             // 
@@ -118,14 +119,14 @@
             // zapiszToolStripMenuItem
             // 
             zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
-            zapiszToolStripMenuItem.Size = new Size(270, 34);
+            zapiszToolStripMenuItem.Size = new Size(162, 34);
             zapiszToolStripMenuItem.Text = "zapisz";
             zapiszToolStripMenuItem.Click += zapiszToolStripMenuItem_Click;
             // 
             // wyjdzToolStripMenuItem
             // 
             wyjdzToolStripMenuItem.Name = "wyjdzToolStripMenuItem";
-            wyjdzToolStripMenuItem.Size = new Size(270, 34);
+            wyjdzToolStripMenuItem.Size = new Size(162, 34);
             wyjdzToolStripMenuItem.Text = "wyjdz";
             wyjdzToolStripMenuItem.Click += wyjdzToolStripMenuItem_Click;
             // 
@@ -133,11 +134,11 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(arenaBtn);
+            Controls.Add(armouryBtn);
+            Controls.Add(churchBtn);
+            Controls.Add(WeaponSmithBtn);
+            Controls.Add(magicShopBtn);
             Controls.Add(pictureBox1);
             Controls.Add(menuStrip1);
             Name = "HomeView";
@@ -152,11 +153,11 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
+        private Button magicShopBtn;
+        private Button WeaponSmithBtn;
+        private Button churchBtn;
+        private Button armouryBtn;
+        private Button arenaBtn;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem menuToolStripMenuItem;
         private ToolStripMenuItem zapiszToolStripMenuItem;

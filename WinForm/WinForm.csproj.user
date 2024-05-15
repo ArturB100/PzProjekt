@@ -25,5 +25,8 @@
     <Compile Update="views\UserControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="views\Weaponsmith.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
