@@ -35,5 +35,10 @@ namespace WinForm.views
             MainForm.SelectedCharacter = null;
             MainForm.ChangeView(new FirstPage(MainForm));
         }
+
+        private void weponsmithBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
