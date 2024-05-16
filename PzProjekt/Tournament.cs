@@ -2,6 +2,8 @@
 
 public class Tournament
 {
+    public int MinimalLevel { get; set; }
+    
     private Queue<Character> Enemies;
     
     private Character NextEnemy

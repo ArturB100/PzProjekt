@@ -8,10 +8,10 @@ namespace PzProjekt
 {
     public class ArmourSet
     {
-        public Armour Helmet { get; set; }
-        public Armour Chestplate { get; set; }
-        public Armour Leggings { get; set; }
-        public Armour Boots { get; set; }
+        public Armour? Helmet { get; set; }
+        public Armour? Chestplate { get; set; }
+        public Armour? Leggings { get; set; }
+        public Armour? Boots { get; set; }
         
         private int _actualArmorPoints;
 

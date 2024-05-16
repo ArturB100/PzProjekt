@@ -53,3 +53,4 @@ C:\Users\48797\Documents\GitHub\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinFo
 C:\Users\48797\Documents\GitHub\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.views.CreateCharacterView.resources
 C:\Users\48797\Documents\GitHub\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.views.GameSelectView.resources
 C:\Users\48797\Documents\GitHub\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.views.HomeView.resources
+C:\Users\48797\Documents\GitHub\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.views.Weaponsmith.resources

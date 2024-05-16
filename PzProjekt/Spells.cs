@@ -6,15 +6,15 @@ public class Spells
     {
         Random random = new Random();
         
-        Console.WriteLine("Character position before teleportation: " + fight.ActiveCharacter.Position);
+        Console.WriteLine("Character position before teleportation: " + fight.ActiveCharacter.Parameters.Position);
         
-        fight.ActiveCharacter.Position = random.Next(0, 1000);
+        fight.ActiveCharacter.Parameters.Position = random.Next(0, 1000);
         
-        Console.WriteLine("Character position after teleportation: " + fight.ActiveCharacter.Position);
+        Console.WriteLine("Character position after teleportation: " + fight.ActiveCharacter.Parameters.Position);
     }
     
     public static void Fireball(Fight fight)
     {
-        fight.InactiveCharacter.takeDamage(100);
+        fight.CharacterFightActions.TakeDamage(100);
     }
 }

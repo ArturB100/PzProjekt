@@ -28,22 +28,22 @@ public abstract class Fight
     
     public int ExperiencePointsToGet
     {
-        get => 1000 * (1 + Math.Abs(Player.Level - Enemy.Level));
+        get => 1000 * (1 + Math.Abs(Player.Parameters.Level - Enemy.Parameters.Level));
     }
     
     public int MoneyToGet
     {
-        get => 100 * (1 + Math.Abs(Player.Level - Enemy.Level)) * (1 + CrowdSatisfacion);
+        get => 100 * (1 + Math.Abs(Player.Parameters.Level - Enemy.Parameters.Level)) * (1 + CrowdSatisfacion);
     }
     
     public int MoneyToLose
     {
-        get => 50 * (1 + Math.Abs(Player.Level - Enemy.Level));
+        get => 50 * (1 + Math.Abs(Player.Parameters.Level - Enemy.Parameters.Level));
     }
     
     public int DistanceBetweenCharacters
     {
-        get { return Math.Abs(Player.Position - Enemy.Position); }
+        get { return Math.Abs(Player.Parameters.Position - Enemy.Parameters.Position); }
     }
     
     public Fight(Character player, Character enemy)
@@ -54,17 +54,18 @@ public abstract class Fight
         player.Refill();
         enemy.Refill();
         
-        player.Position = 450;
-        enemy.Position = 550;
+        player.Parameters.Position = 450;
+        enemy.Parameters.Position = 550;
         
         activeCharacter = player;
         CharacterFightActions = new CharacterFightActions(this);
         EnemyBehavior = new EnemyBehavior(this);
+        CrowdSatisfacion = CalcBaseCrowdSatisfaction();
     }
 
     private int CalcBaseCrowdSatisfaction()
     {
-        return Convert.ToInt32(Player.CharacterStatistics.Charisma * 0.01 + Enemy.CharacterStatistics.Charisma * 0.01);
+        return Convert.ToInt32(Player.ActualStatistics.Charisma * 0.01 + Enemy.ActualStatistics.Charisma * 0.01);
     }
 
     public abstract Result CheckFightResult();
@@ -75,29 +76,30 @@ public abstract class Fight
         
         Console.WriteLine("It's " + ActiveCharacter.Name + "'s turn!");
         
-        if (ActiveCharacter.Effect != null && ActiveCharacter.Effect.Type != EffectType.NONE)
+        if (ActiveCharacter.ActiveEffect != null)
         {
-            if(ActiveCharacter.Effect.TurnsLeft == 0)
+            if(ActiveCharacter.ActiveEffect.TurnsLeft == 0)
             {
-                Console.WriteLine("Effect " + ActiveCharacter.Effect.Type + " has ended!");
-                ActiveCharacter.Effect = null;
+                Console.WriteLine("Effect has ended!");
+                ActiveCharacter.ActiveEffect.Effect.EndEffect(this);
+                ActiveCharacter.ActiveEffect = null;
             }
             else
             {
-                ActiveCharacter.Effect.TurnsLeft--;
-                Console.WriteLine("Turns left: " + ActiveCharacter.Effect.TurnsLeft);
+                ActiveCharacter.ActiveEffect.TurnsLeft--;
+                Console.WriteLine("Turns left: " + ActiveCharacter.ActiveEffect.TurnsLeft);
 
-                if (ActiveCharacter.Effect.Type == EffectType.FROZEN)
+                if (ActiveCharacter.ActiveEffect.Effect.IsFrozen())
                 {
                     Console.WriteLine(ActiveCharacter.Name + " is frozen!");
                     return;
                 }
                 
-                ActiveCharacter.Effect.Trigger(this);
+                ActiveCharacter.ActiveEffect.Effect.Trigger(this);
             }
         }
         
-        if (ActiveCharacter.ActualStamina == 0)
+        if (ActiveCharacter.Parameters.ActualStamina == 0)
         {
             CharacterFightActions.Sleep();
             return;
@@ -186,6 +188,6 @@ public abstract class Fight
             catch (Exception e) {}
         }
 
-        return ActiveCharacter.AvailableSpells[action];
+        return ActiveCharacter.Inventory.AvailableSpells[action];
     }
 }

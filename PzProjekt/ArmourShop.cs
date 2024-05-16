@@ -33,21 +33,21 @@ public class ArmourShop
     public void buyArmour(Character character, Armour armour)
     {   
         
-        character.CharacterMoney -= armour.ValueInGold;
+        character.Parameters.Money -= armour.ValueInGold;
         
         switch (armour.ArmourType)
         {
             case ArmourType.Helmet:
-                character.EquipedArmourSet.Helmet = armour;
+                character.Inventory.ArmourSet.Helmet = armour;
                 break;
             case ArmourType.Chestplate:
-                character.EquipedArmourSet.Chestplate = armour;
+                character.Inventory.ArmourSet.Chestplate = armour;
                 break;
             case ArmourType.Leggings:
-                character.EquipedArmourSet.Leggings = armour;
+                character.Inventory.ArmourSet.Leggings = armour;
                 break;
             case ArmourType.Boots:
-                character.EquipedArmourSet.Boots = armour;
+                character.Inventory.ArmourSet.Boots = armour;
                 break;
         }
     }

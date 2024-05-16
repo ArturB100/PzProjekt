@@ -11,6 +11,8 @@ namespace PzProjekt
 {
     public class Spell : InventoryItem
     {
+        public Spell(int minLevel, string name, int valueInGold) : base(minLevel, name, valueInGold) { }
+
         public event UseSpell OnUse;
         
         public void Use(Fight fight)

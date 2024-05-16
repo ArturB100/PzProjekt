@@ -6,12 +6,12 @@ public class FightToDeath : Fight
     
     public override Result CheckFightResult()
     {
-        if (!Player.IsAlive)
+        if (!Player.Parameters.IsAlive)
         {
             return Result.LOST;
         }
 
-        if (!Enemy.IsAlive)
+        if (!Enemy.Parameters.IsAlive)
         {
             return Result.WON;
         }

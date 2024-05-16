@@ -18,7 +18,7 @@ public abstract class Shop <T>  where T : InventoryItem
     
     public virtual void BuyItem(Character character, T inventoryItem)
     {
-        character.CharacterMoney -= Convert.ToInt32(inventoryItem.ValueInGold * (1 - character.CharacterStatistics.Charisma * 0.01));
+        character.Parameters.Money -= Convert.ToInt32(inventoryItem.ValueInGold * (1 - character.BaseStatistics.Charisma * 0.01));
 
         EquipItem?.Invoke(character, inventoryItem);
     }

@@ -2,7 +2,7 @@
 
 public class CharacterFactory
 {
-    static List<string> characterNames = new List<string>
+    private static List<string> _characterNames = new List<string>
     {
         "Maximus",
         "Aurelius",
@@ -26,20 +26,20 @@ public class CharacterFactory
     {
         int points = 5 + level * 5;
 
-        Statistics statistics = new Statistics();
+        CharacterStatistics characterStatistics = new CharacterStatistics();
         
         Random random = new Random();
         
         while (points > 0)
         {
-            int randomIndex = random.Next(0, statistics.statisticsDictionary.Count);
-            statistics.statisticsDictionary[randomIndex]++;
+            int randomIndex = random.Next(0, characterStatistics.StatisticsDictionary.Count);
+            characterStatistics.StatisticsDictionary[randomIndex]++;
             points--;
         }
         
-        int randomNameIndex = random.Next(characterNames.Count);
-        string randomName = characterNames[randomNameIndex];
+        int randomNameIndex = random.Next(_characterNames.Count);
+        string randomName = _characterNames[randomNameIndex];
 
-        return new Character(randomName, statistics, level, new Sword(0, 10, EffectType.NONE));    
+        return new Character(randomName, characterStatistics, level, new Weapon(1, "Fist", 0, WeaponType.Sword, 1, 1));    
     }
 }

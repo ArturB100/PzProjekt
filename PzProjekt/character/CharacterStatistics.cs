@@ -7,156 +7,156 @@ using System.Threading.Tasks;
 
 namespace PzProjekt
 {
-    public class Statistics
+    public class CharacterStatistics : ICloneable
     {
         public int Strength
         {
-            get { return statisticsDictionary[0]; }
+            get { return StatisticsDictionary[0]; }
             set 
             { 
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[0] = 1;
                 }
                 else
                 {
-                    statisticsDictionary[0] = value;
+                    StatisticsDictionary[0] = value;
                 }
             }
         }
         public int Agility
         {
-            get { return statisticsDictionary[1]; }
+            get { return StatisticsDictionary[1]; }
             set
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[1] = 1;
                 }
                 else
                 {
-                    statisticsDictionary[1] = value;
+                    StatisticsDictionary[1] = value;
                 }
             }
         }
 
         public int Attack
         {
-            get { return statisticsDictionary[2]; }
+            get { return StatisticsDictionary[2]; }
             set
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[2] = 1;
                 }
                 else
                 {
-                    statisticsDictionary[2] = value;
+                    StatisticsDictionary[2] = value;
                 }
             }
         }
 
         public int Defence
         {
-            get { return statisticsDictionary[3]; }
+            get { return StatisticsDictionary[3]; }
             set
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[3] = 1;
                 }
                 else
                 {
-                    statisticsDictionary[3] = value;
+                    StatisticsDictionary[3] = value;
                 }
             }
         }
 
         public int Vitality
         {
-            get { return statisticsDictionary[4]; }
+            get { return StatisticsDictionary[4]; }
             set
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[4] = 1;
                 }
                 else
                 {
-                    statisticsDictionary[4] = value;
+                    StatisticsDictionary[4] = value;
                 }
             }
         }
 
         public int Charisma
         {
-            get { return statisticsDictionary[5]; }
+            get { return StatisticsDictionary[5]; }
             set
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[5] = 1;
                 }
                 else
                 {
-                    statisticsDictionary[5] = value;
+                    StatisticsDictionary[5] = value;
                 }
             }
         }
 
         public int Stamina
         {
-            get { return statisticsDictionary[6]; }
+            get { return StatisticsDictionary[6]; }
             set
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[6] = 1;
                 }
                 else
                 {
-                    statisticsDictionary[6] = value;
+                    StatisticsDictionary[6] = value;
                 }
             }
         }
 
         public int Magica
         {
-            get { return statisticsDictionary[7]; }
+            get { return StatisticsDictionary[7]; }
             set
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[7] = 1;
                 }
                 else
                 {
-                    statisticsDictionary[7] = value;
+                    StatisticsDictionary[7] = value;
                 }
             }
         }
 
         public int Intelligence
         {
-            get { return statisticsDictionary[8]; }
+            get { return StatisticsDictionary[8]; }
             set
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[8] = 1;
                 }
                 else
                 {
-                    statisticsDictionary[8] = value;
+                    StatisticsDictionary[8] = value;
                 }
             }
         }
 
-        public Dictionary<int, int> statisticsDictionary { get; set; }
+        public Dictionary<int, int> StatisticsDictionary { get; set; }
 
-        public Statistics()
+        public CharacterStatistics()
         {
-            statisticsDictionary = new Dictionary<int, int>();
+            StatisticsDictionary = new Dictionary<int, int>();
             
             Strength = 1;
             Agility = 1;
@@ -167,6 +167,22 @@ namespace PzProjekt
             Stamina = 1;
             Magica = 1;
             Intelligence = 1;
+        }
+
+        public object Clone()
+        {
+            return new CharacterStatistics
+            {
+                Strength = Strength,
+                Agility = Agility,
+                Attack = Attack,
+                Defence = Defence,
+                Vitality = Vitality,
+                Charisma = Charisma,
+                Stamina = Stamina,
+                Magica = Magica,
+                Intelligence = Intelligence
+            };
         }
     }
 }

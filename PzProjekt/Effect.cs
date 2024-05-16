@@ -4,18 +4,27 @@ public delegate void Action(Fight fight);
 
 public class Effect
 {
+    public event Action OnEffectBegin;
+    public event Action OnEffectEnd;
     public event Action ApplyEffect; 
-    public int TurnsLeft { get; set; }
-    public EffectType Type { get; set; }
-
-    public Effect(int turnsLeft, EffectType type)
+    
+    public void BeginEffect(Fight fight)
     {
-        TurnsLeft = turnsLeft;
-        Type = type;
+        OnEffectBegin?.Invoke(fight);
+    }
+    
+    public void EndEffect(Fight fight)
+    {
+        OnEffectEnd?.Invoke(fight);
     }
     
     public void Trigger(Fight fight)
     {
         ApplyEffect?.Invoke(fight);
+    }
+    
+    public bool IsFrozen()
+    {
+        return ApplyEffect == Actions.Freeze;
     }
 }

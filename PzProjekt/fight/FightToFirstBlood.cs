@@ -6,12 +6,12 @@ public class FightToFirstBlood : Fight
 
     public override Result CheckFightResult()
     {
-        if (!Player.HasArmor)
+        if (!Player.Inventory.HasArmor)
         {
             return Result.LOST;
         }
         
-        if (!Enemy.HasArmor)
+        if (!Enemy.Inventory.HasArmor)
         {
             return Result.WON;
         }
@@ -23,12 +23,12 @@ public class FightToFirstBlood : Fight
     {
         if (result == Result.WON)
         {
-            Player.CharacterMoney += MoneyToGet;
-            Player.ExperiencePoints += ExperiencePointsToGet;
+            Player.Parameters.Money += MoneyToGet;
+            Player.Parameters.ExperiencePoints += ExperiencePointsToGet;
         }
         else if(result == Result.LOST)
         {
-            Player.CharacterMoney -= MoneyToLose;
+            Player.Parameters.Money -= MoneyToLose;
         }
     } 
 }

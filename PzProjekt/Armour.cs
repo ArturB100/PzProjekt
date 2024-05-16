@@ -10,12 +10,9 @@ namespace PzProjekt
     {
         public ArmourType ArmourType { get; set; }
         public int ArmourPoints { get; set; }
-        
-        public Armour(int minLevel, string name, int valueInGold, ArmourType armourType, int armourPoints)
+
+        public Armour(int minLevel, string name, int valueInGold, ArmourType armourType, int armourPoints) : base(minLevel, name, valueInGold)
         {
-            MinLevel = minLevel;
-            Name = name;
-            ValueInGold = valueInGold;
             ArmourType = armourType;
             ArmourPoints = armourPoints;
         }

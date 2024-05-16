@@ -11,5 +11,12 @@ namespace PzProjekt
         public int MinLevel { get; set; }
         public string Name { get; set; }
         public int ValueInGold { get; set; }
+
+        protected InventoryItem(int minLevel, string name, int valueInGold)
+        {
+            MinLevel = minLevel;
+            Name = name;
+            ValueInGold = valueInGold;
+        }
     }
 }

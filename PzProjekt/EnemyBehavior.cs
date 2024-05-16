@@ -2,25 +2,25 @@
 
 public class EnemyBehavior
 {
-    private Fight fight;
-    private Random random;
+    private Fight _fight;
+    private Random _random;
 
     public EnemyBehavior(Fight fight)
     {
-        this.fight = fight;
-        this.random = new Random();
+        this._fight = fight;
+        this._random = new Random();
     }
 
     public void MakeMove()
     {
-        if (fight.Enemy.AttackRange > fight.DistanceBetweenCharacters)
+        if (_fight.Enemy.Parameters.AttackRange > _fight.DistanceBetweenCharacters)
         {
-            AttackType attackType = (AttackType)random.Next(Enum.GetNames(typeof(AttackType)).Length);
-            fight.CharacterFightActions.Attack(attackType);
+            AttackType attackType = (AttackType)_random.Next(Enum.GetNames(typeof(AttackType)).Length);
+            _fight.CharacterFightActions.Attack(attackType);
         }
         else
         {
-            fight.CharacterFightActions.MoveTowardsEnemy();
+            _fight.CharacterFightActions.MoveTowardsEnemy();
         }
     }
 }
