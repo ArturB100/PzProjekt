@@ -1,6 +1,6 @@
 ﻿namespace WinForm.views
 {
-    partial class WeaponsmithView
+    partial class SelectedCharacterDetailsView
     {
         /// <summary> 
         /// Wymagana zmienna projektanta.
@@ -28,43 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            listBox1 = new ListBox();
+            characterDetails = new RichTextBox();
             SuspendLayout();
             // 
-            // label1
+            // characterDetails
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(819, 42);
-            label1.Name = "label1";
-            label1.Size = new Size(63, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Kuźnia";
+            characterDetails.Location = new Point(395, 424);
+            characterDetails.Name = "characterDetails";
+            characterDetails.Size = new Size(1063, 527);
+            characterDetails.TabIndex = 0;
+            characterDetails.Text = "";
+            characterDetails.TextChanged += characterDetails_TextChanged;
             // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 25;
-            listBox1.Location = new Point(200, 548);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(1450, 454);
-            listBox1.TabIndex = 2;
-            // 
-            // WeaponsmithView
+            // SelectedCharacterDetailsView
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(listBox1);
-            Controls.Add(label1);
-            Name = "WeaponsmithView";
+            Controls.Add(characterDetails);
+            Name = "SelectedCharacterDetailsView";
             Size = new Size(1920, 1080);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private ListBox listBox1;
+        private RichTextBox characterDetails;
     }
 }

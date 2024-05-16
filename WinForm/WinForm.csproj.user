@@ -22,10 +22,19 @@
     <Compile Update="views\HomeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="views\SelectedCharacterDetailsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="views\shops\ArmourShopView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="views\UserControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="views\Weaponsmith.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="views\WeaponsmithView.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

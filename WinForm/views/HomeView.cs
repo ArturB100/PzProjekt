@@ -38,7 +38,7 @@ namespace WinForm.views
 
         private void weponsmithBtn_Click(object sender, EventArgs e)
         {
-
+            ProgramCtx.ChangeView(new WeaponsmithView(ProgramCtx));
         }
     }
 }
