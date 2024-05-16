@@ -20,7 +20,7 @@ namespace WinForm.views
         }
 
         
-        public Weaponsmith(Form1 form) : base(form)
+        public Weaponsmith(ProgramCtx form) : base(form)
         {
             InitializeComponent();
         }

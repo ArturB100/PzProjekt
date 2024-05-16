@@ -39,6 +39,7 @@
             menuToolStripMenuItem = new ToolStripMenuItem();
             zapiszToolStripMenuItem = new ToolStripMenuItem();
             wyjdzToolStripMenuItem = new ToolStripMenuItem();
+            currentCharacterDetailsBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -46,7 +47,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-3, 36);
+            pictureBox1.Location = new Point(-3, 33);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(1923, 1044);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -89,6 +90,7 @@
             armouryBtn.TabIndex = 4;
             armouryBtn.Text = "armoury";
             armouryBtn.UseVisualStyleBackColor = true;
+            armouryBtn.Click += armouryBtn_Click;
             // 
             // arenaBtn
             // 
@@ -130,10 +132,21 @@
             wyjdzToolStripMenuItem.Text = "wyjdz";
             wyjdzToolStripMenuItem.Click += wyjdzToolStripMenuItem_Click;
             // 
+            // currentCharacterDetailsBtn
+            // 
+            currentCharacterDetailsBtn.Location = new Point(1301, 102);
+            currentCharacterDetailsBtn.Name = "currentCharacterDetailsBtn";
+            currentCharacterDetailsBtn.Size = new Size(221, 44);
+            currentCharacterDetailsBtn.TabIndex = 7;
+            currentCharacterDetailsBtn.Text = "Moja postac";
+            currentCharacterDetailsBtn.UseVisualStyleBackColor = true;
+            currentCharacterDetailsBtn.Click += currentCharacterDetailsBtn_Click;
+            // 
             // HomeView
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(currentCharacterDetailsBtn);
             Controls.Add(arenaBtn);
             Controls.Add(armouryBtn);
             Controls.Add(churchBtn);
@@ -162,5 +175,6 @@
         private ToolStripMenuItem menuToolStripMenuItem;
         private ToolStripMenuItem zapiszToolStripMenuItem;
         private ToolStripMenuItem wyjdzToolStripMenuItem;
+        private Button currentCharacterDetailsBtn;
     }
 }

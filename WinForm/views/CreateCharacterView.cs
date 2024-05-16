@@ -21,7 +21,7 @@ namespace WinForm.views
 
         public PzProjekt.Character character { get; set; }
 
-        public CreateCharacterView(Form1 form) : base(form)
+        public CreateCharacterView(ProgramCtx form) : base(form)
         {
             InitializeComponent();
             UpdateCharacterPointsToInvestLabel();
@@ -29,7 +29,7 @@ namespace WinForm.views
             {
                 intelligenceCurrentValue, strengthCurrentValue, AgilityCurrentValue, AttackCurrentValue, defenceCurrentValue, vitalityCurrentValue, charismaCurrentValue, staminaCurrentValue, magicaCurrentValue
             });
-            character = MainForm.SelectedCharacter;
+            character = ProgramCtx.SelectedCharacter;
             UpdateCharacterStatisticsLabels();
 
 
@@ -39,7 +39,7 @@ namespace WinForm.views
             }
             catch (Exception ex)
             {
-                MainForm.WarningMessage(ex.Message);
+                ProgramCtx.WarningMessage(ex.Message);
             }
         }
 
@@ -77,7 +77,7 @@ namespace WinForm.views
 
         private void UpdateCharacterPointsToInvestLabel()
         {
-            pointsToInvestLabel.Text = Convert.ToString(MainForm.SelectedCharacter.PointToInvest);
+            pointsToInvestLabel.Text = Convert.ToString(ProgramCtx.SelectedCharacter.PointToInvest);
         }
 
         private delegate void SetStatisticDelegate(int value);
@@ -85,7 +85,7 @@ namespace WinForm.views
         {
             if (character.PointToInvest == 0 && value > 0)
             {
-                MainForm.WarningMessage("brak punktow");
+                ProgramCtx.WarningMessage("brak punktow");
                 return;
             }
 
@@ -96,7 +96,7 @@ namespace WinForm.views
             }
             catch (NegativeStatisticPointsException exception)
             {
-                MainForm.WarningMessage("nie moze byc mniej niz 1");
+                ProgramCtx.WarningMessage("nie moze byc mniej niz 1");
                 return;
             }
 
@@ -219,17 +219,17 @@ namespace WinForm.views
         {
             if (!String.IsNullOrEmpty(character.Name) && character.PointToInvest == 0)
             {
-                if (MainForm.PlayableCharacters == null)
+                if (ProgramCtx.PlayableCharacters == null)
                 {
-                    MainForm.WarningMessage("null");
+                    ProgramCtx.WarningMessage("null");
                 }
-                MainForm.PlayableCharacters.Add(character);
-                MainForm.ChangeView(new HomeView(MainForm));
+                ProgramCtx.PlayableCharacters.Add(character);
+                ProgramCtx.ChangeView(new HomeView(ProgramCtx));
                 
             }
             else
             {
-                MainForm.WarningMessage("Podaj imie, oraz rozdaj wszystkie punkty umiejętności");
+                ProgramCtx.WarningMessage("Podaj imie, oraz rozdaj wszystkie punkty umiejętności");
             }
 
 

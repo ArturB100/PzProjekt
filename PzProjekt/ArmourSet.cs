@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PzProjekt
 {
+    [ToStringProperties]
     public class ArmourSet
     {
         public Armour Helmet { get; set; }
@@ -13,7 +14,16 @@ namespace PzProjekt
         public Armour Leggings { get; set; }
         public Armour Boots { get; set; }
         
-        private int _actualArmorPoints;
+        private int _actualArmorPoints = 0;
+
+        public ArmourSet()
+        {
+            armourSet.Add(Helmet);
+            armourSet.Add(Chestplate);
+            armourSet.Add(Leggings);
+            armourSet.Add(Boots);
+            ActualArmorPoints = MaxArmorPoints;
+        }
 
         public int ActualArmorPoints
         {
@@ -26,8 +36,17 @@ namespace PzProjekt
         
         public int MaxArmorPoints 
         { 
-            get => armourSet.Sum(armour => armour.ArmourPoints);
+            get => armourSet.Sum(armour => 
+            {
+                if (armour != null)
+                {
+                    return armour.ArmourPoints;
+                }
+                return 0;                   
+            });
         }
+
+        
         
         private List<Armour> armourSet = new List<Armour>();
     }

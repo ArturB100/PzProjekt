@@ -3,28 +3,27 @@ using PzProjekt;
 
 namespace WinForm
 {
-    public partial class Form1 : Form
+    public partial class ProgramCtx : Form
     {
 
-        //private List<string> savedGames = new List<string>() { };
+    
 
         public PlayableCharacters PlayableCharacters { get; set; } = new PlayableCharacters();
 
         public Character SelectedCharacter { get; set; } = null;
 
+        public GameSetup GameSetup { get; set; }
 
+       
 
-        /*public List<string> SavedGames
-        {
-            get { return savedGames; }
-        }
-        */
-
-        public Form1()
+        public ProgramCtx()
         {
             InitializeComponent();
             LoadSavedGame();
+            GameSetup = new GameSetup();
+
             this.ChangeView(new FirstPage(this));
+
         }
 
         public void SaveGame ()
@@ -37,6 +36,7 @@ namespace WinForm
             try
             {
                 PlayableCharacters = GameSaverService.ReadFromFile<PlayableCharacters>();
+                
             } 
             catch (Exception ex) 
             {
@@ -47,6 +47,12 @@ namespace WinForm
                 PlayableCharacters = new PlayableCharacters();
 
             }
+        }
+
+        public void SelectCharacter (Character character)
+        {            
+            SelectedCharacter = character;
+            SelectedCharacter.InitializeAllObjects();
         }
        
 

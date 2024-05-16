@@ -23,7 +23,6 @@ C:\Users\48797\Documents\GitHub\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinFo
 C:\Users\48797\Documents\GitHub\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.csproj.CopyComplete
 C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.csproj.AssemblyReference.cache
 C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.components.GameSelectPanel.resources
-C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.Form1.resources
 C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.Properties.Resources.resources
 C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.views.CreateCharacterView.resources
 C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.FirstPage.resources
@@ -53,3 +52,8 @@ C:\Users\48797\Documents\GitHub\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinFo
 C:\Users\48797\Documents\GitHub\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.views.CreateCharacterView.resources
 C:\Users\48797\Documents\GitHub\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.views.GameSelectView.resources
 C:\Users\48797\Documents\GitHub\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.views.HomeView.resources
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.ProgramCtx.resources
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.views.Weaponsmith.resources
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.views.shops.ArmourShopView.resources
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\obj\Debug\net7.0-windows\WinForm.views.SelectedCharacterDetailsView.resources
+C:\Users\artur\Desktop\semestr6\PzProjekt\WinForm\bin\Debug\net7.0-windows\Newtonsoft.Json.dll

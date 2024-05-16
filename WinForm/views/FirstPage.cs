@@ -5,7 +5,7 @@ namespace WinForm
 {
     public partial class FirstPage : UserControlBase
     {
-        public FirstPage(Form1 form) : base(form)
+        public FirstPage(ProgramCtx form) : base(form)
         {
             InitializeComponent();
             backgroundImg.SendToBack();
@@ -15,7 +15,7 @@ namespace WinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MainForm.ChangeView(new GameSelectView(MainForm));
+            ProgramCtx.ChangeView(new GameSelectView(ProgramCtx));
         }
 
         private void FirstPage_Load(object sender, EventArgs e)

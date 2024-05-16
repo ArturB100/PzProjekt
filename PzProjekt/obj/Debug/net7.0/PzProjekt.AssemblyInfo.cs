@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PzProjekt")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc3c3e285eaac50d5162e5e9e2a57d45b13947f8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ace17433c79e7bedae35e00e446d54b17fb94424")]
 [assembly: System.Reflection.AssemblyProductAttribute("PzProjekt")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PzProjekt")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

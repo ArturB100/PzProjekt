@@ -35,6 +35,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Name = "UserControlBase";
+            Size = new Size(1920, 1080);
             ResumeLayout(false);
         }
 

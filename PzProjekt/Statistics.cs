@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PzProjekt
 {
-    public class Statistics
+    public class Statistics 
     {
         public int Strength
         {
@@ -167,6 +167,11 @@ namespace PzProjekt
             Stamina = 1;
             Magica = 1;
             Intelligence = 1;
+        }
+
+        public bool IsGreater(Statistics? other)
+        {
+            return true;
         }
     }
 }

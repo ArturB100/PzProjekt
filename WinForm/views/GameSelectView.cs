@@ -18,7 +18,7 @@ namespace WinForm.views
 
         
 
-        public GameSelectView(Form1 form) : base(form)
+        public GameSelectView(ProgramCtx form) : base(form)
         {
             InitializeComponent();
             panelList.Add(gameSelectPanel1);
@@ -88,15 +88,15 @@ namespace WinForm.views
         private void MakeAction (int number)
         {
             
-            if (MainForm.PlayableCharacters.Count > number)
+            if (ProgramCtx.PlayableCharacters.Count > number)
             {
-                MainForm.SelectedCharacter = MainForm.PlayableCharacters[number];
-                MainForm.ChangeView(new HomeView(MainForm));
+                ProgramCtx.SelectCharacter(ProgramCtx.PlayableCharacters[number]);
+                ProgramCtx.ChangeView(new HomeView(ProgramCtx));
             }
             else
             {
-                MainForm.SelectedCharacter = new PzProjekt.Character();
-                MainForm.ChangeView(new CreateCharacterView(MainForm));
+                ProgramCtx.SelectCharacter (new PzProjekt.Character());
+                ProgramCtx.ChangeView(new CreateCharacterView(ProgramCtx));
             }
 
             

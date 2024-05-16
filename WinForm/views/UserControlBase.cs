@@ -12,20 +12,20 @@ namespace WinForm
 {
     public partial class UserControlBase : UserControl
     {
-        private Form1 mainForm;
+        private ProgramCtx programCtx;
 
-        public Form1 MainForm
+        public ProgramCtx ProgramCtx
         {
-            get { return mainForm; }
-            set { mainForm = value; }
+            get { return programCtx; }
+            set { programCtx = value; }
         }
 
         public UserControlBase() { }
-        public UserControlBase(Form1 form)
+        public UserControlBase(ProgramCtx form)
         {
             InitializeComponent();
-            this.mainForm = form;
-            this.Size = new System.Drawing.Size(mainForm.Width, mainForm.Height);
+            this.programCtx = form;
+            this.Size = new System.Drawing.Size(programCtx.Width, programCtx.Height);
         }
     }
 }

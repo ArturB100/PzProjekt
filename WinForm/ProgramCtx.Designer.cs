@@ -1,6 +1,6 @@
 ﻿namespace WinForm
 {
-    partial class Form1
+    partial class ProgramCtx
     {
         /// <summary>
         ///  Required designer variable.

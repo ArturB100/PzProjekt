@@ -13,7 +13,34 @@ namespace PzProjekt
 
         public string Name { get; set; }
         public int MaxHP { get; set; }
+
         private int _actualHP;
+
+
+        public Character()
+        {
+            CharacterStatistics = new Statistics();
+            EquipedArmourSet = new ArmourSet();
+            Level = 1;
+            MaxHP = calculateMaxHP();
+            ActualHP = MaxHP;
+            CharacterMoney = 200;
+            PointToInvest = 10;
+        }
+
+        public Character(string name, Statistics characterStatistics, int level)
+        {
+            Name = name;
+            CharacterStatistics = characterStatistics;
+            EquipedArmourSet = new ArmourSet();
+            Level = level;
+            MaxHP = calculateMaxHP();
+            MaxStamina = calculateMaxStamina();
+            Refill();
+            CharacterMoney = 200;
+        }
+
+
 
         public int ActualHP
         {
@@ -120,7 +147,7 @@ namespace PzProjekt
         
         public bool HasArmor
         {
-            get => EquipedArmourSet.ActualArmorPoints > 0;
+            get => EquipedArmourSet?.ActualArmorPoints > 0;
         }
         
         public bool IsAlive 
@@ -137,15 +164,7 @@ namespace PzProjekt
             AvailableSpells.Add(spell);
         }
         
-        public Character() 
-        {
-            CharacterStatistics = new Statistics();
-            Level = 1;
-            MaxHP = calculateMaxHP();
-            ActualHP = MaxHP;
-            CharacterMoney = 200;
-            PointToInvest = 10;
-        }
+       
         
         public Character(string name, Statistics characterStatistics, int level, Weapon weapon)
         {
@@ -209,6 +228,65 @@ namespace PzProjekt
         {
             ActualStamina -= 20;
             Position += PossibleDistance;
+        }
+
+        public void Sleep()
+        {
+            ActualStamina += Convert.ToInt32(MaxStamina * 0.2);
+        }
+
+        public void EquipArmour (Armour armour)
+        {
+            if (EquipedArmourSet == null)
+            {
+                EquipedArmourSet = new ArmourSet();
+            }
+
+
+            switch (armour.ArmourType)
+            {
+                case ArmourType.Helmet:
+                    EquipedArmourSet.Helmet = armour;
+                    break;
+                case ArmourType.Chestplate:
+                    EquipedArmourSet.Chestplate = armour;
+                    break;
+                case ArmourType.Leggings:
+                    EquipedArmourSet.Leggings = armour;
+                    break;
+                case ArmourType.Boots:
+                    EquipedArmourSet.Boots = armour;
+                    break;
+            }
+        }
+
+        
+        public void InitializeAllObjects ()
+        {
+            if (EquipedArmourSet == null)
+            {
+                EquipedArmourSet = new ArmourSet();
+            }
+            
+        }
+
+        public string DisplayInfo ()
+        {
+            
+
+            return $"{Name} \n {Level} \n " +
+                $"helm: {EquipedArmourSet.Helmet.ToStringWithProperties()} \n" +
+                $"zbroja: {EquipedArmourSet.Chestplate.ToStringWithProperties()} \n" +
+                $"spodnie: {EquipedArmourSet.Leggings.ToStringWithProperties()} \n" +
+                $"buty {EquipedArmourSet.Boots.ToStringWithProperties()} \n" +
+                $"" +
+                $"" +
+                $"" +
+                $"" +
+                $"" +
+                $"" +
+                $"" +
+                $" ";
         }
     }
 }

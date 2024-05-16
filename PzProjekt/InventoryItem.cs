@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace PzProjekt
 {
+    [ToStringProperties]
     abstract public class InventoryItem
     {
+       
         public int MinLevel { get; set; }
         public string Name { get; set; }
         public int ValueInGold { get; set; }
+        public Statistics requiredStatistics { get; set; }
     }
 }
