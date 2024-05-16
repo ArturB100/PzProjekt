@@ -34,8 +34,5 @@
     <Compile Update="views\shops\Weaponsmith.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="views\WeaponsmithView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
   </ItemGroup>
 </Project>

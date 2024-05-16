@@ -56,12 +56,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(menu);
             Name = "UserControlBase";
-<<<<<<< Updated upstream
-=======
+
             Size = new Size(1920, 1080);
             menu.ResumeLayout(false);
             menu.PerformLayout();
->>>>>>> Stashed changes
             ResumeLayout(false);
             PerformLayout();
         }

@@ -33,9 +33,9 @@ public  class Shop <T>  where T : InventoryItem
     {
         return 
         (
-            character.CharacterMoney >= item.ValueInGold &&
-            character.Level >= item.MinLevel && 
-            character.CharacterStatistics.IsGreater(item.requiredStatistics)
+            character.Parameters.Money >= item.ValueInGold &&
+            character.Parameters.Level >= item.MinLevel && 
+            character.BaseStatistics.IsGreater(item.Statistics)
         );
     }
 
@@ -46,7 +46,7 @@ public  class Shop <T>  where T : InventoryItem
             throw new ItemImpossibleToBuy();
         }            
 
-        character.CharacterMoney -= Convert.ToInt32(inventoryItem.ValueInGold * (1 - character.CharacterStatistics.Charisma * 0.01));
+        character.Parameters.Money -= Convert.ToInt32(inventoryItem.ValueInGold * (1 - character.BaseStatistics.Charisma * 0.01));
      
         EquipItem?.Invoke(character, inventoryItem);
     }
@@ -64,7 +64,7 @@ public class ArmourShop : Shop<Armour>
     }
     private void ArmourShop_EquipItem(Character character, Armour inventoryItem)
     {
-        character.EquipArmour(inventoryItem);
+        character.Inventory.EquipArmour(inventoryItem);
     }
 }
 
@@ -77,6 +77,6 @@ public class WeaponShop : Shop<Weapon>
     }
     private void ArmourShop_EquipItem(Character character, Weapon inventoryItem)
     {
-        character.EquipWeapon(inventoryItem);
+        character.Inventory.EquipWeapon(inventoryItem);
     }
 }

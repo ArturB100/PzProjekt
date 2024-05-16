@@ -77,7 +77,7 @@ namespace WinForm.views
 
         private void UpdateCharacterPointsToInvestLabel()
         {
-            pointsToInvestLabel.Text = Convert.ToString(ProgramCtx.SelectedCharacter.PointToInvest);
+            pointsToInvestLabel.Text = Convert.ToString(ProgramCtx.SelectedCharacter.Parameters.PointToInvest);
         }
 
         private delegate void SetStatisticDelegate(int value);

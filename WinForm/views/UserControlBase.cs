@@ -25,9 +25,9 @@ namespace WinForm
         public UserControlBase(ProgramCtx form)
         {
             InitializeComponent();
-            this.mainForm = form;
-            this.Size = new System.Drawing.Size(mainForm.Width, mainForm.Height);
-=======
+            ProgramCtx = form;
+            
+        }
         public UserControlBase(ProgramCtx form, bool showMenu = false)
         {
             InitializeComponent();
@@ -39,7 +39,6 @@ namespace WinForm
         private void stronaGlownaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ProgramCtx.ChangeView(new HomeView(ProgramCtx));
->>>>>>> Stashed changes
         }
     }
 }

@@ -24,10 +24,7 @@ namespace WinForm
 
         }
 
-        private void ArmourShop_EquipItem(Character character, Armour inventoryItem)
-        {
-            character.EquipArmour(inventoryItem);
-        }
+     
     }
 
 

@@ -30,4 +30,35 @@ public class CharacterInventory
     {
         get => ArmourSet.ActualArmorPoints > 0;
     }
+
+    public void EquipArmour(Armour armour)
+    {
+        if (ArmourSet == null)
+        {
+            ArmourSet = new ArmourSet();
+        }
+
+
+        switch (armour.ArmourType)
+        {
+            case ArmourType.Helmet:
+                ArmourSet.Helmet = armour;
+                break;
+            case ArmourType.Chestplate:
+                ArmourSet.Chestplate = armour;
+                break;
+            case ArmourType.Leggings:
+                ArmourSet.Leggings = armour;
+                break;
+            case ArmourType.Boots:
+                ArmourSet.Boots = armour;
+                break;
+        }
+    }
+
+    public void EquipWeapon (Weapon weapon)
+    {
+        Weapon =  weapon;
+    }
+
 }

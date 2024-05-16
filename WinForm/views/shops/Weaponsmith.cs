@@ -18,11 +18,10 @@ namespace WinForm.views
 
         private List<Weapon> weapons;
         
-<<<<<<<< Updated upstream:WinForm/views/Weaponsmith.cs
-        public Weaponsmith(Form1 form) : base(form)
-========
+
+
         public WeaponsmithView(ProgramCtx form) : base(form, true)
->>>>>>>> Stashed changes:WinForm/views/WeaponsmithView.cs
+
         {
             InitializeComponent();
             //weapons = ProgramCtx.GameSetup.

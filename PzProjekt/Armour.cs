@@ -19,9 +19,7 @@ namespace PzProjekt
         }
 
 
-        public Armour() 
-        {
-        }
+       
 
        
 

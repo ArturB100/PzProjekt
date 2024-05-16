@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using PzProjekt.exceptions;
@@ -42,5 +43,26 @@ namespace PzProjekt
             Parameters.Refill();
             Inventory.Refill();
         }
+
+        public string DisplayInfo()
+        {
+
+
+            return $"{Name} \n {Parameters.Level} \n " +
+                $"helm: {Inventory.ArmourSet.Helmet.ToStringWithProperties()} \n" +
+                $"zbroja: {Inventory.ArmourSet.Chestplate.ToStringWithProperties()} \n" +
+                $"spodnie: {Inventory.ArmourSet.Leggings.ToStringWithProperties()} \n" +
+                $"buty {Inventory.ArmourSet.Boots.ToStringWithProperties()} \n" +
+                $"" +
+                $"" +
+                $"" +
+                $"" +
+                $"" +
+                $"" +
+                $"" +
+                $" ";
+        }
+
+
     }
 }

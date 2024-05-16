@@ -14,6 +14,8 @@ namespace PzProjekt
         public string Name { get; set; }
         public int ValueInGold { get; set; }
 
+        public CharacterStatistics Statistics { get; set; }
+
         protected InventoryItem(int minLevel, string name, int valueInGold)
         {
             MinLevel = minLevel;

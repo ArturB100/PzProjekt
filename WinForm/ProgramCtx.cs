@@ -52,7 +52,6 @@ namespace WinForm
         public void SelectCharacter (Character character)
         {            
             SelectedCharacter = character;
-            SelectedCharacter.InitializeAllObjects();
         }
        
 
