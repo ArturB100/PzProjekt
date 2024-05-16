@@ -7,8 +7,8 @@ public class EnemyBehavior
 
     public EnemyBehavior(Fight fight)
     {
-        this._fight = fight;
-        this._random = new Random();
+        _fight = fight;
+        _random = new Random();
     }
 
     public void MakeMove()

@@ -17,12 +17,5 @@ namespace PzProjekt
             ArmourType = armourType;
             ArmourPoints = armourPoints;
         }
-
-
-       
-
-       
-
-
     }
 }

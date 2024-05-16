@@ -17,14 +17,14 @@ public abstract class Fight
         get => activeCharacter == Player ? Enemy : Player;
     }
     
-    public void changeActiveCharacter()
+    private void ChangeActiveCharacter()
     {
         activeCharacter = activeCharacter == Player ? Enemy : Player;
     }
     
     public Character Player { get; set; }
     public Character Enemy { get; set; }
-    public int CrowdSatisfacion { get; set; }
+    public int CrowdSatisfaction { get; set; }
     
     public int ExperiencePointsToGet
     {
@@ -33,7 +33,7 @@ public abstract class Fight
     
     public int MoneyToGet
     {
-        get => 100 * (1 + Math.Abs(Player.Parameters.Level - Enemy.Parameters.Level)) * (1 + CrowdSatisfacion);
+        get => 100 * (1 + Math.Abs(Player.Parameters.Level - Enemy.Parameters.Level)) * (1 + CrowdSatisfaction);
     }
     
     public int MoneyToLose
@@ -60,7 +60,7 @@ public abstract class Fight
         activeCharacter = player;
         CharacterFightActions = new CharacterFightActions(this);
         EnemyBehavior = new EnemyBehavior(this);
-        CrowdSatisfacion = CalcBaseCrowdSatisfaction();
+        CrowdSatisfaction = CalcBaseCrowdSatisfaction();
     }
 
     private int CalcBaseCrowdSatisfaction()
@@ -70,9 +70,28 @@ public abstract class Fight
 
     public abstract Result CheckFightResult();
     
+    public void EndFight(Result result)
+    {
+        if (result == Result.WON)
+        {
+            Player.Parameters.Money += MoneyToGet;
+            Player.Parameters.ExperiencePoints += ExperiencePointsToGet;
+            int oldLevel = Player.Parameters.Level;
+            Player.Parameters.Level = Player.Parameters.ExperiencePoints / 1000;
+            if(oldLevel != Player.Parameters.Level)
+            {
+                Player.Parameters.PointsToInvest += 5;
+            }
+        }
+        else if(result == Result.LOST)
+        {
+            Player.Parameters.Money -= MoneyToLose;
+        }
+    } 
+    
     public void NextTurn()
     {
-        changeActiveCharacter();
+        ChangeActiveCharacter();
         
         Console.WriteLine("It's " + ActiveCharacter.Name + "'s turn!");
         

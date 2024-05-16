@@ -33,32 +33,52 @@ namespace WinForm
     internal class DataFeeder
     {
         public DataFeeder() { }
+        
+        List<Spell> spells = new List<Spell>
+        {
+            new Spell(1, "Teleportation", 2149, Spells.Teleport),
+            new Spell(1, "Gale", 3820, Spells.Gale),
+            new Spell(1, "Adulation", 15280, Spells.Adulation),
+            new Spell(1, "Command", 15280, Spells.Command),
+            new Spell(1, "Ghost Strike", 105289, Spells.GhostStrike),
+            new Spell(1, "Weaken Armor", 115555, Spells.WeakenArmor),
+            new Spell(1, "Rejuvinate", 188000, Spells.Rejuvinate),
+            new Spell(1, "Fireball", 19857, Spells.Fireball),
+        };
+
+        List<Effect> effects = new List<Effect>
+        {
+            new Effect(1, "Freeze", 1000, null, null, Actions.Freeze),
+            new Effect(1, "Weakness", 1000, Actions.BeginWeakness, Actions.EndWeakness, null),
+            new Effect(1, "Poison", 1000, null, null, Actions.Poison),
+        };
+        
         private List<Armour> helmets = new List<Armour>
-         {
-            new Armour(1, "Leather Helmet", 10, ArmourType.Helmet, 1),
-            new Armour(3, "Iron Helmet", 20, ArmourType.Helmet, 3),
-            new Armour(5, "Dragon Helmet", 50, ArmourType.Helmet, 5)
+        {
+            new Armour(1, "Peasant Helmet", 1200, ArmourType.Helmet, 20),
+            new Armour(3, "Cutpurse Helmet", 2700, ArmourType.Helmet, 30),
+            new Armour(5, "Brigand Helmet", 4800, ArmourType.Helmet, 40)
         };
 
         private List<Armour> chestplates = new List<Armour>
         {
-            new Armour(1, "Leather Chestplate", 10, ArmourType.Chestplate, 1),
-            new Armour(3, "Iron Chestplate", 20, ArmourType.Chestplate, 3),
-            new Armour(5, "Dragon Chestplate", 50, ArmourType.Chestplate, 5)
+            new Armour(1, "Peasant Chestplate", 3072, ArmourType.Chestplate, 32),
+            new Armour(3, "Cutpurse Chestplate", 6912, ArmourType.Chestplate, 48),
+            new Armour(5, "Brigand Chestplate", 12288, ArmourType.Chestplate, 64)
         };
 
         private List<Armour> leggings = new List<Armour>
         {
-            new Armour(1, "Leather Leggings", 10, ArmourType.Leggings, 1),
-            new Armour(3, "Iron Leggings", 20, ArmourType.Leggings, 3),
-            new Armour(5, "Dragon Leggings", 50, ArmourType.Leggings, 5)
+            new Armour(1, "Peasant Leggings", 108, ArmourType.Leggings, 6),
+            new Armour(3, "Cutpurse Leggings", 243, ArmourType.Leggings, 9),
+            new Armour(5, "Brigand Leggings", 432, ArmourType.Leggings, 12)
         };
 
         private List<Armour> boots = new List<Armour>
         {
-        new Armour(1, "Leather Boots", 10, ArmourType.Boots, 1),
-        new Armour(3, "Iron Boots", 20, ArmourType.Boots, 3),
-        new Armour(5, "Dragon Boots", 50, ArmourType.Boots, 5)
+            new Armour(1, "Peasant Boots", 48, ArmourType.Boots, 4),
+            new Armour(3, "Cutpurse Boots", 108, ArmourType.Boots, 6),
+            new Armour(5, "Brigand Boots", 192, ArmourType.Boots, 8)
         };
 
         public  List<Armour> GetArmours () {

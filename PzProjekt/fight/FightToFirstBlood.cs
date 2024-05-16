@@ -18,17 +18,4 @@ public class FightToFirstBlood : Fight
         
         return Result.NONE;
     }
-
-    public void EndFight(Result result)
-    {
-        if (result == Result.WON)
-        {
-            Player.Parameters.Money += MoneyToGet;
-            Player.Parameters.ExperiencePoints += ExperiencePointsToGet;
-        }
-        else if(result == Result.LOST)
-        {
-            Player.Parameters.Money -= MoneyToLose;
-        }
-    } 
 }

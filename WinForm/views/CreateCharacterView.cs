@@ -77,13 +77,13 @@ namespace WinForm.views
 
         private void UpdateCharacterPointsToInvestLabel()
         {
-            pointsToInvestLabel.Text = Convert.ToString(ProgramCtx.SelectedCharacter.Parameters.PointToInvest);
+            pointsToInvestLabel.Text = Convert.ToString(ProgramCtx.SelectedCharacter.Parameters.PointsToInvest);
         }
 
         private delegate void SetStatisticDelegate(int value);
         private void ChangeStatistic(SetStatisticDelegate setStatisticDelegate, int value)
         {
-            if (character.Parameters.PointToInvest == 0 && value > 0)
+            if (character.Parameters.PointsToInvest == 0 && value > 0)
             {
                 ProgramCtx.WarningMessage("brak punktow");
                 return;
@@ -103,11 +103,11 @@ namespace WinForm.views
             // operation succed, so we change the points to invest number
             if (value > 0)
             {
-                character.Parameters.PointToInvest -= 1;
+                character.Parameters.PointsToInvest -= 1;
             }
             else
             {
-                character.Parameters.PointToInvest += 1;
+                character.Parameters.PointsToInvest += 1;
             }
 
 
@@ -217,7 +217,7 @@ namespace WinForm.views
 
         private void nextViewBtn_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(character.Name) && character.Parameters.PointToInvest == 0)
+            if (!String.IsNullOrEmpty(character.Name) && character.Parameters.PointsToInvest == 0)
             {
                 if (ProgramCtx.PlayableCharacters == null)
                 {

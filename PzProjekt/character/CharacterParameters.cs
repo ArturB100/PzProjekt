@@ -19,7 +19,7 @@ public class CharacterParameters
     
     public int ExperiencePoints { get; set; }
     public int Level { get; set; }
-    public int PointToInvest { get; set; }
+    public int PointsToInvest { get; set; }
     public int MaxHP { get; set; }
     
     private int _actualHP;

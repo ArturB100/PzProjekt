@@ -2,11 +2,11 @@
 
 public delegate void Action(Fight fight);
 
-public class Effect
+public class Effect : InventoryItem
 {
-    public event Action OnEffectBegin;
-    public event Action OnEffectEnd;
-    public event Action ApplyEffect; 
+    public Action OnEffectBegin;
+    public Action OnEffectEnd;
+    public Action ApplyEffect; 
     
     public void BeginEffect(Fight fight)
     {
@@ -26,5 +26,12 @@ public class Effect
     public bool IsFrozen()
     {
         return ApplyEffect == Actions.Freeze;
+    }
+
+    public Effect(int minLevel, string name, int valueInGold, Action onEffectBegin, Action onEffectEnd, Action applyEffect) : base(minLevel, name, valueInGold)
+    {
+        OnEffectBegin = onEffectBegin;
+        OnEffectEnd = onEffectEnd;
+        ApplyEffect = applyEffect;
     }
 }

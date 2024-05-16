@@ -29,6 +29,7 @@ public  class Shop <T>  where T : InventoryItem
         }
         return result;
     }
+    
     public bool CanBeBoughtByPlayer ( Character character, T item)
     {
         return 

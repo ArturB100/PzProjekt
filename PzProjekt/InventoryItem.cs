@@ -21,6 +21,16 @@ namespace PzProjekt
             MinLevel = minLevel;
             Name = name;
             ValueInGold = valueInGold;
+
+            Statistics = new CharacterStatistics();
+        }
+
+        protected InventoryItem(int minLevel, string name, int valueInGold, CharacterStatistics statistics)
+        {
+            MinLevel = minLevel;
+            Name = name;
+            ValueInGold = valueInGold;
+            Statistics = statistics;
         }
     }
 }

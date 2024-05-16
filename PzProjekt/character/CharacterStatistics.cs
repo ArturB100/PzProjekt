@@ -169,10 +169,19 @@ namespace PzProjekt
             Intelligence = 1;
         }
 
-        public bool IsGreater(CharacterStatistics? other)
+        public bool IsGreater(CharacterStatistics statistics)
         {
+            foreach (var stat in StatisticsDictionary)
+            {
+                if (stat.Value < statistics.StatisticsDictionary[stat.Key])
+                {
+                    return false;
+                }
+            }
+            
             return true;
         }
+        
         public object Clone()
         {
             return new CharacterStatistics

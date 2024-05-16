@@ -200,7 +200,7 @@ public class CharacterFightActions
     
     public void SatisfyTheCrowd()
     {
-        Fight.CrowdSatisfacion += Convert.ToInt32(ActiveCharacter.ActualStatistics.Charisma * 0.01);
+        Fight.CrowdSatisfaction += Convert.ToInt32(ActiveCharacter.ActualStatistics.Charisma * 0.01);
     }
 
     public void ListSpells()
