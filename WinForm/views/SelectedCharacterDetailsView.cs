@@ -16,7 +16,7 @@ namespace WinForm.views
         {
             InitializeComponent();
 
-            characterDetails.Text = ProgramCtx.SelectedCharacter.DisplayInfo();
+            characterDetails.Text = ProgramCtx.SelectedCharacter.DisplayInformations();
         }
 
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)

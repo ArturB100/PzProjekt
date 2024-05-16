@@ -17,18 +17,89 @@ namespace WinForm.views
 
 
         private List<Weapon> weapons;
-        
+
+        private Weapon selectedWeapon;
+
 
 
         public WeaponsmithView(ProgramCtx form) : base(form, true)
 
         {
             InitializeComponent();
-            //weapons = ProgramCtx.GameSetup.
+            resultBox.Visible = false;
+            weapons = ProgramCtx.GameSetup.WeaponShop.GetItems();
+
+            characterStatistics.Visible = false;
+            characterStatistics.Text = ProgramCtx.SelectedCharacter.DisplayInformationsInShop();
+            DeleteAllBordersFromPictures();
         }
+
+        private void swordPic_Click(object sender, EventArgs e)
+        {
+            FilterData(WeaponType.Sword);
+            swordPic.BorderStyle = BorderStyle.FixedSingle;
+            swordPic.BackColor = Color.Yellow;
+        }
+
+        private void axePic_Click(object sender, EventArgs e)
+        {
+            FilterData(WeaponType.Axe);
+            axePic.BorderStyle = BorderStyle.FixedSingle;
+            axePic.BackColor = Color.Yellow;
+        }
+
+        private void FilterData(WeaponType weaponType)
+        {
+            DeleteAllBordersFromPictures();
+            weapons = ProgramCtx.GameSetup.WeaponShop.GetItems().FindAll(w => w.WeaponType == weaponType);
+
+            characterStatistics.Visible = true;
+
+            resultBox.Visible = true;
+            resultBox.DataSource = weapons.GetItemsAsString();
+        }
+
+        private void resultBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = resultBox.SelectedIndex;
+            selectedWeapon = weapons[selectedIndex];
+        }
+
+        public bool CheckIfSelectedItemCanBeBought()
+        {
+            return
+            (
+                selectedWeapon != null &&
+                ProgramCtx.GameSetup.WeaponShop.CanBeBoughtByPlayer(ProgramCtx.SelectedCharacter, selectedWeapon)
+            );
+        }
+
+
         
+        private void buyBtn_Click_1(object sender, EventArgs e)
+        {
+            if (CheckIfSelectedItemCanBeBought())
+            {
+                ProgramCtx.GameSetup.WeaponShop.BuyItem(ProgramCtx.SelectedCharacter, selectedWeapon);
+                ProgramCtx.SuccessMessage("przedmiot zostal zakupiony");
+            }
+            else
+            {
+                ProgramCtx.WarningMessage("Cos poszlo nie tak");
+            }
+        }
 
 
+        private void DeleteAllBordersFromPictures()
+        {
+            swordPic.BorderStyle = BorderStyle.None;
+            axePic.BorderStyle = BorderStyle.None;
 
+
+            swordPic.BackColor = Color.Transparent;
+            axePic.BackColor = Color.Transparent;
+
+
+        }
     }
 }

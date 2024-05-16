@@ -31,14 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArmourShopView));
             resultsBox = new ListBox();
             buyBtn = new components.WoodButton();
-            menuStrip1 = new MenuStrip();
-            ekranGlownyToolStripMenuItem = new ToolStripMenuItem();
             helmetsPic = new PictureBox();
             chestplatePic = new PictureBox();
             leggingsPic = new PictureBox();
             bootsPic = new PictureBox();
             pictureBox1 = new PictureBox();
-            menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)helmetsPic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chestplatePic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)leggingsPic).BeginInit();
@@ -70,23 +67,6 @@
             buyBtn.Text = "Kup";
             buyBtn.UseVisualStyleBackColor = false;
             buyBtn.Click += buyBtn_Click;
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { ekranGlownyToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1920, 33);
-            menuStrip1.TabIndex = 2;
-            menuStrip1.Text = "menuStrip1";
-            // 
-            // ekranGlownyToolStripMenuItem
-            // 
-            ekranGlownyToolStripMenuItem.Name = "ekranGlownyToolStripMenuItem";
-            ekranGlownyToolStripMenuItem.Size = new Size(134, 29);
-            ekranGlownyToolStripMenuItem.Text = "Ekran glowny";
-            ekranGlownyToolStripMenuItem.Click += ekranGlownyToolStripMenuItem_Click;
             // 
             // helmetsPic
             // 
@@ -135,9 +115,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(3, 36);
+            pictureBox1.Location = new Point(0, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1914, 1041);
+            pictureBox1.Size = new Size(1917, 1074);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
@@ -152,27 +132,21 @@
             Controls.Add(helmetsPic);
             Controls.Add(buyBtn);
             Controls.Add(resultsBox);
-            Controls.Add(menuStrip1);
             Controls.Add(pictureBox1);
             Name = "ArmourShopView";
             Size = new Size(1920, 1080);
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)helmetsPic).EndInit();
             ((System.ComponentModel.ISupportInitialize)chestplatePic).EndInit();
             ((System.ComponentModel.ISupportInitialize)leggingsPic).EndInit();
             ((System.ComponentModel.ISupportInitialize)bootsPic).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private ListBox resultsBox;
         private components.WoodButton buyBtn;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem ekranGlownyToolStripMenuItem;
         private PictureBox helmetsPic;
         private PictureBox chestplatePic;
         private PictureBox leggingsPic;

@@ -12,7 +12,7 @@ namespace WinForm
     {
         public ArmourShop  ArmourShop { get; set; }
 
-
+        public WeaponShop WeaponShop { get; set; }
 
         public GameSetup() 
         { 
@@ -21,6 +21,8 @@ namespace WinForm
             ArmourShop = new ArmourShop();
             ArmourShop.AddItems(dataFeeder.GetArmours());
             
+            WeaponShop = new WeaponShop();
+            WeaponShop.AddItems(dataFeeder.GetWeapons());
 
         }
 
@@ -66,6 +68,16 @@ namespace WinForm
             results.AddRange (helmets);
             results.AddRange(chestplates);
             return results ;
+        }
+
+
+
+
+        public List<Weapon> GetWeapons ()
+        {
+            List<Weapon> results = new List<Weapon> ();
+            results.Add(new Weapon(1, "dsadsa", 3, WeaponType.Sword, 100, 1000));
+            return results;
         }
             
      }

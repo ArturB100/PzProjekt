@@ -14,16 +14,13 @@ namespace WinForm.views
     public partial class HomeView : UserControlBase
     {
 
-        public HomeView(ProgramCtx form) : base(form)
+        public HomeView(ProgramCtx form) : base(form, false)
         {
             InitializeComponent();
         }
 
 
-        public HomeView()
-        {
-            InitializeComponent();
-        }
+        
 
         private void zapiszToolStripMenuItem_Click(object sender, EventArgs e)
         {

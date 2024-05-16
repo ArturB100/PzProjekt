@@ -44,24 +44,7 @@ namespace PzProjekt
             Inventory.Refill();
         }
 
-        public string DisplayInfo()
-        {
-
-
-            return $"{Name} \n {Parameters.Level} \n " +
-                $"helm: {Inventory.ArmourSet.Helmet.ToStringWithProperties()} \n" +
-                $"zbroja: {Inventory.ArmourSet.Chestplate.ToStringWithProperties()} \n" +
-                $"spodnie: {Inventory.ArmourSet.Leggings.ToStringWithProperties()} \n" +
-                $"buty {Inventory.ArmourSet.Boots.ToStringWithProperties()} \n" +
-                $"" +
-                $"" +
-                $"" +
-                $"" +
-                $"" +
-                $"" +
-                $"" +
-                $" ";
-        }
+       
 
 
     }

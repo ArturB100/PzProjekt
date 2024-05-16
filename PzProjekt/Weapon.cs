@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PzProjekt
 {
+    [ToStringProperties]
     public class Weapon : InventoryItem
     {
         public Effect? Effect { get; set; }
