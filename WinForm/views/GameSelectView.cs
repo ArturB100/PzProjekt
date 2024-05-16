@@ -35,7 +35,7 @@ namespace WinForm.views
 
             for (int i = 0; i < form.PlayableCharacters.Count; i++)
             {
-                labelList[i].Text = $"{form.PlayableCharacters[i].Name}, Level-{form.PlayableCharacters[i].Level}";
+                labelList[i].Text = $"{form.PlayableCharacters[i].Name}, Level-{form.PlayableCharacters[i].Parameters.Level}";
             }
 
             if (form.PlayableCharacters.Count < 5)

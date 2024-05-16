@@ -5,18 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace WinForm
 {
     public class GameSetup
     {
-        public Shop<Armour>  ArmourShop { get; set; }
+        public ArmourShop  ArmourShop { get; set; }
+
+
+
         public GameSetup() 
         { 
             DataFeeder dataFeeder = new DataFeeder();
 
-            ArmourShop = new Shop<Armour>();
+            ArmourShop = new ArmourShop();
             ArmourShop.AddItems(dataFeeder.GetArmours());
-            ArmourShop.EquipItem += ArmourShop_EquipItem;
+            
 
         }
 

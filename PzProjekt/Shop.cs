@@ -50,4 +50,33 @@ public  class Shop <T>  where T : InventoryItem
      
         EquipItem?.Invoke(character, inventoryItem);
     }
+
+
+
+   
+}
+
+public class ArmourShop : Shop<Armour>
+{
+    public ArmourShop() : base()
+    {
+        EquipItem += ArmourShop_EquipItem;
+    }
+    private void ArmourShop_EquipItem(Character character, Armour inventoryItem)
+    {
+        character.EquipArmour(inventoryItem);
+    }
+}
+
+
+public class WeaponShop : Shop<Weapon>
+{
+    public WeaponShop() : base()
+    {
+        EquipItem += ArmourShop_EquipItem;
+    }
+    private void ArmourShop_EquipItem(Character character, Weapon inventoryItem)
+    {
+        character.EquipWeapon(inventoryItem);
+    }
 }

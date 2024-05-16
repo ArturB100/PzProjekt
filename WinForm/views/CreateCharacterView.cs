@@ -62,16 +62,16 @@ namespace WinForm.views
 
         private void UpdateCharacterStatisticsLabels()
         {
-            Statistics statistics = character.CharacterStatistics;
-            intelligenceCurrentValue.Text = statistics.Intelligence.ToString();
-            strengthCurrentValue.Text = statistics.Strength.ToString();
-            AgilityCurrentValue.Text = statistics.Agility.ToString();
-            AttackCurrentValue.Text = statistics.Attack.ToString();
-            defenceCurrentValue.Text = statistics.Defence.ToString();
-            vitalityCurrentValue.Text = statistics.Vitality.ToString();
-            charismaCurrentValue.Text = statistics.Charisma.ToString();
-            staminaCurrentValue.Text = statistics.Stamina.ToString();
-            magicaCurrentValue.Text = statistics.Magica.ToString();
+            CharacterStatistics characterStatistics = character.BaseStatistics;
+            intelligenceCurrentValue.Text = characterStatistics.Intelligence.ToString();
+            strengthCurrentValue.Text = characterStatistics.Strength.ToString();
+            AgilityCurrentValue.Text = characterStatistics.Agility.ToString();
+            AttackCurrentValue.Text = characterStatistics.Attack.ToString();
+            defenceCurrentValue.Text = characterStatistics.Defence.ToString();
+            vitalityCurrentValue.Text = characterStatistics.Vitality.ToString();
+            charismaCurrentValue.Text = characterStatistics.Charisma.ToString();
+            staminaCurrentValue.Text = characterStatistics.Stamina.ToString();
+            magicaCurrentValue.Text = characterStatistics.Magica.ToString();
 
         }
 
@@ -83,7 +83,7 @@ namespace WinForm.views
         private delegate void SetStatisticDelegate(int value);
         private void ChangeStatistic(SetStatisticDelegate setStatisticDelegate, int value)
         {
-            if (character.PointToInvest == 0 && value > 0)
+            if (character.Parameters.PointToInvest == 0 && value > 0)
             {
                 ProgramCtx.WarningMessage("brak punktow");
                 return;
@@ -103,11 +103,11 @@ namespace WinForm.views
             // operation succed, so we change the points to invest number
             if (value > 0)
             {
-                character.PointToInvest -= 1;
+                character.Parameters.PointToInvest -= 1;
             }
             else
             {
-                character.PointToInvest += 1;
+                character.Parameters.PointToInvest += 1;
             }
 
 
@@ -122,92 +122,92 @@ namespace WinForm.views
 
         private void strengthMinusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Strength += value; }, -1);
+            ChangeStatistic((value) => { character.BaseStatistics.Strength += value; }, -1);
         }
 
         private void strengthPlusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Strength += value; }, 1);
+            ChangeStatistic((value) => { character.BaseStatistics.Strength += value; }, 1);
         }
 
         private void agilityMinusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Agility += value; }, -1);
+            ChangeStatistic((value) => { character.BaseStatistics.Agility += value; }, -1);
         }
 
         private void agilityPlusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Agility += value; }, 1);
+            ChangeStatistic((value) => { character.BaseStatistics.Agility += value; }, 1);
         }
 
         private void attackMinusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Attack += value; }, -1);
+            ChangeStatistic((value) => { character.BaseStatistics.Attack += value; }, -1);
         }
 
         private void attackPlusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Attack += value; }, 1);
+            ChangeStatistic((value) => { character.BaseStatistics.Attack += value; }, 1);
         }
 
         private void defenceMinusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Defence += value; }, -1);
+            ChangeStatistic((value) => { character.BaseStatistics.Defence += value; }, -1);
         }
 
         private void defencePlusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Defence += value; }, 1);
+            ChangeStatistic((value) => { character.BaseStatistics.Defence += value; }, 1);
         }
 
         private void vitalityMinusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Vitality += value; }, -1);
+            ChangeStatistic((value) => { character.BaseStatistics.Vitality += value; }, -1);
         }
 
         private void vitalityPlusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Vitality += value; }, 1);
+            ChangeStatistic((value) => { character.BaseStatistics.Vitality += value; }, 1);
         }
 
         private void charismaMinusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Charisma += value; }, -1);
+            ChangeStatistic((value) => { character.BaseStatistics.Charisma += value; }, -1);
         }
 
         private void charismaPlusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Charisma += value; }, 1);
+            ChangeStatistic((value) => { character.BaseStatistics.Charisma += value; }, 1);
         }
 
         private void staminaMinusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Stamina += value; }, -1);
+            ChangeStatistic((value) => { character.BaseStatistics.Stamina += value; }, -1);
         }
 
         private void staminaPlusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Stamina += value; }, 1);
+            ChangeStatistic((value) => { character.BaseStatistics.Stamina += value; }, 1);
         }
 
         private void magicaMinusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Magica += value; }, -1);
+            ChangeStatistic((value) => { character.BaseStatistics.Magica += value; }, -1);
         }
 
         private void magicaPlusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Magica += value; }, 1);
+            ChangeStatistic((value) => { character.BaseStatistics.Magica += value; }, 1);
         }
 
         private void intelligenceMinusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Intelligence += value; }, -1);
+            ChangeStatistic((value) => { character.BaseStatistics.Intelligence += value; }, -1);
         }
 
         private void intelligencePlusBtn_Click(object sender, EventArgs e)
         {
-            ChangeStatistic((value) => { character.CharacterStatistics.Intelligence += value; }, -1);
+            ChangeStatistic((value) => { character.BaseStatistics.Intelligence += value; }, -1);
         }
 
         private void nameInp_TextChanged(object sender, EventArgs e)
@@ -217,7 +217,7 @@ namespace WinForm.views
 
         private void nextViewBtn_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(character.Name) && character.PointToInvest == 0)
+            if (!String.IsNullOrEmpty(character.Name) && character.Parameters.PointToInvest == 0)
             {
                 if (ProgramCtx.PlayableCharacters == null)
                 {

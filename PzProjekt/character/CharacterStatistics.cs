@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PzProjekt
 {
-    public class Statistics 
+    public class Statistics : ICloneable
     {
         public int Strength
         {
@@ -152,11 +152,11 @@ namespace PzProjekt
             }
         }
 
-        public Dictionary<int, int> statisticsDictionary { get; set; }
+        public Dictionary<int, int> StatisticsDictionary { get; set; }
 
-        public Statistics()
+        public CharacterStatistics()
         {
-            statisticsDictionary = new Dictionary<int, int>();
+            StatisticsDictionary = new Dictionary<int, int>();
             
             Strength = 1;
             Agility = 1;
@@ -172,6 +172,21 @@ namespace PzProjekt
         public bool IsGreater(Statistics? other)
         {
             return true;
+        }
+        public object Clone()
+        {
+            return new CharacterStatistics
+            {
+                Strength = Strength,
+                Agility = Agility,
+                Attack = Attack,
+                Defence = Defence,
+                Vitality = Vitality,
+                Charisma = Charisma,
+                Stamina = Stamina,
+                Magica = Magica,
+                Intelligence = Intelligence
+            };
         }
     }
 }

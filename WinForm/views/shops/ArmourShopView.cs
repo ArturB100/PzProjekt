@@ -21,10 +21,10 @@ namespace WinForm.views.shops
 
         private List<Armour> currentArmourFilteredList = new List<Armour>();
 
-        public ArmourShopView(ProgramCtx programCtx)
+        public ArmourShopView(ProgramCtx programCtx) : base(programCtx, true)
         {
             InitializeComponent();
-            ProgramCtx = programCtx;
+            
             armourShop = programCtx.GameSetup.ArmourShop;
             //resultsBox.DataSource = ProgramCtx.GameSetup.ArmourShop.GetItemsAsString();
             resultsBox.Visible = false;
