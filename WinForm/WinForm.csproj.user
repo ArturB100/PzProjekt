@@ -31,6 +31,9 @@
     <Compile Update="views\shops\BasicShopView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="views\shops\ChurchView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="views\shops\EffectShopView.cs">
       <SubType>UserControl</SubType>
     </Compile>

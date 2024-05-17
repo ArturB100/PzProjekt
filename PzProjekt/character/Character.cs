@@ -44,7 +44,16 @@ namespace PzProjekt
             Inventory.Refill();
         }
 
-       
+        public void InvestPoint (int dictionaryIndex)
+        {
+            if (Parameters.PointsToInvest < 1)
+            {
+                throw new NoPointsToInvestException();
+            }
+
+            BaseStatistics.StatisticsDictionary[dictionaryIndex]++;
+            Parameters.PointsToInvest -= 1;
+        }
 
 
     }

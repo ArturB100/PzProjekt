@@ -83,6 +83,7 @@
             churchBtn.TabIndex = 3;
             churchBtn.Text = "church";
             churchBtn.UseVisualStyleBackColor = true;
+            churchBtn.Click += churchBtn_Click;
             // 
             // armouryBtn
             // 

@@ -58,5 +58,10 @@ namespace WinForm.views
         {
             ProgramCtx.ChangeView(new EffectShopView(ProgramCtx));
         }
+
+        private void churchBtn_Click(object sender, EventArgs e)
+        {
+            ProgramCtx.ChangeView(new ChurchView(ProgramCtx));
+        }
     }
 }
