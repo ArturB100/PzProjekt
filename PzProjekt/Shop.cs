@@ -32,12 +32,32 @@ public  class Shop <T>  where T : InventoryItem
     
     public bool CanBeBoughtByPlayer ( Character character, T item)
     {
-        return 
+        bool success =
         (
             character.Parameters.Money >= item.ValueInGold &&
-            character.Parameters.Level >= item.MinLevel && 
+            character.Parameters.Level >= item.MinLevel &&
             character.BaseStatistics.IsGreater(item.Statistics)
         );
+        if (success) { return true; }
+
+        if (!(character.Parameters.Money >= item.ValueInGold))
+        {
+            throw new NoEnoughMoneyException();
+        }
+
+        if (!(character.Parameters.Level >= item.MinLevel))
+        {
+            throw new TooWeakLevelException();
+        }
+
+        if (!(character.BaseStatistics.IsGreater(item.Statistics)))
+        {
+            throw new TooWeakStatisticsException();
+        }
+        return false;
+        
+
+        
     }
 
     public virtual void BuyItem(Character character, T inventoryItem)
@@ -79,5 +99,33 @@ public class WeaponShop : Shop<Weapon>
     private void ArmourShop_EquipItem(Character character, Weapon inventoryItem)
     {
         character.Inventory.EquipWeapon(inventoryItem);
+    }
+}
+
+
+
+public class SpellShop : Shop<Spell>
+{
+    public SpellShop() : base()
+    {
+        EquipItem += ArmourShop_EquipItem;
+    }
+    private void ArmourShop_EquipItem(Character character, Spell inventoryItem)
+    {
+        character.Inventory.EquipSpell(inventoryItem);
+    }
+}
+
+
+
+public class EffectShop : Shop<Effect>
+{
+    public EffectShop() : base()
+    {
+        EquipItem += ArmourShop_EquipItem;
+    }
+    private void ArmourShop_EquipItem(Character character, Effect effect)
+    {
+        character.Inventory.EquipEffect(effect);
     }
 }

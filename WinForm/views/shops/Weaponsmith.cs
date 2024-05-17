@@ -1,4 +1,5 @@
 ﻿using PzProjekt;
+using PzProjekt.exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,15 +79,33 @@ namespace WinForm.views
         
         private void buyBtn_Click_1(object sender, EventArgs e)
         {
-            if (CheckIfSelectedItemCanBeBought())
+
+            bool canBeBuy = false;
+
+            try
+            {
+                canBeBuy = CheckIfSelectedItemCanBeBought();
+            } 
+            catch (NoEnoughMoneyException ex)
+            {
+                ProgramCtx.ErrorMessage(Error.NOT_ENOUGHT_MONEY);
+            } 
+            catch (TooWeakLevelException ex)
+            {
+                ProgramCtx.ErrorMessage(Error.TOO_WEAK_LEVEL);
+            }
+            catch (TooWeakStatisticsException)
+            {
+                ProgramCtx.ErrorMessage(Error.TOO_WEAK_STATISTICS);
+            }
+
+
+            if (canBeBuy)
             {
                 ProgramCtx.GameSetup.WeaponShop.BuyItem(ProgramCtx.SelectedCharacter, selectedWeapon);
                 ProgramCtx.SuccessMessage("przedmiot zostal zakupiony");
             }
-            else
-            {
-                ProgramCtx.WarningMessage("Cos poszlo nie tak");
-            }
+            
         }
 
 

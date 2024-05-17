@@ -19,6 +19,7 @@ namespace PzProjekt
             MaximalDamage = maximalDamage;
         }
 
+        public Weapon(){ }
         public Weapon(int minLevel, string name, int valueInGold, CharacterStatistics statistics, WeaponType weaponType, int minimalDamage, int maximalDamage) : base(minLevel, name, valueInGold, statistics)
         {
             WeaponType = weaponType;

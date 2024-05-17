@@ -62,6 +62,7 @@
             magicShopBtn.TabIndex = 1;
             magicShopBtn.Text = "magic shop";
             magicShopBtn.UseVisualStyleBackColor = true;
+            magicShopBtn.Click += magicShopBtn_Click;
             // 
             // WeaponSmithBtn
             // 

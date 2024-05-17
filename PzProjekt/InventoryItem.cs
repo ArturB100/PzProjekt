@@ -16,6 +16,7 @@ namespace PzProjekt
 
         public CharacterStatistics Statistics { get; set; }
 
+        protected InventoryItem() { }
         protected InventoryItem(int minLevel, string name, int valueInGold)
         {
             MinLevel = minLevel;
