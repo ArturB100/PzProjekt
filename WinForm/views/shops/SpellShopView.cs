@@ -1,5 +1,4 @@
 ﻿using PzProjekt;
-using PzProjekt.exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,77 +11,48 @@ using System.Windows.Forms;
 
 namespace WinForm.views.shops
 {
-    public partial class SpellShopView : UserControlBase
+    public partial class SpellShopView : BasicShopView
     {
 
         private List<Spell> spells;
 
-        private Spell selectedSpell;
-        public SpellShopView(ProgramCtx programCtx) : base(programCtx, true)
+        private Spell SelectedSpell { get => (Spell)selectedInventoryItem; }
+        public SpellShopView(ProgramCtx programCtx) : base(programCtx)
         {
             InitializeComponent();
 
             spells = ProgramCtx.GameSetup.SpellShop.GetItems();
-            resultBox.DataSource = spells.Select(s => s.SpellDescription()).ToList();
-            spells = ProgramCtx.GameSetup.SpellShop.GetItems();
+
+            foreach (var item in spells)
+            {
+                inventoryItems.Add(item);
+            }
+
+            OnBuyClick += SpellShopView_OnBuyClick;
+
 
             resultBox.DataSource = spells.GetStringListFromInventoryList();
-
-
-            UpdateInfoAboutCharacter();
         }
 
-        public void UpdateInfoAboutCharacter ()
+        private void SpellShopView_OnBuyClick()
         {
-            characterStatisticsBox.Text = ProgramCtx.SelectedCharacter.DisplayInformationsInShop();
+
+            ProgramCtx.GameSetup.SpellShop.BuyItem(ProgramCtx.SelectedCharacter, SelectedSpell);
+            ProgramCtx.SuccessMessage("przedmiot zostal zakupiony");
+
         }
 
-        private void resultBox_SelectedIndexChanged(object sender, EventArgs e)
+
+
+
+        public override bool CheckIfSelectedItemCanBeBought()
         {
-            selectedSpell = spells[resultBox.SelectedIndex];
-        }
-
-        public bool CheckIfSelectedItemCanBeBought()
-        {
-            return
-            (
-                selectedSpell != null &&
-                ProgramCtx.GameSetup.SpellShop.CanBeBoughtByPlayer(ProgramCtx.SelectedCharacter, selectedSpell)
-            );
+            return base.CheckIfSelectedItemCanBeBought() &&
+                ProgramCtx.GameSetup.SpellShop.CanBeBoughtByPlayer(ProgramCtx.SelectedCharacter, SelectedSpell);
         }
 
 
 
-        private void buyBtn_Click(object sender, EventArgs e)
-        {
-            bool canBeBuy = false;
-
-            try
-            {
-                canBeBuy = CheckIfSelectedItemCanBeBought();
-            }
-            catch (NoEnoughMoneyException ex)
-            {
-                ProgramCtx.ErrorMessage(Error.NOT_ENOUGHT_MONEY);
-            }
-            catch (TooWeakLevelException ex)
-            {
-                ProgramCtx.ErrorMessage(Error.TOO_WEAK_LEVEL);
-            }
-            catch (TooWeakStatisticsException)
-            {
-                ProgramCtx.ErrorMessage(Error.TOO_WEAK_STATISTICS);
-            }
-
-
-            if (canBeBuy)
-            {
-                ProgramCtx.GameSetup.SpellShop.BuyItem(ProgramCtx.SelectedCharacter, selectedSpell);
-                ProgramCtx.SuccessMessage("przedmiot zostal zakupiony");
-            }
-
-            UpdateInfoAboutCharacter();
-        }
 
 
         private void pictureBox1_Click(object sender, EventArgs e)
