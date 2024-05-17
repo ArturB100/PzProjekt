@@ -53,5 +53,10 @@ namespace WinForm.views
         {
             ProgramCtx.ChangeView(new SpellShopView(ProgramCtx));
         }
+
+        private void EffectShopBtn_Click(object sender, EventArgs e)
+        {
+            ProgramCtx.ChangeView(new EffectShopView(ProgramCtx));
+        }
     }
 }

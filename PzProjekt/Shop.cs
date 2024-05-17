@@ -65,11 +65,12 @@ public  class Shop <T>  where T : InventoryItem
         if (!CanBeBoughtByPlayer(character, inventoryItem))
         {
             throw new ItemImpossibleToBuy();
-        }            
+        }
 
+        EquipItem?.Invoke(character, inventoryItem);
         character.Parameters.Money -= Convert.ToInt32(inventoryItem.ValueInGold * (1 - character.BaseStatistics.Charisma * 0.01));
      
-        EquipItem?.Invoke(character, inventoryItem);
+       
     }
 
 

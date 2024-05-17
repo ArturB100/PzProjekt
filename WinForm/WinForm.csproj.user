@@ -28,6 +28,12 @@
     <Compile Update="views\shops\ArmourShopView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="views\shops\BasicShopView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="views\shops\EffectShopView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="views\shops\SpellShopView.cs">
       <SubType>UserControl</SubType>
     </Compile>

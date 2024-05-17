@@ -12,45 +12,41 @@ using System.Windows.Forms;
 
 namespace WinForm.views.shops
 {
-    public partial class SpellShopView : UserControlBase
+
+    public delegate void OnBuyClick ();
+    public delegate void OnItemSelect();
+    public partial class BasicShopView : UserControlBase 
     {
+        public event OnBuyClick OnBuyClick;
 
-        private List<Spell> spells;
+        protected ListBox resultBox;
+        protected InventoryItem selectedInventoryItem;
 
-        private Spell selectedSpell;
-        public SpellShopView(ProgramCtx programCtx) : base(programCtx, true)
+        protected List<InventoryItem> inventoryItems = new List<InventoryItem>() ;
+
+        public BasicShopView(ProgramCtx programCtx) : base(programCtx, true)
         {
             InitializeComponent();
 
-            spells = ProgramCtx.GameSetup.SpellShop.GetItems();
-            resultBox.DataSource = spells.Select(s => s.SpellDescription()).ToList();
-            spells = ProgramCtx.GameSetup.SpellShop.GetItems();
-
-            resultBox.DataSource = spells.GetStringListFromInventoryList();
-
-
-            UpdateInfoAboutCharacter();
+            resultBox = listBox;
+            UpdateCharacterStatisticsTextBox();
         }
 
-        public void UpdateInfoAboutCharacter ()
+        protected void UpdateCharacterStatisticsTextBox()
         {
             characterStatisticsBox.Text = ProgramCtx.SelectedCharacter.DisplayInformationsInShop();
         }
 
-        private void resultBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            selectedSpell = spells[resultBox.SelectedIndex];
-        }
+        public BasicShopView() { }
 
-        public bool CheckIfSelectedItemCanBeBought()
+
+        public virtual bool CheckIfSelectedItemCanBeBought()
         {
             return
             (
-                selectedSpell != null &&
-                ProgramCtx.GameSetup.SpellShop.CanBeBoughtByPlayer(ProgramCtx.SelectedCharacter, selectedSpell)
+                selectedInventoryItem != null 
             );
         }
-
 
 
         private void buyBtn_Click(object sender, EventArgs e)
@@ -77,17 +73,26 @@ namespace WinForm.views.shops
 
             if (canBeBuy)
             {
-                ProgramCtx.GameSetup.SpellShop.BuyItem(ProgramCtx.SelectedCharacter, selectedSpell);
-                ProgramCtx.SuccessMessage("przedmiot zostal zakupiony");
+                OnBuyClick?.Invoke();
             }
 
-            UpdateInfoAboutCharacter();
+            UpdateCharacterStatisticsTextBox();
+
+
+            
         }
 
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void resultBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            selectedInventoryItem = inventoryItems[resultBox.SelectedIndex];
+            
         }
+
+
+     
+
+
+
+      
     }
 }
