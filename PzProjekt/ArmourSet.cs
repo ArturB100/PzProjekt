@@ -14,7 +14,21 @@ namespace PzProjekt
         public Armour? Leggings { get; set; }
         public Armour? Boots { get; set; }
         
-        private int _actualArmorPoints = 0;
+        private int _actualArmorPoints;
+
+        public ArmourSet(Armour? helmet, Armour? chestplate, Armour? leggings, Armour? boots)
+        {
+            Helmet = helmet;
+            Chestplate = chestplate;
+            Leggings = leggings;
+            Boots = boots;
+            
+            armourSet.Add(Helmet);
+            armourSet.Add(Chestplate);
+            armourSet.Add(Leggings);
+            armourSet.Add(Boots);
+            ActualArmorPoints = MaxArmorPoints;
+        }
 
         public ArmourSet()
         {

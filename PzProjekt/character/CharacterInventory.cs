@@ -8,8 +8,18 @@ public class CharacterInventory
         AvailableSpells = new List<Spell>();
         ArmourSet = new ArmourSet();
     }
-
-    public Weapon Weapon { get; set; }
+    
+    public CharacterInventory(Weapon weapon, ArmourSet armourSet)
+    {
+        CharacterSpells = new List<Spell>();
+        AvailableSpells = new List<Spell>();
+        ArmourSet = new ArmourSet();
+        
+        Weapon = weapon;
+        ArmourSet = armourSet;
+    }
+    
+    public Weapon? Weapon { get; set; }
     public ArmourSet ArmourSet { get; set; }
     public List<Spell> CharacterSpells { get; set; }
     public List<Spell> AvailableSpells { get; set; }

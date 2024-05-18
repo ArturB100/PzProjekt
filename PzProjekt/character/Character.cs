@@ -24,18 +24,35 @@ namespace PzProjekt
             ActualStatistics = BaseStatistics.Clone() as CharacterStatistics;
             
             Parameters = new CharacterParameters(this);
+            
+            Parameters.PointsToInvest = 10;
+            
             Inventory = new CharacterInventory();
         }
         
-        public Character(string name, CharacterStatistics baseStatistics, int level, Weapon weapon)
+        public Character(string name, CharacterStatistics baseStatistics, int level, Weapon weapon, ArmourSet armourSet)
         {
             Name = name;
             BaseStatistics = baseStatistics;
             ActualStatistics = BaseStatistics.Clone() as CharacterStatistics;
             
-            Parameters = new CharacterParameters(this);
-            Inventory = new CharacterInventory();
-            Inventory.Weapon = weapon;
+            Parameters = new CharacterParameters(this, level);
+            Inventory = new CharacterInventory(weapon, armourSet);
+        }
+        
+        public Character(string name, CharacterStatistics baseStatistics, int level, Weapon weapon, ArmourSet armourSet, List<Spell> spells)
+        {
+            Name = name;
+            BaseStatistics = baseStatistics;
+            ActualStatistics = BaseStatistics.Clone() as CharacterStatistics;
+            
+            Parameters = new CharacterParameters(this, level);
+            Inventory = new CharacterInventory(weapon, armourSet);
+            
+            foreach (var spell in spells)
+            {
+                Inventory.AddSpell(spell);
+            }
         }
 
         public void Refill()
@@ -43,9 +60,5 @@ namespace PzProjekt
             Parameters.Refill();
             Inventory.Refill();
         }
-
-       
-
-
     }
 }

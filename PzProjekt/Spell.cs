@@ -11,6 +11,11 @@ namespace PzProjekt
 {
     public class Spell : InventoryItem
     {
+        public Spell(int minLevel, string name, int valueInGold, CharacterStatistics statistics, UseSpell onUse) : base(minLevel, name, valueInGold, statistics)
+        {
+            OnUse = onUse;
+        }
+
         public Spell(int minLevel, string name, int valueInGold, UseSpell onUse) : base(minLevel, name, valueInGold)
         {
             OnUse = onUse;

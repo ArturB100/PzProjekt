@@ -194,6 +194,7 @@ public class CharacterFightActions
     
     public void Sleep()
     {
+        ActiveCharacter.Parameters.ActualHP += ActiveCharacter.ActualStatistics.Stamina;
         ActiveCharacter.Parameters.ActualStamina += Convert.ToInt32(ActiveCharacter.Parameters.MaxStamina * 0.2);
         Console.WriteLine(ActiveCharacter.Name + " slept!");
     }

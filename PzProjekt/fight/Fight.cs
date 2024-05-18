@@ -33,7 +33,7 @@ public abstract class Fight
     
     public int MoneyToGet
     {
-        get => 100 * (1 + Math.Abs(Player.Parameters.Level - Enemy.Parameters.Level)) * (1 + CrowdSatisfaction);
+        get => 100 * (Player.Parameters.Level * Math.Abs(Player.Parameters.Level / Enemy.Parameters.Level)) * (1 + CrowdSatisfaction);
     }
     
     public int MoneyToLose
@@ -92,6 +92,7 @@ public abstract class Fight
     public void NextTurn()
     {
         ChangeActiveCharacter();
+        ActiveCharacter.Parameters.ActualHP += ActiveCharacter.ActualStatistics.Stamina;
         
         Console.WriteLine("It's " + ActiveCharacter.Name + "'s turn!");
         

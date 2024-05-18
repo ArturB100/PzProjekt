@@ -14,7 +14,17 @@ public class CharacterParameters
         MaxStamina = CalculateMaxStamina();
         ActualStamina = MaxStamina;
         Level = 1;
-        Money = 200;
+        Money = 2500;
+    }
+    
+    public CharacterParameters(Character character, int level)
+    {
+        _character = character;
+        MaxHP = CalculateMaxHp();
+        ActualHP = MaxHP;
+        MaxStamina = CalculateMaxStamina();
+        ActualStamina = MaxStamina;
+        Level = level;
     }
     
     public int ExperiencePoints { get; set; }
@@ -71,7 +81,7 @@ public class CharacterParameters
         return 100 + Level * 20 + _character.ActualStatistics.Stamina * 20;
     }
     
-    public int PossibleDistance { get { return 40 + 8 * _character.ActualStatistics.Agility; } }
+    public int PossibleDistance { get { return 20 + 4 * _character.ActualStatistics.Agility; } }
     
     private int _charcterMoney;
     public int Money
@@ -90,12 +100,12 @@ public class CharacterParameters
     
     public int MinimalDamage
     {
-        get => _character.ActualStatistics.Strength * 10;
+        get => _character.Inventory.Weapon == null ? _character.ActualStatistics.Strength * 10 : _character.Inventory.Weapon.MinimalDamage + _character.ActualStatistics.Strength * 10;
     } 
         
     public int MaximalDamage
     {
-        get => _character.ActualStatistics.Strength * 20;
+        get => _character.Inventory.Weapon == null ? _character.ActualStatistics.Strength * 20 : _character.Inventory.Weapon.MaximalDamage + _character.ActualStatistics.Strength * 20;
     }
 
     public int AttackRange
@@ -134,5 +144,10 @@ public class CharacterParameters
     {
         ActualHP = MaxHP;
         ActualStamina = MaxStamina;
+    }
+    
+    public int MaxSpells
+    {
+        get => 1 + Level / 10;
     }
 }

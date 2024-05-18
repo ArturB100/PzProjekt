@@ -37,17 +37,44 @@ public class Spells
     
     public static void Fireball(Fight fight)
     {
-        fight.CharacterFightActions.TakeDamage(100);
+        Random random = new Random();
+        int damage = random.Next(80, 161);
+        fight.CharacterFightActions.TakeDamage(damage);
     }
     
-    public static void Heal(Fight fight)
+    public static void LightningBolt(Fight fight)
     {
-        fight.ActiveCharacter.Parameters.ActualHP += 100;
+        Random random = new Random();
+        int damage = random.Next(100, 201);
+        fight.CharacterFightActions.TakeDamage(damage);
     }
     
-    public static void AddStamina(Fight fight)
+    public static void HellFireball(Fight fight)
     {
-        fight.ActiveCharacter.Parameters.ActualStamina += 100;
+        Random random = new Random();
+        int damage = random.Next(150, 451);
+        fight.CharacterFightActions.TakeDamage(damage);
+    }
+    
+    public static void FrighteningBolt(Fight fight)
+    {
+        Random random = new Random();
+        int damage = random.Next(200, 401);
+        fight.CharacterFightActions.TakeDamage(damage);
+    }
+    
+    public static void DireFireball(Fight fight)
+    {
+        Random random = new Random();
+        int damage = random.Next(300, 601);
+        fight.CharacterFightActions.TakeDamage(damage);
+    }
+    
+    public static void MoltenDeath(Fight fight)
+    {
+        Random random = new Random();
+        int damage = random.Next(400, 801);
+        fight.CharacterFightActions.TakeDamage(damage);
     }
     
     public static void GhostStrike(Fight fight)
