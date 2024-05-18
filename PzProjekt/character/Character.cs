@@ -10,6 +10,7 @@ namespace PzProjekt
 {
     public class Character
     {
+        private const int BasePointsToInvest = 10;
         public string Name { get; set; }
         public CharacterStatistics BaseStatistics { get; set; }
         public CharacterStatistics ActualStatistics { get; set; }
@@ -25,19 +26,19 @@ namespace PzProjekt
             
             Parameters = new CharacterParameters(this);
             
-            Parameters.PointsToInvest = 10;
+            Parameters.PointsToInvest = BasePointsToInvest;
             
-            Inventory = new CharacterInventory();
+            Inventory = new CharacterInventory(this);
         }
         
-        public Character(string name, CharacterStatistics baseStatistics, int level, Weapon weapon)
+        public Character(string name, CharacterStatistics baseStatistics, int level, Weapon weapon, ArmourSet armourSet)
         {
             Name = name;
             BaseStatistics = baseStatistics;
             ActualStatistics = BaseStatistics.Clone() as CharacterStatistics;
             
             Parameters = new CharacterParameters(this, level);
-            Inventory = new CharacterInventory(weapon, armourSet);
+            Inventory = new CharacterInventory(this, weapon, armourSet);
         }
         
         public Character(string name, CharacterStatistics baseStatistics, int level, Weapon weapon, ArmourSet armourSet, List<Spell> spells)
@@ -47,12 +48,9 @@ namespace PzProjekt
             ActualStatistics = BaseStatistics.Clone() as CharacterStatistics;
             
             Parameters = new CharacterParameters(this, level);
-            Inventory = new CharacterInventory(weapon, armourSet);
-            
-            foreach (var spell in spells)
-            {
-                Inventory.AddSpell(spell);
-            }
+            Inventory = new CharacterInventory(this, weapon, armourSet);
+            Inventory.CharacterSpells = spells;
+            Inventory.AvailableSpells = new List<Spell>(spells);
         }
 
         public void Refill()
@@ -71,7 +69,5 @@ namespace PzProjekt
             BaseStatistics.StatisticsDictionary[dictionaryIndex]++;
             Parameters.PointsToInvest -= 1;
         }
-
-
     }
 }

@@ -4,6 +4,9 @@ namespace PzProjekt;
 
 public abstract class Fight
 {
+    private const int InitialPlayerPosition = 450;
+    private const int InitialEnemyPosition = 550;
+    
     public EnemyBehavior EnemyBehavior { get; set; }
     public CharacterFightActions CharacterFightActions { get; set; }
     private Character activeCharacter;
@@ -28,7 +31,7 @@ public abstract class Fight
     
     public int ExperiencePointsToGet
     {
-        get => 1000 * (1 + Math.Abs(Player.Parameters.Level - Enemy.Parameters.Level));
+        get => 1000 * (1 + Math.Abs(Enemy.Parameters.Level / Player.Parameters.Level));
     }
     
     public int MoneyToGet
@@ -54,8 +57,8 @@ public abstract class Fight
         player.Refill();
         enemy.Refill();
         
-        player.Parameters.Position = 450;
-        enemy.Parameters.Position = 550;
+        player.Parameters.Position = InitialPlayerPosition;
+        enemy.Parameters.Position = InitialEnemyPosition;
         
         activeCharacter = player;
         CharacterFightActions = new CharacterFightActions(this);

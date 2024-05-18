@@ -30,39 +30,14 @@ public  class Shop <T>  where T : InventoryItem
         return result;
     }
     
-    public bool CanBeBoughtByPlayer ( Character character, T item)
+    public bool CanBeBoughtByPlayer (Character character, T item)
     {
-        bool success =
-        (
-            character.Parameters.Money >= item.ValueInGold &&
-            character.Parameters.Level >= item.MinLevel &&
-            character.BaseStatistics.IsGreater(item.Statistics)
-        );
-        if (success) { return true; }
-
-        if (!(character.Parameters.Money >= item.ValueInGold))
-        {
-            throw new NoEnoughMoneyException();
-        }
-
-        if (!(character.Parameters.Level >= item.MinLevel))
-        {
-            throw new TooWeakLevelException();
-        }
-
-        if (!(character.BaseStatistics.IsGreater(item.Statistics)))
-        {
-            throw new TooWeakStatisticsException();
-        }
-        return false;
-        
-
-        
+        return item.CanBeBoughtByPlayer(character);
     }
 
     public virtual void BuyItem(Character character, T inventoryItem)
     {
-        if (!CanBeBoughtByPlayer(character, inventoryItem))
+        if (!inventoryItem.CanBeBoughtByPlayer(character))
         {
             throw new ItemImpossibleToBuy();
         }
@@ -72,10 +47,6 @@ public  class Shop <T>  where T : InventoryItem
      
        
     }
-
-
-
-   
 }
 
 public class ArmourShop : Shop<Armour>

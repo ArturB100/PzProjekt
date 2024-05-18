@@ -4,6 +4,24 @@ namespace PzProjekt;
 
 public class CharacterParameters
 {
+    private const int MinimalPosition = 0;
+    private const int MaximalPosition = 1000;
+    
+    private const int BaseMaxHp = 20;
+    private const int MaxHpVitalityMultiplier = 20;
+    private const int MaxHpLevelMultiplier = 10;
+    
+    private const int BaseMaxStamina = 100;
+    private const int MaxStaminaStaminaMultiplier = 10;
+    
+    private const int BasePossibleDistance = 20;
+    private const int PossibleDistanceAgilityMultiplier = 4;
+    
+    private const int BaseMoney = 2500;
+    
+    private const int BaseMaxSpells = 1;
+    private const int MaxSpellsPerLevel = 1;
+    
     private Character _character;
 
     public CharacterParameters(Character character)
@@ -14,7 +32,7 @@ public class CharacterParameters
         MaxStamina = CalculateMaxStamina();
         ActualStamina = MaxStamina;
         Level = 1;
-        Money = 2500;
+        Money = BaseMoney;
     }
     
     public CharacterParameters(Character character, int level)
@@ -30,7 +48,7 @@ public class CharacterParameters
     public int ExperiencePoints { get; set; }
     public int Level { get; set; }
     public int PointsToInvest { get; set; }
-    public int MaxHP { get; set; }
+    public int MaxHP { get; }
     
     private int _actualHP;
     public int ActualHP
@@ -48,7 +66,7 @@ public class CharacterParameters
             }
         }
     }
-    public int MaxStamina { get; set; }
+    public int MaxStamina { get; }
     
     private int _actualStamina;
     public int ActualStamina
@@ -73,15 +91,15 @@ public class CharacterParameters
     
     private int CalculateMaxHp()
     {
-        return 100 + Level * 20 + _character.ActualStatistics.Vitality * 20;
+        return BaseMaxHp + Level * MaxHpLevelMultiplier + _character.ActualStatistics.Vitality * MaxHpVitalityMultiplier;
     }
 
     private int CalculateMaxStamina()
     {
-        return 100 + Level * 20 + _character.ActualStatistics.Stamina * 20;
+        return BaseMaxStamina + _character.ActualStatistics.Stamina * MaxStaminaStaminaMultiplier;
     }
     
-    public int PossibleDistance { get { return 20 + 4 * _character.ActualStatistics.Agility; } }
+    public int PossibleDistance { get { return BasePossibleDistance + PossibleDistanceAgilityMultiplier * _character.ActualStatistics.Agility; } }
     
     private int _charcterMoney;
     public int Money
@@ -100,17 +118,17 @@ public class CharacterParameters
     
     public int MinimalDamage
     {
-        get => _character.Inventory.Weapon == null ? _character.ActualStatistics.Strength * 10 : _character.Inventory.Weapon.MinimalDamage + _character.ActualStatistics.Strength * 10;
+        get => _character.Inventory.Weapon == null ? _character.ActualStatistics.Strength + Level : _character.Inventory.Weapon.MinimalDamage + _character.ActualStatistics.Strength + Level;
     } 
         
     public int MaximalDamage
     {
-        get => _character.Inventory.Weapon == null ? _character.ActualStatistics.Strength * 20 : _character.Inventory.Weapon.MaximalDamage + _character.ActualStatistics.Strength * 20;
+        get => _character.Inventory.Weapon == null ? _character.ActualStatistics.Strength + Level + 2 : _character.Inventory.Weapon.MaximalDamage + _character.ActualStatistics.Strength + Level + 2;
     }
 
     public int AttackRange
     {
-        get => 50 + 10 * _character.ActualStatistics.Agility;
+        get => BasePossibleDistance + PossibleDistanceAgilityMultiplier * _character.ActualStatistics.Agility;
     }
 
     private int _position;
@@ -120,13 +138,13 @@ public class CharacterParameters
         get => _position;
         set
         {
-            if (value < 0)
+            if (value < MinimalPosition)
             {
-                _position = 0;
+                _position = MinimalPosition;
             }
-            else if (value > 1000)
+            else if (value > MaximalPosition)
             {
-                _position = 1000;
+                _position = MaximalPosition;
             }
             else
             {
@@ -148,6 +166,6 @@ public class CharacterParameters
     
     public int MaxSpells
     {
-        get => 1 + Level / 10;
+        get => BaseMaxSpells + Level / MaxSpellsPerLevel;
     }
 }

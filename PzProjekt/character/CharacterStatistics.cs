@@ -210,7 +210,5 @@ namespace PzProjekt
                 Intelligence = Intelligence
             };
         }
-
-
     }
 }

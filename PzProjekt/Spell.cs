@@ -10,21 +10,11 @@ public delegate void UseSpell(Fight fight);
 namespace PzProjekt
 {
     [ToStringProperties]
-    public class Spell : InventoryItem
+    public class Spell : InventoryItemBasedOnStatistics
     {
-        public Spell(int minLevel, string name, int valueInGold, CharacterStatistics statistics, UseSpell onUse) : base(minLevel, name, valueInGold, statistics)
+        public Spell(string name, int valueInGold, CharacterStatistics minimalStatistics, UseSpell onUse) : base(name, valueInGold, minimalStatistics)
         {
             OnUse = onUse;
-        }
-
-        public Spell(int minLevel, string name, int valueInGold, UseSpell onUse) : base(minLevel, name, valueInGold)
-        {
-            OnUse = onUse;
-        }
-
-        public Spell() { }
-        public Spell(int minLevel, string name, int valueInGold) : base(minLevel, name, valueInGold)
-        {
         }
 
         public UseSpell OnUse;

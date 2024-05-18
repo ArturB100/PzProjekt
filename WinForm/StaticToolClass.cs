@@ -26,7 +26,7 @@ namespace WinForm
             List<string> result = new List<string>();   
             foreach (T item in list)
             {
-                result.Add($"Nazwa: {item.Name}, Min level: {item.MinLevel} {item.Statistics.ToString()}");
+                result.Add($"Nazwa: {item.Name}");
             }
 
             return result;

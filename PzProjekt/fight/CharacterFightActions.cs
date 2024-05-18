@@ -12,7 +12,15 @@ public class CharacterFightActions
     {
         Fight = fight;
     }
-
+    
+    public int StrongAttackDamage
+    {
+        get
+        {
+            return Convert.ToInt32(DrawDamage() * 1.5);
+        }
+    }
+    
     public double StrongAttackChance
     {
         get
@@ -138,7 +146,7 @@ public class CharacterFightActions
         if (chance <= probability)
         {
             Console.WriteLine("Effect used!");
-            InactiveCharacter.ActiveEffect = new ActiveEffect(ActiveCharacter.Inventory.Weapon.Effect, 3, Fight);
+            InactiveCharacter.ActiveEffect = new ActiveEffect(ActiveCharacter.Inventory.Weapon.Effect, Fight);
         }
     }
     

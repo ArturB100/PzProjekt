@@ -8,6 +8,8 @@ public class Effect : InventoryItem
     public Action OnEffectEnd;
     public Action ApplyEffect; 
     
+    public int Duration { get; set; }
+    
     public void BeginEffect(Fight fight)
     {
         OnEffectBegin?.Invoke(fight);
@@ -28,10 +30,11 @@ public class Effect : InventoryItem
         return ApplyEffect == Actions.Freeze;
     }
 
-    public Effect(int minLevel, string name, int valueInGold, Action onEffectBegin, Action onEffectEnd, Action applyEffect) : base(minLevel, name, valueInGold)
+    public Effect(string name, int valueInGold, Action onEffectBegin, Action onEffectEnd, Action applyEffect, int duration) : base(name, valueInGold)
     {
         OnEffectBegin = onEffectBegin;
         OnEffectEnd = onEffectEnd;
         ApplyEffect = applyEffect;
+        Duration = duration;
     }
 }

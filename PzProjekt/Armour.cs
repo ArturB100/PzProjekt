@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace PzProjekt
 {
     [ToStringProperties]
-    public class Armour : InventoryItem
+    public class Armour : InventoryItemBasedOnLevel
     {
         public ArmourType ArmourType { get; set; }
         public int ArmourPoints { get; set; }
 
-        public Armour(int minLevel, string name, int valueInGold, ArmourType armourType, int armourPoints) : base(minLevel, name, valueInGold)
+        public Armour(int minLevel, string name, int valueInGold, ArmourType armourType, int armourPoints) : base(name, valueInGold, minLevel)
         {
             ArmourType = armourType;
             ArmourPoints = armourPoints;

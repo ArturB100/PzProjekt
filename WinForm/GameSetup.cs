@@ -46,26 +46,26 @@ namespace WinForm
         
         static List<Spell> spells = new List<Spell>
         {
-            new Spell(1, "Teleportation", 2149, new CharacterStatistics() {Magica = 3}, Spells.Teleport),
-            new Spell(1, "Gale", 3820, new CharacterStatistics() {Magica = 4}, Spells.Gale),
-            new Spell(1, "Adulation", 15280, new CharacterStatistics() {Magica = 8}, Spells.Adulation),
-            new Spell(1, "Command", 15280, new CharacterStatistics() {Magica = 8}, Spells.Command),
-            new Spell(1, "Fireball", 19857, new CharacterStatistics() {Magica = 13}, Spells.Fireball),
-            new Spell(1, "Lightning Bolt", 26437, new CharacterStatistics() {Magica = 15}, Spells.LightningBolt),
-            new Spell(1, "Hell Fireball", 47000, new CharacterStatistics() {Magica = 20}, Spells.HellFireball),
-            new Spell(1, "Ghost Strike", 105289, new CharacterStatistics() {Magica = 21}, Spells.GhostStrike),
-            new Spell(1, "Weaken Armor", 115555, new CharacterStatistics() {Magica = 22}, Spells.WeakenArmor),
-            new Spell(1, "Frightening Bolt", 67680, new CharacterStatistics() {Magica = 24}, Spells.FrighteningBolt),
-            new Spell(1, "Dire Fireball", 105750, new CharacterStatistics() {Magica = 30}, Spells.DireFireball),
-            new Spell(1, "Rejuvinate", 188000, new CharacterStatistics() {Magica = 40}, Spells.Rejuvinate),
-            new Spell(1, "MoltenDeath", 423000, new CharacterStatistics() {Magica = 60}, Spells.MoltenDeath),
+            new Spell("Teleportation", 2149, new CharacterStatistics() {Magica = 3}, Spells.Teleport),
+            new Spell("Gale", 3820, new CharacterStatistics() {Magica = 4}, Spells.Gale),
+            new Spell("Adulation", 15280, new CharacterStatistics() {Magica = 8}, Spells.Adulation),
+            new Spell("Command", 15280, new CharacterStatistics() {Magica = 8}, Spells.Command),
+            new Spell("Fireball", 19857, new CharacterStatistics() {Magica = 13}, Spells.Fireball),
+            new Spell("Lightning Bolt", 26437, new CharacterStatistics() {Magica = 15}, Spells.LightningBolt),
+            new Spell("Hell Fireball", 47000, new CharacterStatistics() {Magica = 20}, Spells.HellFireball),
+            new Spell("Ghost Strike", 105289, new CharacterStatistics() {Magica = 21}, Spells.GhostStrike),
+            new Spell("Weaken Armor", 115555, new CharacterStatistics() {Magica = 22}, Spells.WeakenArmor),
+            new Spell("Frightening Bolt", 67680, new CharacterStatistics() {Magica = 24}, Spells.FrighteningBolt),
+            new Spell("Dire Fireball", 105750, new CharacterStatistics() {Magica = 30}, Spells.DireFireball),
+            new Spell("Rejuvinate", 188000, new CharacterStatistics() {Magica = 40}, Spells.Rejuvinate),
+            new Spell("Molten Death", 423000, new CharacterStatistics() {Magica = 60}, Spells.MoltenDeath),
         };
 
         List<Effect> effects = new List<Effect>
         {
-            new Effect(1, "Freeze", 1000, null, null, Actions.Freeze),
-            new Effect(1, "Weakness", 1000, Actions.BeginWeakness, Actions.EndWeakness, null),
-            new Effect(1, "Poison", 1000, null, null, Actions.Poison),
+            new Effect("Freeze", 1000, null, null, Actions.Freeze, 1),
+            new Effect("Weakness", 1000, Actions.BeginWeakness, Actions.EndWeakness, null, 2),
+            new Effect("Poison", 1000, null, null, Actions.Poison, 3),
         };
         
         static List<Armour> helmets = new List<Armour>
@@ -182,50 +182,50 @@ namespace WinForm
         
         static List<Weapon> swords = new List<Weapon>
         {
-            new Weapon(1, "Dagger", 1285, new CharacterStatistics() {Agility = 3}, WeaponType.Sword,3, 9),
-            new Weapon(1, "Shortsword", 2270, new CharacterStatistics() {Agility = 6}, WeaponType.Sword, 4, 16),
-            new Weapon(2, "Dirk", 3535, new CharacterStatistics() {Agility = 9}, WeaponType.Sword, 5, 25),
-            new Weapon(2, "Gladius", 5078, new CharacterStatistics() {Agility = 12}, WeaponType.Sword, 6, 36),
-            new Weapon(3, "Broadsword", 6901, new CharacterStatistics() {Agility = 15}, WeaponType.Sword, 7, 49),
-            new Weapon(3, "Claymore", 9002, new CharacterStatistics() {Agility = 18}, WeaponType.Sword, 8, 64),
-            new Weapon(3, "Bastard Sword", 11383, new CharacterStatistics() {Agility = 21}, WeaponType.Sword, 9, 81),
-            new Weapon(3, "Longsword", 14042, new CharacterStatistics() {Agility = 24}, WeaponType.Sword, 10, 100),
-            new Weapon(3, "Knight Sword", 20198, new CharacterStatistics() {Agility = 27}, WeaponType.Sword, 12, 144),
-            new Weapon(3, "Silver Longsword", 27470, new CharacterStatistics() {Agility = 30}, WeaponType.Sword, 14, 196),
-            new Weapon(3, "Heartblade", 35858, new CharacterStatistics() {Agility = 33}, WeaponType.Sword, 16, 256),
-            new Weapon(3, "Crystal Sword", 45362, new CharacterStatistics() {Agility = 36}, WeaponType.Sword, 18, 324),
-            new Weapon(3, "Rapier", 50533, new CharacterStatistics() {Agility = 39}, WeaponType.Sword, 19, 351),
-            new Weapon(3, "Cutlas", 55982, new CharacterStatistics() {Agility = 42}, WeaponType.Sword, 20, 400),
-            new Weapon(3, "Scimitar", 61711, new CharacterStatistics() {Agility = 45}, WeaponType.Sword, 21, 441),
-            new Weapon(3, "Raj Scimitar", 67718, new CharacterStatistics() {Agility = 48}, WeaponType.Sword, 22, 484),
-            new Weapon(3, "Katana", 74005, new CharacterStatistics() {Agility = 51}, WeaponType.Sword, 23, 529),
-            new Weapon(3, "Ancestor Katana", 80570, new CharacterStatistics() {Agility = 54}, WeaponType.Sword, 24, 576),
-            new Weapon(3, "Kensai Spirit", 87415, new CharacterStatistics() {Agility = 57}, WeaponType.Sword, 25, 625),
-            new Weapon(3, "Daikatana", 94538, new CharacterStatistics() {Agility = 60}, WeaponType.Sword, 26, 676),
+            new Weapon("Dagger", 1285, new CharacterStatistics() {Agility = 3}, WeaponType.Sword,3, 9),
+            new Weapon("Shortsword", 2270, new CharacterStatistics() {Agility = 6}, WeaponType.Sword, 4, 16),
+            new Weapon("Dirk", 3535, new CharacterStatistics() {Agility = 9}, WeaponType.Sword, 5, 25),
+            new Weapon("Gladius", 5078, new CharacterStatistics() {Agility = 12}, WeaponType.Sword, 6, 36),
+            new Weapon("Broadsword", 6901, new CharacterStatistics() {Agility = 15}, WeaponType.Sword, 7, 49),
+            new Weapon("Claymore", 9002, new CharacterStatistics() {Agility = 18}, WeaponType.Sword, 8, 64),
+            new Weapon("Bastard Sword", 11383, new CharacterStatistics() {Agility = 21}, WeaponType.Sword, 9, 81),
+            new Weapon("Longsword", 14042, new CharacterStatistics() {Agility = 24}, WeaponType.Sword, 10, 100),
+            new Weapon("Knight Sword", 20198, new CharacterStatistics() {Agility = 27}, WeaponType.Sword, 12, 144),
+            new Weapon("Silver Longsword", 27470, new CharacterStatistics() {Agility = 30}, WeaponType.Sword, 14, 196),
+            new Weapon("Heartblade", 35858, new CharacterStatistics() {Agility = 33}, WeaponType.Sword, 16, 256),
+            new Weapon("Crystal Sword", 45362, new CharacterStatistics() {Agility = 36}, WeaponType.Sword, 18, 324),
+            new Weapon("Rapier", 50533, new CharacterStatistics() {Agility = 39}, WeaponType.Sword, 19, 351),
+            new Weapon("Cutlas", 55982, new CharacterStatistics() {Agility = 42}, WeaponType.Sword, 20, 400),
+            new Weapon("Scimitar", 61711, new CharacterStatistics() {Agility = 45}, WeaponType.Sword, 21, 441),
+            new Weapon("Raj Scimitar", 67718, new CharacterStatistics() {Agility = 48}, WeaponType.Sword, 22, 484),
+            new Weapon("Katana", 74005, new CharacterStatistics() {Agility = 51}, WeaponType.Sword, 23, 529),
+            new Weapon("Ancestor Katana", 80570, new CharacterStatistics() {Agility = 54}, WeaponType.Sword, 24, 576),
+            new Weapon("Kensai Spirit", 87415, new CharacterStatistics() {Agility = 57}, WeaponType.Sword, 25, 625),
+            new Weapon("Daikatana", 94538, new CharacterStatistics() {Agility = 60}, WeaponType.Sword, 26, 676),
         };
         
         static List<Weapon> axes = new List<Weapon>
         {
-            new Weapon(1, "Cleaver", 1285, new CharacterStatistics() {Strength = 3}, WeaponType.Axe, 4, 16),
-            new Weapon(1, "Hand axe", 2270, new CharacterStatistics() {Strength = 6}, WeaponType.Axe, 5, 20),
-            new Weapon(2, "Bronze axe", 3535, new CharacterStatistics() {Strength = 9}, WeaponType.Axe, 6, 24),
-            new Weapon(2, "Hatchet", 5078, new CharacterStatistics() {Strength = 12}, WeaponType.Axe, 8, 32),
-            new Weapon(3, "Warrior axe", 6901, new CharacterStatistics() {Strength = 15}, WeaponType.Axe, 10, 40),
-            new Weapon(3, "Berserker axe", 8511, new CharacterStatistics() {Strength = 18}, WeaponType.Axe, 15, 60),
-            new Weapon(3, "Greensteel axe", 10212, new CharacterStatistics() {Strength = 21}, WeaponType.Axe, 18, 72),
-            new Weapon(3, "Madman's cleaver", 11346, new CharacterStatistics() {Strength = 24}, WeaponType.Axe, 20, 80),
-            new Weapon(3, "Greataxe", 14181, new CharacterStatistics() {Strength = 27}, WeaponType.Axe, 25, 100),
-            new Weapon(3, "Blacksteel battleaxe", 22686, new CharacterStatistics() {Strength = 36}, WeaponType.Axe, 40, 160),
-            new Weapon(3, "Steel battleaxe", 19851, new CharacterStatistics() {Strength = 33}, WeaponType.Axe, 35, 140),
-            new Weapon(3, "Ogre battleaxe", 25521, new CharacterStatistics() {Strength = 39}, WeaponType.Axe, 45, 180),
-            new Weapon(3, "Iron greataxe", 17016, new CharacterStatistics() {Strength = 30}, WeaponType.Axe, 30, 120),
-            new Weapon(3, "Ramhead sickle", 34116, new CharacterStatistics() {Strength = 45}, WeaponType.Axe, 70, 240),
-            new Weapon(3, "Reaper scythe", 62916, new CharacterStatistics() {Strength = 60}, WeaponType.Axe, 170, 440),
-            new Weapon(3, "Hunter spear", 28356, new CharacterStatistics() {Strength = 42}, WeaponType.Axe, 50, 200),
-            new Weapon(3, "Halberd", 39876, new CharacterStatistics() {Strength = 48}, WeaponType.Axe, 90, 280),
-            new Weapon(3, "Awl pike", 45636, new CharacterStatistics() {Strength = 51}, WeaponType.Axe, 110, 320),
-            new Weapon(3, "Poleaxe", 51396, new CharacterStatistics() {Strength = 54}, WeaponType.Axe, 130, 360),
-            new Weapon(3, "Pilum", 57156, new CharacterStatistics() {Strength = 57}, WeaponType.Axe, 150, 400),
+            new Weapon("Cleaver", 1285, new CharacterStatistics() {Strength = 3}, WeaponType.Axe, 4, 16),
+            new Weapon("Hand axe", 2270, new CharacterStatistics() {Strength = 6}, WeaponType.Axe, 5, 20),
+            new Weapon("Bronze axe", 3535, new CharacterStatistics() {Strength = 9}, WeaponType.Axe, 6, 24),
+            new Weapon("Hatchet", 5078, new CharacterStatistics() {Strength = 12}, WeaponType.Axe, 8, 32),
+            new Weapon("Warrior axe", 6901, new CharacterStatistics() {Strength = 15}, WeaponType.Axe, 10, 40),
+            new Weapon("Berserker axe", 8511, new CharacterStatistics() {Strength = 18}, WeaponType.Axe, 15, 60),
+            new Weapon("Greensteel axe", 10212, new CharacterStatistics() {Strength = 21}, WeaponType.Axe, 18, 72),
+            new Weapon("Madman's cleaver", 11346, new CharacterStatistics() {Strength = 24}, WeaponType.Axe, 20, 80),
+            new Weapon("Greataxe", 14181, new CharacterStatistics() {Strength = 27}, WeaponType.Axe, 25, 100),
+            new Weapon("Blacksteel battleaxe", 22686, new CharacterStatistics() {Strength = 36}, WeaponType.Axe, 40, 160),
+            new Weapon("Steel battleaxe", 19851, new CharacterStatistics() {Strength = 33}, WeaponType.Axe, 35, 140),
+            new Weapon("Ogre battleaxe", 25521, new CharacterStatistics() {Strength = 39}, WeaponType.Axe, 45, 180),
+            new Weapon("Iron greataxe", 17016, new CharacterStatistics() {Strength = 30}, WeaponType.Axe, 30, 120),
+            new Weapon("Ramhead sickle", 34116, new CharacterStatistics() {Strength = 45}, WeaponType.Axe, 70, 240),
+            new Weapon("Reaper scythe", 62916, new CharacterStatistics() {Strength = 60}, WeaponType.Axe, 170, 440),
+            new Weapon("Hunter spear", 28356, new CharacterStatistics() {Strength = 42}, WeaponType.Axe, 50, 200),
+            new Weapon("Halberd", 39876, new CharacterStatistics() {Strength = 48}, WeaponType.Axe, 90, 280),
+            new Weapon("Awl pike", 45636, new CharacterStatistics() {Strength = 51}, WeaponType.Axe, 110, 320),
+            new Weapon("Poleaxe", 51396, new CharacterStatistics() {Strength = 54}, WeaponType.Axe, 130, 360),
+            new Weapon("Pilum", 57156, new CharacterStatistics() {Strength = 57}, WeaponType.Axe, 150, 400),
         };
 
         private static List<Character> bosses = new List<Character>()
@@ -427,7 +427,7 @@ namespace WinForm
                     Strength = 60, Agility = 60, Attack = 60, Defence = 60, Vitality = 60, Charisma = 60, Stamina = 60, Magica = 60
                 },
                 60,
-                new Weapon(60, "Blade of the Empire", 6901, new CharacterStatistics() {Agility = 60}, WeaponType.Sword, 200, 800),
+                new Weapon("Blade of the Empire", 6901, new CharacterStatistics() {Agility = 60}, WeaponType.Sword, 200, 800),
                 new ArmourSet(
                     new Armour(1, "Helm of Ages", 0, ArmourType.Helmet, 300), 
                     new Armour(1, "Emperors chestplate", 0, ArmourType.Chestplate, 416), 
@@ -459,9 +459,9 @@ namespace WinForm
         
         public  List<Armour> GetArmours () {
             List<Armour> results = new List<Armour> () ;
-            results.AddRange (leggings);
-            results.AddRange (boots);
-            results.AddRange (helmets);
+            results.AddRange(leggings);
+            results.AddRange(boots);
+            results.AddRange(helmets);
             results.AddRange(chestplates);
             return results ;
         }
@@ -478,17 +478,16 @@ namespace WinForm
         public List<Spell> GetSpells()
         {
             List<Spell> results = new List<Spell>();
-            results.Add(new Spell(1, "das", 10));
+            results.AddRange(spells);
             return results;
         }
 
         public List<Effect> GetEffects()
         {
             List<Effect> results = new List<Effect>();
-            results.Add(new Effect(1, "dsa", 10, null, null, null));
+            results.AddRange(effects);
             return results;
         }
-
     }
            
 }

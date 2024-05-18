@@ -3,35 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PzProjekt.exceptions;
 
 namespace PzProjekt
 {
     [ToStringProperties]
     abstract public class InventoryItem
     {
-       
-        public int MinLevel { get; set; }
         public string Name { get; set; }
         public int ValueInGold { get; set; }
-
-        public CharacterStatistics Statistics { get; set; }
-
-        protected InventoryItem() { }
-        protected InventoryItem(int minLevel, string name, int valueInGold)
+        
+        protected InventoryItem(string name, int valueInGold)
         {
-            MinLevel = minLevel;
             Name = name;
             ValueInGold = valueInGold;
-
-            Statistics = new CharacterStatistics();
         }
-
-        protected InventoryItem(int minLevel, string name, int valueInGold, CharacterStatistics statistics)
+        
+        public virtual bool CanBeBoughtByPlayer(Character character)
         {
-            MinLevel = minLevel;
-            Name = name;
-            ValueInGold = valueInGold;
-            Statistics = statistics;
+            if (!(character.Parameters.Money >= ValueInGold))
+            {
+                throw new NoEnoughMoneyException();
+            }
+
+            return character.Parameters.Money >= ValueInGold;
         }
     }
 }

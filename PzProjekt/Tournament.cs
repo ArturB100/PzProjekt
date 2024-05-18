@@ -15,13 +15,21 @@ public class Tournament
         Boss = boss;
     }
 
-    public void InitializeEnemies(List<Weapon> swords, List<Weapon> axes, List<Armour> helmets, List<Armour> chestplates, List<Armour> leggings, List<Armour> boots, List<Spell> spells)
+    public void InitializeEnemies(
+        List<Weapon> swords, 
+        List<Weapon> axes, 
+        List<Armour> helmets, 
+        List<Armour> chestplates, 
+        List<Armour> leggings, 
+        List<Armour> boots, 
+        List<Spell> spells,
+        List<Effect> effects)
     {
         _enemies = new Queue<Character>();
         
         for(int i = 0; i < NumberOfEnemies; i++)
         {
-            _enemies.Enqueue(CharacterFactory.createRandomCharacterBasedOnLevel(MinimalLevel, swords, axes, helmets, chestplates, leggings, boots, spells));
+            _enemies.Enqueue(CharacterFactory.createRandomCharacterBasedOnLevel(MinimalLevel, swords, axes, helmets, chestplates, leggings, boots, spells, effects));
         }
         
         _enemies.Enqueue(Boss);

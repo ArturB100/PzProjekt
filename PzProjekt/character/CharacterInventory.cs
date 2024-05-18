@@ -4,14 +4,17 @@ namespace PzProjekt;
 
 public class CharacterInventory
 {
-    public CharacterInventory()
+    private Character _character;
+    
+    public CharacterInventory(Character character)
     {
         CharacterSpells = new List<Spell>();
         AvailableSpells = new List<Spell>();
         ArmourSet = new ArmourSet();
+        _character = character;
     }
     
-    public CharacterInventory(Weapon weapon, ArmourSet armourSet)
+    public CharacterInventory(Character character, Weapon weapon, ArmourSet armourSet)
     {
         CharacterSpells = new List<Spell>();
         AvailableSpells = new List<Spell>();
@@ -19,6 +22,7 @@ public class CharacterInventory
         
         Weapon = weapon;
         ArmourSet = armourSet;
+        _character = character;
     }
     
     public Weapon? Weapon { get; set; }
@@ -26,8 +30,19 @@ public class CharacterInventory
     public List<Spell> CharacterSpells { get; set; }
     public List<Spell> AvailableSpells { get; set; }
 
+    public void ChangeSpell(int index, Spell spell)
+    {
+        CharacterSpells[index] = spell;
+        AvailableSpells[index] = spell;
+    }
+    
     public void AddSpell(Spell spell)
     {
+        if(_character.Parameters.MaxSpells <= CharacterSpells.Count)
+        {
+            throw new TooManySpellsException();
+        }
+        
         CharacterSpells.Add(spell);
         AvailableSpells.Add(spell);
     }

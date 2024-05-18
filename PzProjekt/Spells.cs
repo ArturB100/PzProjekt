@@ -79,7 +79,7 @@ public class Spells
     
     public static void GhostStrike(Fight fight)
     {
-        fight.CharacterFightActions.Attack(AttackType.STRONG);
+        fight.CharacterFightActions.TakeDamage(fight.CharacterFightActions.StrongAttackDamage);
     }
     
     public static void WeakenArmor(Fight fight)

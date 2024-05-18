@@ -5,10 +5,10 @@ public class ActiveEffect
     public Effect Effect { get; set; }
     public int TurnsLeft { get; set; }
     
-    public ActiveEffect(Effect effect, int turnsLeft, Fight fight)
+    public ActiveEffect(Effect effect, Fight fight)
     {
         Effect = effect;
-        TurnsLeft = turnsLeft;
+        TurnsLeft = Effect.Duration;
         effect.BeginEffect(fight);
     }
 }
