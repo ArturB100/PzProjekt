@@ -20,7 +20,7 @@ namespace WinForm.views
         }
 
 
-        
+
 
         private void zapiszToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -47,6 +47,21 @@ namespace WinForm.views
         private void currentCharacterDetailsBtn_Click(object sender, EventArgs e)
         {
             ProgramCtx.ChangeView(new SelectedCharacterDetailsView(ProgramCtx));
+        }
+
+        private void magicShopBtn_Click(object sender, EventArgs e)
+        {
+            ProgramCtx.ChangeView(new SpellShopView(ProgramCtx));
+        }
+
+        private void EffectShopBtn_Click(object sender, EventArgs e)
+        {
+            ProgramCtx.ChangeView(new EffectShopView(ProgramCtx));
+        }
+
+        private void churchBtn_Click(object sender, EventArgs e)
+        {
+            ProgramCtx.ChangeView(new ChurchView(ProgramCtx));
         }
     }
 }

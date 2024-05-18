@@ -82,5 +82,40 @@ namespace WinForm
         {
             MessageBox.Show(msg, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        public void ErrorMessage(Error error)
+        {           
+            MessageBox.Show(TranslateToString(error), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+
+        private static string TranslateToString(Error error)
+        {
+            switch (error)
+            {
+                case Error.NOT_ENOUGHT_MONEY:
+                    return "Za malo pieniedzy";
+                case Error.TOO_WEAK_STATISTICS:
+                    return "Zbyt slabe statystyki";
+                case Error.TOO_WEAK_LEVEL:
+                    return "Zbyt niski level";
+                default:
+                    return "Cos poszlo nie tak";
+                    
+            }
+        }
+    }
+
+
+   
+
+    public enum Error
+    {
+        NOT_ENOUGHT_MONEY,
+        TOO_WEAK_STATISTICS,
+        TOO_WEAK_LEVEL,
+        OTHER
+
+        
     }
 }

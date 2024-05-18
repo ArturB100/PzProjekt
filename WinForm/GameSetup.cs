@@ -14,6 +14,10 @@ namespace WinForm
 
         public WeaponShop WeaponShop { get; set; }
 
+        public SpellShop SpellShop { get; set; }
+
+        public EffectShop EffectShop { get; set; }
+
         public GameSetup() 
         { 
             DataFeeder dataFeeder = new DataFeeder();
@@ -23,6 +27,12 @@ namespace WinForm
             
             WeaponShop = new WeaponShop();
             WeaponShop.AddItems(dataFeeder.GetWeapons());
+
+            SpellShop = new SpellShop();
+            SpellShop.AddItems(dataFeeder.GetSpells());
+
+            EffectShop = new EffectShop();
+            EffectShop.AddItems(dataFeeder.GetEffects());
 
         }
 
@@ -463,8 +473,23 @@ namespace WinForm
             results.AddRange(axes);
             return results;
         }
-            
-     }
+
+
+        public List<Spell> GetSpells()
+        {
+            List<Spell> results = new List<Spell>();
+            results.Add(new Spell(1, "das", 10));
+            return results;
+        }
+
+        public List<Effect> GetEffects()
+        {
+            List<Effect> results = new List<Effect>();
+            results.Add(new Effect(1, "dsa", 10, null, null, null));
+            return results;
+        }
+
+    }
            
 }
 

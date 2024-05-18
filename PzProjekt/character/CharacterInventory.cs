@@ -1,4 +1,6 @@
-﻿namespace PzProjekt;
+﻿using PzProjekt.exceptions;
+
+namespace PzProjekt;
 
 public class CharacterInventory
 {
@@ -69,6 +71,22 @@ public class CharacterInventory
     public void EquipWeapon (Weapon weapon)
     {
         Weapon =  weapon;
+    }
+
+    public void EquipSpell (Spell spell)
+    {
+        CharacterSpells.Add(spell);
+    }
+
+    public void EquipEffect ( Effect effect) 
+    {
+
+        if (Weapon == null)
+        {
+            throw new NoWeaponInInventoryException();
+        }
+
+        Weapon.Effect = effect;
     }
 
 }

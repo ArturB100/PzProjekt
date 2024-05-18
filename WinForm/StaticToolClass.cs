@@ -20,6 +20,19 @@ namespace WinForm
             return result;
         }
 
+        // used in the shops views
+        public static List<string> GetStringListFromInventoryList <T> (this List<T> list) where T : InventoryItem
+        {
+            List<string> result = new List<string>();   
+            foreach (T item in list)
+            {
+                result.Add($"Nazwa: {item.Name}, Min level: {item.MinLevel} {item.Statistics.ToString()}");
+            }
+
+            return result;
+        }
+
+        // this is used in the SelectedCharacterDetailsView
         public static string DisplayInformations (this Character character)
         {
             return $"{character.Name} \n {character.Parameters.Level} \n " +
@@ -28,8 +41,8 @@ namespace WinForm
                 $"zbroja: {character.Inventory.ArmourSet.Chestplate.ToStringWithProperties()} \n" +
                 $"spodnie: {character.Inventory.ArmourSet.Leggings.ToStringWithProperties()} \n" +
                 $"buty {character.Inventory.ArmourSet.Boots.ToStringWithProperties()} \n" +
-                $"broń: {character.Inventory.Weapon.ToStringWithProperties()}" +
-                $"" +
+                $"broń: {character.Inventory.Weapon.ToStringWithProperties()} \n" +
+                $"czary: {character.Inventory.CharacterSpells}" +
                 $"" +
                 $"" +
                 $"" +
@@ -38,6 +51,7 @@ namespace WinForm
                 $" ";
         }
 
+        // used in the shops views to display character details
         public static string DisplayInformationsInShop (this Character character)
         {
             return $"" +
@@ -51,6 +65,11 @@ namespace WinForm
                 $"" +
                 $"" +
                 $" ";
+        }
+
+        public static string SpellDescription (this Spell s)
+        {
+            return $"{s.Name}, koszt: {s.ValueInGold}";
         }
     }
 

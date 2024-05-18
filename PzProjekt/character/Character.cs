@@ -30,7 +30,7 @@ namespace PzProjekt
             Inventory = new CharacterInventory();
         }
         
-        public Character(string name, CharacterStatistics baseStatistics, int level, Weapon weapon, ArmourSet armourSet)
+        public Character(string name, CharacterStatistics baseStatistics, int level, Weapon weapon)
         {
             Name = name;
             BaseStatistics = baseStatistics;
@@ -60,5 +60,18 @@ namespace PzProjekt
             Parameters.Refill();
             Inventory.Refill();
         }
+
+        public void InvestPoint (int dictionaryIndex)
+        {
+            if (Parameters.PointsToInvest < 1)
+            {
+                throw new NoPointsToInvestException();
+            }
+
+            BaseStatistics.StatisticsDictionary[dictionaryIndex]++;
+            Parameters.PointsToInvest -= 1;
+        }
+
+
     }
 }

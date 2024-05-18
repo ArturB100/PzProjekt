@@ -40,6 +40,7 @@
             zapiszToolStripMenuItem = new ToolStripMenuItem();
             wyjdzToolStripMenuItem = new ToolStripMenuItem();
             currentCharacterDetailsBtn = new Button();
+            EffectShopBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -47,7 +48,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-3, 33);
+            pictureBox1.Location = new Point(-6, 33);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(1923, 1044);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -62,6 +63,7 @@
             magicShopBtn.TabIndex = 1;
             magicShopBtn.Text = "magic shop";
             magicShopBtn.UseVisualStyleBackColor = true;
+            magicShopBtn.Click += magicShopBtn_Click;
             // 
             // WeaponSmithBtn
             // 
@@ -81,6 +83,7 @@
             churchBtn.TabIndex = 3;
             churchBtn.Text = "church";
             churchBtn.UseVisualStyleBackColor = true;
+            churchBtn.Click += churchBtn_Click;
             // 
             // armouryBtn
             // 
@@ -142,10 +145,21 @@
             currentCharacterDetailsBtn.UseVisualStyleBackColor = true;
             currentCharacterDetailsBtn.Click += currentCharacterDetailsBtn_Click;
             // 
+            // EffectShopBtn
+            // 
+            EffectShopBtn.Location = new Point(1141, 486);
+            EffectShopBtn.Name = "EffectShopBtn";
+            EffectShopBtn.Size = new Size(197, 35);
+            EffectShopBtn.TabIndex = 8;
+            EffectShopBtn.Text = "effects shop";
+            EffectShopBtn.UseVisualStyleBackColor = true;
+            EffectShopBtn.Click += EffectShopBtn_Click;
+            // 
             // HomeView
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(EffectShopBtn);
             Controls.Add(currentCharacterDetailsBtn);
             Controls.Add(arenaBtn);
             Controls.Add(armouryBtn);
@@ -176,5 +190,6 @@
         private ToolStripMenuItem zapiszToolStripMenuItem;
         private ToolStripMenuItem wyjdzToolStripMenuItem;
         private Button currentCharacterDetailsBtn;
+        private Button EffectShopBtn;
     }
 }

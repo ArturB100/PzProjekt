@@ -152,6 +152,19 @@ namespace PzProjekt
             }
         }
 
+        public override string ToString ()
+        {
+            return $"" +
+                $"strength: {Strength}" +
+                $"attack: {Attack}" +
+                $"" +
+                $"" +
+                $"" +
+                $"" +
+                $"";
+        }
+
+        
         public Dictionary<int, int> StatisticsDictionary { get; set; }
 
         public CharacterStatistics()
@@ -197,5 +210,7 @@ namespace PzProjekt
                 Intelligence = Intelligence
             };
         }
+
+
     }
 }

@@ -22,12 +22,7 @@ namespace WinForm
         }
 
         public UserControlBase() { }
-        public UserControlBase(ProgramCtx form)
-        {
-            InitializeComponent();
-            ProgramCtx = form;
-            
-        }
+        
         public UserControlBase(ProgramCtx form, bool showMenu = false)
         {
             InitializeComponent();
