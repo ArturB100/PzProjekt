@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PzProjekt
 {
     [ToStringProperties]
-    public class ArmourSet
+    public class ArmourSet : ICloneable
     {
         public Armour? Helmet { get; set; }
         public Armour? Chestplate { get; set; }
@@ -63,5 +63,22 @@ namespace PzProjekt
         
         
         private List<Armour> armourSet = new List<Armour>();
+        public object Clone()
+        {
+            return new ArmourSet(Helmet, Chestplate, Leggings, Boots);
+        }
+
+        public override string ToString()
+        {
+            String helmetName = Helmet == null ? "null" : Helmet.Name;
+            String chestplateName = Chestplate == null ? "null" : Chestplate.Name;
+            String leggingsName = Leggings == null ? "null" : Leggings.Name;
+            String bootsName = Boots == null ? "null" : Boots.Name;
+            
+            return $"helmet: {helmetName} | " + 
+                   $"chestplate: {chestplateName} | " + 
+                   $"leggings: {leggingsName} | " + 
+                   $"boots: {bootsName} | ";
+        }
     }
 }

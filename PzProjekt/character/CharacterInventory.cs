@@ -1,4 +1,5 @@
-﻿using PzProjekt.exceptions;
+﻿using System.Text;
+using PzProjekt.exceptions;
 
 namespace PzProjekt;
 
@@ -103,5 +104,16 @@ public class CharacterInventory
 
         Weapon.Effect = effect;
     }
+    
+    public String SpellsToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        foreach (var spell in CharacterSpells)
+        {
+            sb.Append(spell.Name);
+            sb.Append("\n");
+        }
 
+        return sb.ToString();
+    }
 }

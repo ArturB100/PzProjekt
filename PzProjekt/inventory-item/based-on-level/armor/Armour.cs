@@ -17,5 +17,10 @@ namespace PzProjekt
             ArmourType = armourType;
             ArmourPoints = armourPoints;
         }
+        
+        public override string ToString()
+        {
+            return base.ToString() + " | Required lvl: " + MinLevel;
+        }
     }
 }

@@ -57,7 +57,7 @@ namespace WinForm.views
             characterStatistics.Visible = true;
 
             resultBox.Visible = true;
-            resultBox.DataSource = weapons.GetItemsAsString();
+            resultBox.DataSource = weapons.GetStringListFromInventoryList();
         }
 
         private void resultBox_SelectedIndexChanged(object sender, EventArgs e)

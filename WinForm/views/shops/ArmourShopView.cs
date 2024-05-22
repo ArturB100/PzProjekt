@@ -120,7 +120,7 @@ namespace WinForm.views.shops
 
             }
 
-            resultsBox.DataSource = currentArmourFilteredList.GetItemsAsString();
+            resultsBox.DataSource = currentArmourFilteredList.GetStringListFromInventoryList();
         }
 
         private void DeleteAllBordersFromPictures ()

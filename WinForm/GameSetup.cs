@@ -63,9 +63,9 @@ namespace WinForm
 
         List<Effect> effects = new List<Effect>
         {
-            new Effect("Freeze", 1000, null, null, Actions.Freeze, 1),
-            new Effect("Weakness", 1000, Actions.BeginWeakness, Actions.EndWeakness, null, 2),
-            new Effect("Poison", 1000, null, null, Actions.Poison, 3),
+            new Effect("Freeze", 1000, null, null, Effects.Freeze, 1),
+            new Effect("Weakness", 1000, Effects.BeginWeakness, Effects.EndWeakness, null, 2),
+            new Effect("Poison", 1000, null, null, Effects.Poison, 3),
         };
         
         static List<Armour> helmets = new List<Armour>
@@ -456,8 +456,13 @@ namespace WinForm
             new Tournament(42, 15, bosses[13]),
             new Tournament(48, 17, bosses[14]),
         };
+
+        public void AddTournamentWithCloneBoss(Character character)
+        {
+            _tournaments.Add(new Tournament(45, 16, character.Clone() as Character));
+        }
         
-        public  List<Armour> GetArmours () {
+        public List<Armour> GetArmours () {
             List<Armour> results = new List<Armour> () ;
             results.AddRange(leggings);
             results.AddRange(boots);

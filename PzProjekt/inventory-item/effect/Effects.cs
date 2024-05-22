@@ -1,6 +1,6 @@
 ﻿namespace PzProjekt;
 
-public class Actions
+public class Effects
 {
     public static void Poison(Fight fight)
     {

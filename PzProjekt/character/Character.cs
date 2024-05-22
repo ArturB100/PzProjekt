@@ -8,7 +8,7 @@ using PzProjekt.exceptions;
 
 namespace PzProjekt
 {
-    public class Character
+    public class Character : ICloneable
     {
         private const int BasePointsToInvest = 10;
         public string Name { get; set; }
@@ -18,35 +18,36 @@ namespace PzProjekt
         public CharacterInventory Inventory { get; set; }
         public ActiveEffect? ActiveEffect { get; set; }
         public string? HeadImage { get; set; }
-        
-        public Character() 
+
+        public Character()
         {
             BaseStatistics = new CharacterStatistics();
             ActualStatistics = BaseStatistics.Clone() as CharacterStatistics;
-            
+
             Parameters = new CharacterParameters(this);
-            
+
             Parameters.PointsToInvest = BasePointsToInvest;
-            
+
             Inventory = new CharacterInventory(this);
         }
-        
+
         public Character(string name, CharacterStatistics baseStatistics, int level, Weapon weapon, ArmourSet armourSet)
         {
             Name = name;
             BaseStatistics = baseStatistics;
             ActualStatistics = BaseStatistics.Clone() as CharacterStatistics;
-            
+
             Parameters = new CharacterParameters(this, level);
             Inventory = new CharacterInventory(this, weapon, armourSet);
         }
-        
-        public Character(string name, CharacterStatistics baseStatistics, int level, Weapon weapon, ArmourSet armourSet, List<Spell> spells)
+
+        public Character(string name, CharacterStatistics baseStatistics, int level, Weapon weapon, ArmourSet armourSet,
+            List<Spell> spells)
         {
             Name = name;
             BaseStatistics = baseStatistics;
             ActualStatistics = BaseStatistics.Clone() as CharacterStatistics;
-            
+
             Parameters = new CharacterParameters(this, level);
             Inventory = new CharacterInventory(this, weapon, armourSet);
             Inventory.CharacterSpells = spells;
@@ -59,7 +60,7 @@ namespace PzProjekt
             Inventory.Refill();
         }
 
-        public void InvestPoint (int dictionaryIndex)
+        public void InvestPoint(int dictionaryIndex)
         {
             if (Parameters.PointsToInvest < 1)
             {
@@ -68,6 +69,12 @@ namespace PzProjekt
 
             BaseStatistics.StatisticsDictionary[dictionaryIndex]++;
             Parameters.PointsToInvest -= 1;
+        }
+
+        public object Clone()
+        {
+            return new Character(Name, BaseStatistics, Parameters.Level, Inventory.Weapon.Clone() as Weapon,
+                Inventory.ArmourSet.Clone() as ArmourSet, Inventory.CharacterSpells);
         }
     }
 }

@@ -9,20 +9,20 @@ public abstract class Fight
     
     public EnemyBehavior EnemyBehavior { get; set; }
     public CharacterFightActions CharacterFightActions { get; set; }
-    private Character activeCharacter;
+    private Character _activeCharacter;
     public Character ActiveCharacter
     {
-        get => activeCharacter;
+        get => _activeCharacter;
     }
     
     public Character InactiveCharacter
     {
-        get => activeCharacter == Player ? Enemy : Player;
+        get => _activeCharacter == Player ? Enemy : Player;
     }
     
     private void ChangeActiveCharacter()
     {
-        activeCharacter = activeCharacter == Player ? Enemy : Player;
+        _activeCharacter = _activeCharacter == Player ? Enemy : Player;
     }
     
     public Character Player { get; set; }
@@ -60,7 +60,7 @@ public abstract class Fight
         player.Parameters.Position = InitialPlayerPosition;
         enemy.Parameters.Position = InitialEnemyPosition;
         
-        activeCharacter = player;
+        _activeCharacter = player;
         CharacterFightActions = new CharacterFightActions(this);
         EnemyBehavior = new EnemyBehavior(this);
         CrowdSatisfaction = CalcBaseCrowdSatisfaction();

@@ -25,5 +25,17 @@ namespace PzProjekt
         {
             return new Weapon(Name, ValueInGold, MinimalStatistics, WeaponType, MinimalDamage, MaximalDamage);
         }
+        
+        public override string ToString()
+        {
+            if (WeaponType == WeaponType.Sword)
+            {
+                return base.ToString() + " | Required agility: " + MinimalStatistics.Agility;
+            }
+            else
+            {
+                return base.ToString() + " | Required strength: " + MinimalStatistics.Strength;
+            }
+        }
     }
 }

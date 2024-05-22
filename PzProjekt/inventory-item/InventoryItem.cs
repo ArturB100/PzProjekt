@@ -28,5 +28,10 @@ namespace PzProjekt
 
             return character.Parameters.Money >= ValueInGold;
         }
+
+        public override string ToString()
+        {
+            return Name + " | Cost: " + ValueInGold;
+        }
     }
 }

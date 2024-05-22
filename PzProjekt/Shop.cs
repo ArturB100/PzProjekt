@@ -19,16 +19,6 @@ public  class Shop <T>  where T : InventoryItem
     }
 
     public List<T> GetItems () { return items; }
-
-    public List<string> GetItemsAsString ()
-    {
-        List<string> result = new List<string>();
-        foreach (T item in items)
-        {
-            result.Add(item.ToStringWithProperties());
-        }
-        return result;
-    }
     
     public bool CanBeBoughtByPlayer (Character character, T item)
     {
@@ -39,7 +29,7 @@ public  class Shop <T>  where T : InventoryItem
     {
         if (!inventoryItem.CanBeBoughtByPlayer(character))
         {
-            throw new ItemImpossibleToBuy();
+            throw new ItemImpossibleToBuyException();
         }
 
         EquipItem?.Invoke(character, inventoryItem);

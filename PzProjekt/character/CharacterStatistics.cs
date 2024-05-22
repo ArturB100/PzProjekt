@@ -154,14 +154,14 @@ namespace PzProjekt
 
         public override string ToString ()
         {
-            return $"" +
-                $"strength: {Strength}" +
-                $"attack: {Attack}" +
-                $"" +
-                $"" +
-                $"" +
-                $"" +
-                $"";
+            return $"strength: {Strength} | " +
+                   $"agility: {Agility} | " +
+                   $"attack: {Attack} | " +
+                   $"defence: {Defence} | " +
+                   $"vitality: {Vitality} | " +
+                   $"charisma: {Charisma} | " +
+                   $"stamina: {Stamina} | " +
+                   $"magica: {Magica} | ";
         }
 
         
@@ -210,5 +210,7 @@ namespace PzProjekt
                 Intelligence = Intelligence
             };
         }
+        
+         
     }
 }

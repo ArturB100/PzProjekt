@@ -10,23 +10,13 @@ namespace WinForm
 {
     public static class StaticToolClass
     {
-        public static List<string> GetItemsAsString <T>(this List<T> sourceList)
-        {
-            List<string> result = new List<string>();
-            foreach (T item in sourceList)
-            {
-                result.Add(item.ToStringWithProperties());
-            }
-            return result;
-        }
-
         // used in the shops views
         public static List<string> GetStringListFromInventoryList <T> (this List<T> list) where T : InventoryItem
         {
             List<string> result = new List<string>();   
             foreach (T item in list)
             {
-                result.Add($"Nazwa: {item.Name}");
+                result.Add($"{item}");
             }
 
             return result;
@@ -35,43 +25,35 @@ namespace WinForm
         // this is used in the SelectedCharacterDetailsView
         public static string DisplayInformations (this Character character)
         {
-            return $"{character.Name} \n {character.Parameters.Level} \n " +
-                $"money: {character.Parameters.Money} \n" +
-                $"helm: {character.Inventory.ArmourSet.Helmet.ToStringWithProperties()} \n" +
-                $"zbroja: {character.Inventory.ArmourSet.Chestplate.ToStringWithProperties()} \n" +
-                $"spodnie: {character.Inventory.ArmourSet.Leggings.ToStringWithProperties()} \n" +
-                $"buty {character.Inventory.ArmourSet.Boots.ToStringWithProperties()} \n" +
-                $"broń: {character.Inventory.Weapon.ToStringWithProperties()} \n" +
-                $"czary: {character.Inventory.CharacterSpells}" +
-                $"" +
-                $"" +
-                $"" +
-                $"" +
-                $"" +
-                $" ";
+            String weaponName = "null";
+            
+            if(character.Inventory.Weapon != null)
+            {
+                weaponName = character.Inventory.Weapon.Name;
+                
+                if(character.Inventory.Weapon.Effect != null)
+                {
+                    weaponName += " effect: " + character.Inventory.Weapon.Effect.Name;
+                }
+            }
+            
+            return $"name: {character.Name} \n" +
+                   $"lvl: {character.Parameters.Level} \n" + 
+                   $"money: {character.Parameters.Money} \n" +
+                   $"armour: | {character.Inventory.ArmourSet} \n" +
+                   $"weapon: {weaponName} \n" +
+                   $"spells: {character.Inventory.SpellsToString()}" +
+                   $"statistics: | {character.BaseStatistics}";
         }
 
         // used in the shops views to display character details
         public static string DisplayInformationsInShop (this Character character)
         {
-            return $"" +
-                $"imie: {character.Name} \n " +
-                $"level: {character.Parameters.Level} \n " +
-                $"money: {character.Parameters.Money} \n" +    
-                $"" +
-                $"" +
-                $"" +
-                $"" +
-                $"" +
-                $"" +
-                $" ";
-        }
-
-        public static string SpellDescription (this Spell s)
-        {
-            return $"{s.Name}, koszt: {s.ValueInGold}";
+            return $"name: {character.Name} \n" + 
+                   $"lvl: {character.Parameters.Level} \n" + 
+                   $"money: {character.Parameters.Money} \n" + 
+                   $"lvl: {character.Parameters.Level} \n" + 
+                   $"statistics : | {character.BaseStatistics} \n";
         }
     }
-
-    
 }

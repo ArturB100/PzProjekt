@@ -1,12 +1,12 @@
 ﻿namespace PzProjekt;
 
-public delegate void Action(Fight fight);
+public delegate void EffectAction(Fight fight);
 
 public class Effect : InventoryItem
 {
-    public Action OnEffectBegin;
-    public Action OnEffectEnd;
-    public Action ApplyEffect; 
+    public EffectAction OnEffectBegin;
+    public EffectAction OnEffectEnd;
+    public EffectAction ApplyEffect; 
     
     public int Duration { get; set; }
     
@@ -27,10 +27,10 @@ public class Effect : InventoryItem
     
     public bool IsFrozen()
     {
-        return ApplyEffect == Actions.Freeze;
+        return ApplyEffect == Effects.Freeze;
     }
 
-    public Effect(string name, int valueInGold, Action onEffectBegin, Action onEffectEnd, Action applyEffect, int duration) : base(name, valueInGold)
+    public Effect(string name, int valueInGold, EffectAction onEffectBegin, EffectAction onEffectEnd, EffectAction applyEffect, int duration) : base(name, valueInGold)
     {
         OnEffectBegin = onEffectBegin;
         OnEffectEnd = onEffectEnd;

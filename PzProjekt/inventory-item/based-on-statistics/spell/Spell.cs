@@ -24,5 +24,10 @@ namespace PzProjekt
             Console.WriteLine("Using spell: " + Name);
             OnUse?.Invoke(fight);
         }
+        
+        public override string ToString()
+        {
+            return base.ToString() + " | Required magica: " + MinimalStatistics.Magica;
+        }
     }
 }

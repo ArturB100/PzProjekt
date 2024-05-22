@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PzProjekt.exceptions
 {
-    public class ItemImpossibleToBuy : Exception
+    public class ItemImpossibleToBuyException : Exception
     {
     }
 }
