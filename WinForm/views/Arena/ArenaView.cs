@@ -27,7 +27,19 @@ namespace WinForm.views
 
         private void trainingFightBtn_Click_1(object sender, EventArgs e)
         {
-            Character enemy = CharacterFactory.CreateRandomCharacterBasedOnLevel(player.Parameters.Level);
+            DataFeeder dataFeeder = ProgramCtx.GameSetup.DataFeeder;
+            Character enemy = CharacterFactory.CreateRandomCharacterBasedOnLevel(
+                player.Parameters.Level,
+                DataFeeder.swords,
+                DataFeeder.axes,
+                DataFeeder.helmets,
+                DataFeeder.chestplates,
+                DataFeeder.leggings,
+                DataFeeder.boots,
+                DataFeeder.spells,
+                DataFeeder.effects
+
+                );
 
             FightToFirstBlood fight = new FightToFirstBlood(player, enemy);
             

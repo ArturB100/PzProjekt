@@ -48,9 +48,10 @@ namespace PzProjekt
             }
         }
         
+        
         public int MaxArmorPoints 
         { 
-            get => armourSet.Sum(armour => 
+            get => ArmourList.Sum(armour => 
             {
                 if (armour != null)
                 {
@@ -63,6 +64,15 @@ namespace PzProjekt
         
         
         private List<Armour> armourSet = new List<Armour>();
+
+        public List<Armour> ArmourList 
+        {
+            get
+            {
+                return new List<Armour>() { Helmet, Chestplate, Leggings, Boots};
+            }
+        }
+
         public object Clone()
         {
             return new ArmourSet(Helmet, Chestplate, Leggings, Boots);

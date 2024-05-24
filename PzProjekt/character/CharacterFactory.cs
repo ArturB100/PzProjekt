@@ -28,7 +28,7 @@ public class CharacterFactory
         "Tiberius"
     };
     
-    public static Character createRandomCharacterBasedOnLevel(int level, 
+    public static Character CreateRandomCharacterBasedOnLevel(int level, 
         List<Weapon> swords, 
         List<Weapon> axes, 
         List<Armour> helmets, 

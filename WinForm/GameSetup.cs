@@ -18,6 +18,8 @@ namespace WinForm
 
         public EffectShop EffectShop { get; set; }
 
+        public DataFeeder DataFeeder { get; set; }
+
         public GameSetup() 
         { 
             DataFeeder dataFeeder = new DataFeeder();
@@ -40,11 +42,11 @@ namespace WinForm
     }
 
 
-    internal class DataFeeder
+    public class DataFeeder
     {
         public DataFeeder() { }
-        
-        static List<Spell> spells = new List<Spell>
+
+        public static List<Spell> spells = new List<Spell>
         {
             new Spell("Teleportation", 2149, new CharacterStatistics() {Magica = 3}, Spells.Teleport),
             new Spell("Gale", 3820, new CharacterStatistics() {Magica = 4}, Spells.Gale),
@@ -61,14 +63,14 @@ namespace WinForm
             new Spell("Molten Death", 423000, new CharacterStatistics() {Magica = 60}, Spells.MoltenDeath),
         };
 
-        List<Effect> effects = new List<Effect>
+        public static List<Effect> effects = new List<Effect>
         {
             new Effect("Freeze", 1000, null, null, Effects.Freeze, 1),
             new Effect("Weakness", 1000, Effects.BeginWeakness, Effects.EndWeakness, null, 2),
             new Effect("Poison", 1000, null, null, Effects.Poison, 3),
         };
-        
-        static List<Armour> helmets = new List<Armour>
+
+        public static List<Armour> helmets = new List<Armour>
         {
             new Armour(1, "Peasant Helmet", 1200, ArmourType.Helmet, 20),
             new Armour(1, "Cutpurse Helmet", 2700, ArmourType.Helmet, 30),
@@ -96,7 +98,7 @@ namespace WinForm
             new Armour(48, "Champions Helmet", 187500, ArmourType.Helmet, 250),
         };
 
-        static List<Armour> chestplates = new List<Armour>
+        public static List<Armour> chestplates = new List<Armour>
         {
             new Armour(1, "Peasant Chestplate", 3072, ArmourType.Chestplate, 32),
             new Armour(1, "Cutpurse Chestplate", 6912, ArmourType.Chestplate, 48),
@@ -124,7 +126,7 @@ namespace WinForm
             new Armour(48, "Champions Chestplate", 480000, ArmourType.Chestplate, 400),
         };
 
-        static List<Armour> leggings = new List<Armour>
+        public static List<Armour> leggings = new List<Armour>
         {
             new Armour(1,  "Peasant Leggings", 108, ArmourType.Leggings, 6),
             new Armour(1,  "Cutpurse Leggings", 243, ArmourType.Leggings, 9),
@@ -152,7 +154,7 @@ namespace WinForm
             new Armour(48, "Champions Leggings", 16875, ArmourType.Leggings, 75),
         };
 
-        static List<Armour> boots = new List<Armour>
+        public static List<Armour> boots = new List<Armour>
         {
             new Armour(1, "Peasant Boots", 48, ArmourType.Boots, 4),
             new Armour(1, "Cutpurse Boots", 108, ArmourType.Boots, 6),
@@ -179,8 +181,8 @@ namespace WinForm
             new Armour(42,"Automaton Boots", 6912, ArmourType.Boots, 48),
             new Armour(48,"Champions Boots", 7500, ArmourType.Boots, 50),
         };
-        
-        static List<Weapon> swords = new List<Weapon>
+
+        public static List<Weapon> swords = new List<Weapon>
         {
             new Weapon("Dagger", 1285, new CharacterStatistics() {Agility = 3}, WeaponType.Sword,3, 9),
             new Weapon("Shortsword", 2270, new CharacterStatistics() {Agility = 6}, WeaponType.Sword, 4, 16),
@@ -203,8 +205,8 @@ namespace WinForm
             new Weapon("Kensai Spirit", 87415, new CharacterStatistics() {Agility = 57}, WeaponType.Sword, 25, 625),
             new Weapon("Daikatana", 94538, new CharacterStatistics() {Agility = 60}, WeaponType.Sword, 26, 676),
         };
-        
-        static List<Weapon> axes = new List<Weapon>
+
+        public static List<Weapon> axes = new List<Weapon>
         {
             new Weapon("Cleaver", 1285, new CharacterStatistics() {Strength = 3}, WeaponType.Axe, 4, 16),
             new Weapon("Hand axe", 2270, new CharacterStatistics() {Strength = 6}, WeaponType.Axe, 5, 20),
@@ -228,7 +230,7 @@ namespace WinForm
             new Weapon("Pilum", 57156, new CharacterStatistics() {Strength = 57}, WeaponType.Axe, 150, 400),
         };
 
-        private static List<Character> bosses = new List<Character>()
+        public  static List<Character> bosses = new List<Character>()
         {
             new Character(
                 "John The Butcher",

@@ -29,7 +29,7 @@ public class Tournament
         
         for(int i = 0; i < NumberOfEnemies; i++)
         {
-            _enemies.Enqueue(CharacterFactory.createRandomCharacterBasedOnLevel(MinimalLevel, swords, axes, helmets, chestplates, leggings, boots, spells, effects));
+            _enemies.Enqueue(CharacterFactory.CreateRandomCharacterBasedOnLevel(MinimalLevel, swords, axes, helmets, chestplates, leggings, boots, spells, effects));
         }
         
         _enemies.Enqueue(Boss);

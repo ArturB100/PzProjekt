@@ -41,6 +41,7 @@ namespace WinForm
                    $"lvl: {character.Parameters.Level} \n" + 
                    $"money: {character.Parameters.Money} \n" +
                    $"armour: | {character.Inventory.ArmourSet} \n" +
+                   $"armour points sum: {character.Inventory.ArmourSet.MaxArmorPoints} \n" +
                    $"weapon: {weaponName} \n" +
                    $"spells: {character.Inventory.SpellsToString()}" +
                    $"statistics: | {character.BaseStatistics}";
@@ -55,21 +56,22 @@ namespace WinForm
                    $"lvl: {character.Parameters.Level} \n" + 
                    $"statistics : | {character.BaseStatistics} \n";
         }
+        public static string DisplayInformationInFight(this Character character)
+        {
+            return $"" +
+                $"imie: {character.Name} \n " +
+                $"pozycja {character.Parameters.Position}  \n" +
+                $"zdrowie {character.Parameters.ActualHP} \n" +
+                $"stamina {character.Parameters.ActualStamina} \n" +
+                $"pancerz {character.Inventory.ArmourSet.ActualArmorPoints} / {character.Inventory.ArmourSet.MaxArmorPoints}" +
+                $"";
+        }
+
+        public static string SpellDescription(this Spell s)
+        {
+            return $"{s.Name}, koszt: {s.ValueInGold}";
+        }
     }
 
-    public static string DisplayInformationInFight(this Character character)
-    {
-        return $"" +
-            $"imie: {character.Name} \n " +
-            $"pozycja {character.Parameters.Position}" +
-            $"zdrowie {character.Parameters.ActualHP}" +
-            $"stamina {character.Parameters.ActualStamina}" +
-            $"" +
-            $"";
-    }
-
-    public static string SpellDescription(this Spell s)
-    {
-        return $"{s.Name}, koszt: {s.ValueInGold}";
-    }
+    
 }

@@ -59,6 +59,10 @@ public class CharacterParameters
             if (value < 0)
             {
                 _actualHP = 0;
+            } 
+            else if (value > MaxHP)
+            {
+                _actualHP = MaxHP;
             }
             else
             {

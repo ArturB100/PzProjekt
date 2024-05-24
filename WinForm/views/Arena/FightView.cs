@@ -67,6 +67,10 @@ namespace WinForm.views.Arena
             RefreshProgressBars();
 
             RefreshText();
+
+
+            // test
+            logTextBox.Text = player.Parameters.MaxHP.ToString();
         }
 
         private int decision = 0;
@@ -204,8 +208,10 @@ namespace WinForm.views.Arena
                    panel.Location.X + step,
                    panel.Location.Y
                 );
+                
                 Thread.Sleep(10);
             }
+            this.Refresh();
         }
 
 
