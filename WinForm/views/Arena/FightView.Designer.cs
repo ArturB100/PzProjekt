@@ -42,6 +42,8 @@
             turnIndicator = new Label();
             enemyInfoTextBox = new RichTextBox();
             panel2 = new Panel();
+            enemyArmorBar = new ProgressBar();
+            playerArmorBar = new ProgressBar();
             endFightResultsPanel = new Panel();
             exitBtn = new Button();
             enemyStaminaBar = new ProgressBar();
@@ -56,8 +58,8 @@
             playerBodyPic = new PictureBox();
             pictureBox1 = new PictureBox();
             logTextBox = new RichTextBox();
-            playerArmorBar = new ProgressBar();
-            enemyArmorBar = new ProgressBar();
+            menuStrip1 = new MenuStrip();
+            poddajSięToolStripMenuItem = new ToolStripMenuItem();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             endFightResultsPanel.SuspendLayout();
@@ -68,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)playerHeadPic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)playerBodyPic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // playerInfoTextBox
@@ -176,7 +179,7 @@
             // turnIndicator
             // 
             turnIndicator.AutoSize = true;
-            turnIndicator.Location = new Point(839, 16);
+            turnIndicator.Location = new Point(836, 39);
             turnIndicator.Name = "turnIndicator";
             turnIndicator.Size = new Size(59, 25);
             turnIndicator.TabIndex = 3;
@@ -207,6 +210,20 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1871, 539);
             panel2.TabIndex = 5;
+            // 
+            // enemyArmorBar
+            // 
+            enemyArmorBar.Location = new Point(1537, 121);
+            enemyArmorBar.Name = "enemyArmorBar";
+            enemyArmorBar.Size = new Size(150, 34);
+            enemyArmorBar.TabIndex = 9;
+            // 
+            // playerArmorBar
+            // 
+            playerArmorBar.Location = new Point(73, 121);
+            playerArmorBar.Name = "playerArmorBar";
+            playerArmorBar.Size = new Size(150, 34);
+            playerArmorBar.TabIndex = 8;
             // 
             // endFightResultsPanel
             // 
@@ -260,7 +277,7 @@
             // 
             enemyPanel.Controls.Add(enemyHeadPic);
             enemyPanel.Controls.Add(enemyBodyPic);
-            enemyPanel.Location = new Point(1750, 250);
+            enemyPanel.Location = new Point(1575, 250);
             enemyPanel.Name = "enemyPanel";
             enemyPanel.Size = new Size(121, 245);
             enemyPanel.TabIndex = 1;
@@ -287,7 +304,7 @@
             // 
             playerPanel.Controls.Add(playerHeadPic);
             playerPanel.Controls.Add(playerBodyPic);
-            playerPanel.Location = new Point(3, 250);
+            playerPanel.Location = new Point(191, 260);
             playerPanel.Name = "playerPanel";
             playerPanel.Size = new Size(126, 245);
             playerPanel.TabIndex = 0;
@@ -323,25 +340,28 @@
             // 
             // logTextBox
             // 
-            logTextBox.Location = new Point(558, 55);
+            logTextBox.Location = new Point(557, 81);
             logTextBox.Name = "logTextBox";
             logTextBox.Size = new Size(693, 232);
             logTextBox.TabIndex = 6;
             logTextBox.Text = "";
             // 
-            // playerArmorBar
+            // menuStrip1
             // 
-            playerArmorBar.Location = new Point(73, 121);
-            playerArmorBar.Name = "playerArmorBar";
-            playerArmorBar.Size = new Size(150, 34);
-            playerArmorBar.TabIndex = 8;
+            menuStrip1.ImageScalingSize = new Size(24, 24);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { poddajSięToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1920, 33);
+            menuStrip1.TabIndex = 7;
+            menuStrip1.Text = "menuStrip1";
             // 
-            // enemyArmorBar
+            // poddajSięToolStripMenuItem
             // 
-            enemyArmorBar.Location = new Point(1537, 121);
-            enemyArmorBar.Name = "enemyArmorBar";
-            enemyArmorBar.Size = new Size(150, 34);
-            enemyArmorBar.TabIndex = 9;
+            poddajSięToolStripMenuItem.Name = "poddajSięToolStripMenuItem";
+            poddajSięToolStripMenuItem.Size = new Size(109, 29);
+            poddajSięToolStripMenuItem.Text = "Poddaj się";
+            poddajSięToolStripMenuItem.Click += poddajSięToolStripMenuItem_Click;
             // 
             // FightView
             // 
@@ -353,6 +373,7 @@
             Controls.Add(turnIndicator);
             Controls.Add(panel1);
             Controls.Add(playerInfoTextBox);
+            Controls.Add(menuStrip1);
             Name = "FightView";
             Size = new Size(1920, 1080);
             panel1.ResumeLayout(false);
@@ -365,6 +386,8 @@
             ((System.ComponentModel.ISupportInitialize)playerHeadPic).EndInit();
             ((System.ComponentModel.ISupportInitialize)playerBodyPic).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -400,5 +423,7 @@
         private Button exitBtn;
         private ProgressBar enemyArmorBar;
         private ProgressBar playerArmorBar;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem poddajSięToolStripMenuItem;
     }
 }

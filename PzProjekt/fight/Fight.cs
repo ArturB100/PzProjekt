@@ -195,11 +195,9 @@ public abstract class Fight
         
         if (ActiveCharacter.Parameters.ActualStamina == 0)
         {
-            CharacterFightActions.Sleep();
-            return;
+            CharacterFightActions.Sleep();            
         }
-
-        if (ActiveCharacter == Player)
+        else if (ActiveCharacter == Player)
         {
             Log("ruch gracza \n");
             int moveChoosenByPlayer = OnPlayerTurn.Invoke();
@@ -248,7 +246,7 @@ public abstract class Fight
    
     private void waitForAction()
     {
-        if (CharacterFightActions.IsAttackPossible())
+        if (CharacterFightActions.IsAttackPossible(AttackType.STRONG))
         {
             Console.WriteLine("1. Strong Attack: " + CharacterFightActions.StrongAttackChance);
             Console.WriteLine("2. Medium Attack: " + CharacterFightActions.MediumAttackChance);

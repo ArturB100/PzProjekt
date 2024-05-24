@@ -31,8 +31,31 @@ public class EnemyBehavior
         }
         else if (_fight.Enemy.Parameters.AttackRange > _fight.DistanceBetweenCharacters)
         {
+            if (_fight.Enemy.Parameters.ActualStamina < 50)
+            {
+                _fight.CharacterFightActions.Sleep();
+                return;
+            }
+
             AttackType attackType = (AttackType)_random.Next(Enum.GetNames(typeof(AttackType)).Length);
-            _fight.CharacterFightActions.Attack(attackType);
+            bool success = false;
+            while (!success)
+            {
+                try
+                {
+                    _fight.CharacterFightActions.Attack(attackType);
+                    success = true;
+                }
+                catch
+                {
+                    attackType = (AttackType)_random.Next(Enum.GetNames(typeof(AttackType)).Length);
+                }
+            }
+
+
+
+            
+
         }
         else
         {

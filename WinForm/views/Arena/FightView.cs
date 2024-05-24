@@ -67,10 +67,10 @@ namespace WinForm.views.Arena
             RefreshProgressBars();
 
             RefreshText();
-
+            RefreshControlButtons();
 
             // test
-            logTextBox.Text = player.Parameters.MaxHP.ToString();
+            logTextBox.Text = player.Parameters.AttackRange.ToString() ;
         }
 
         private int decision = 0;
@@ -144,6 +144,41 @@ namespace WinForm.views.Arena
                 return;
             }
 
+            Character activeCharacter = fight.ActiveCharacter;
+
+            SetDecision(playerDecision);
+            fight.NextTurn();
+
+            if (activeCharacter == player)
+            {                
+                RefreshPlayerText();
+                RefreshProgressBars();
+                RefreshControlButtons();
+
+                // recursive call 
+                NextTurn(0);
+            } 
+            else if (activeCharacter == enemy)
+            {
+                //Thread.Sleep(200);
+                RefreshProgressBars();
+                RefreshControlButtons();
+                RefreshEnemyText();
+            }
+
+            RefreshTurnIndicator();
+
+
+            decision = 0;
+        }
+
+        /*private void NextTurn(int playerDecision)
+        {
+            CheckIfFightIsOver();
+            if (isFightOver)
+            {
+                return;
+            }
             SetDecision(playerDecision);
 
 
@@ -158,8 +193,10 @@ namespace WinForm.views.Arena
                 RefreshProgressBars();
             }
 
+            RefreshControlButtons();
+
             decision = 0;
-        }
+        }*/
 
         private bool isFightOver = false;
         private void CheckIfFightIsOver()
@@ -170,7 +207,7 @@ namespace WinForm.views.Arena
                 ProgramCtx.SuccessMessage("Congratulations, you won!");
             }
             else if (Result.LOST == result)
-            {                
+            {
                 ProgramCtx.WarningMessage("Ooops, you lost!");
             }
             else
@@ -208,7 +245,7 @@ namespace WinForm.views.Arena
                    panel.Location.X + step,
                    panel.Location.Y
                 );
-                
+
                 Thread.Sleep(10);
             }
             this.Refresh();
@@ -222,22 +259,28 @@ namespace WinForm.views.Arena
 
         }
 
-        private void RefreshObjects(Character character)
+        private void RefreshControlButtons()
         {
+            strongAttackBtn.Enabled = fight.CharacterFightActions.IsAttackPossible(AttackType.STRONG);
+            mediumAttackbtn.Enabled = fight.CharacterFightActions.IsAttackPossible(AttackType.MEDIUM); ;
+            weakAttackBtn.Enabled = fight.CharacterFightActions.IsAttackPossible(AttackType.WEAK); ;
+
+            int stamina = player.Parameters.ActualStamina;
+            bool movePossible = stamina > 20;
+            moveForwardBtn.Enabled = movePossible;
+            moveBackBtn.Enabled = movePossible;
 
         }
 
         private void RefreshPlayerText()
         {
             playerInfoTextBox.Text = $"ja {player.DisplayInformationInFight()}";
-            RefreshTurnIndicator();
             playerInfoTextBox.Refresh();
         }
 
         private void RefreshEnemyText()
         {
             enemyInfoTextBox.Text = $"przeciwnik: {enemy.DisplayInformationInFight()}";
-            RefreshTurnIndicator();
             enemyInfoTextBox.Refresh();
         }
 
@@ -299,11 +342,18 @@ namespace WinForm.views.Arena
             if (ProgramCtx.ActiveTournament == null)
             {
                 ProgramCtx.ChangeView(new HomeView(ProgramCtx));
-            } 
+            }
             else
             {
                 // TODO
             }
+        }
+
+        private void poddajSięToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isFightOver = true;
+            endFightResultsPanel.Visible = true;
+            fight.EndFight(Result.LOST);
         }
     }
 }

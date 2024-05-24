@@ -81,7 +81,7 @@ public class CharacterFightActions
         
         AttackProperties attackProperties = new AttackProperties(attackType);
         
-        if (!IsAttackPossible())
+        if (!IsAttackPossible(attackType))
         {
             throw new AttackNotPossibleException();
         }
@@ -159,13 +159,18 @@ public class CharacterFightActions
         }
     }
     
-    public bool IsAttackPossible()
+    public bool IsAttackPossible(AttackType attackType)
     {
         if (ActiveCharacter.Parameters.AttackRange <= Fight.DistanceBetweenCharacters)
         {
             return false;
         }
         
+        if (ActiveCharacter.Parameters.ActualStamina < new AttackProperties(attackType).NeededStamina)
+        {
+            return false;
+        }
+
         return true;
     }
     
