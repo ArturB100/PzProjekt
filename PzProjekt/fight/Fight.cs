@@ -25,7 +25,36 @@ public abstract class Fight
     protected OnCharacterMove onEnemyMove;
     public event OnActionDispatched onActionDispatched;
 
+    public void ChangeActiveCharacterPosition(int newPosition)
+    {
+        int oldPosition = ActiveCharacter.Parameters.Position;
+        ActiveCharacter.Parameters.Position = newPosition;
 
+        if (ActiveCharacter == Player)
+        {
+            onPlayerMove?.Invoke(oldPosition, newPosition);
+        }
+        else
+        {
+            onEnemyMove?.Invoke(oldPosition, newPosition);
+        }
+    }
+    
+    public void ChangeInactiveCharacterPosition(int newPosition)
+    {
+        int oldPosition = InactiveCharacter.Parameters.Position;
+        InactiveCharacter.Parameters.Position = newPosition;
+
+        if (InactiveCharacter == Player)
+        {
+            onPlayerMove?.Invoke(oldPosition, newPosition);
+        }
+        else
+        {
+            onEnemyMove?.Invoke(oldPosition, newPosition);
+        }
+    }
+    
     public OnCharacterMove OnPlayerMove  
     {
         get { return onPlayerMove; }

@@ -54,17 +54,23 @@ public class CharacterFactory
         int randomNameIndex = random.Next(_characterNames.Count);
         string randomName = _characterNames[randomNameIndex];
         
-        Weapon? weapon;
+        Weapon? weapon = null;
         
         if (characterStatistics.Agility > characterStatistics.Strength)
         {
             List<Weapon> matchingSwords = swords.Where(sword => sword.MinimalStatistics.Agility >= characterStatistics.Agility - WeaponStatisticsDifference && sword.MinimalStatistics.Agility <= characterStatistics.Agility).ToList();
-            weapon = GetRandomElement(matchingSwords).Clone() as Weapon;
+            if (matchingSwords != null && matchingSwords.Any())
+            {
+                weapon = GetRandomElement(matchingSwords).Clone() as Weapon;
+            }
         }
         else
         {
             List<Weapon> matchingAxes = axes.Where(axe => axe.MinimalStatistics.Strength >= characterStatistics.Strength - WeaponStatisticsDifference && axe.MinimalStatistics.Strength <= characterStatistics.Strength).ToList();
-            weapon = GetRandomElement(matchingAxes).Clone() as Weapon;
+            if (matchingAxes != null && matchingAxes.Any())
+            {
+                weapon = GetRandomElement(matchingAxes).Clone() as Weapon;
+            }
         }
         
         if (weapon != null)
@@ -104,6 +110,16 @@ public class CharacterFactory
     
     private static List<Armour> getArmorsBasedOnLevel(int level, List<Armour> armours)
     {
+        Random random = new Random();
+
+        if (level < 6)
+        {
+            if (random.NextDouble() <= 0.5)
+            {
+                return null;
+            }
+        }
+    
         return armours.Where(armour => armour.MinLevel <= level && armour.MinLevel >= level - ArmorLevelDifference).ToList();
     }
     

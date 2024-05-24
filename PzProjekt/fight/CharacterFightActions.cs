@@ -95,7 +95,7 @@ public class CharacterFightActions
             int damage = Convert.ToInt32(DrawDamage() * attackProperties.DamageMultiplier);
             TakeDamage(damage);
 
-            if (attacker.Inventory.Weapon.Effect != null)
+            if (attacker.Inventory.Weapon != null && attacker.Inventory.Weapon.Effect != null)
             {
                 TryToUseEffect();
             }
@@ -129,9 +129,18 @@ public class CharacterFightActions
     private int DrawDamage()
     {
         Weapon weapon = ActiveCharacter.Inventory.Weapon;
+        int minimalDamage = 0;
+        int maximalDamage = 0;
+        
+        if (weapon != null)
+        {
+            minimalDamage = weapon.MinimalDamage;
+            maximalDamage = weapon.MaximalDamage;
+        }
+        
         CharacterParameters characterParameters = ActiveCharacter.Parameters;
         
-        return new Random().Next(weapon.MinimalDamage + characterParameters.MinimalDamage, weapon.MaximalDamage + characterParameters.MaximalDamage);
+        return new Random().Next(minimalDamage + characterParameters.MinimalDamage, maximalDamage + characterParameters.MaximalDamage);
     }
     
     private void TryToUseEffect()

@@ -113,7 +113,7 @@ public class CharacterParameters
         {
             if (value < 0)
             {
-                throw new NoEnoughMoneyException();
+                _charcterMoney = 0;
             }
 
             _charcterMoney = value;

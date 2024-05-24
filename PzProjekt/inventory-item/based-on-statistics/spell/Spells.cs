@@ -8,7 +8,7 @@ public class Spells
         
         Console.WriteLine("Character position before teleportation: " + fight.ActiveCharacter.Parameters.Position);
         
-        fight.ActiveCharacter.Parameters.Position = random.Next(0, 1000);
+        fight.ChangeActiveCharacterPosition(random.Next(0, 1000));
         
         Console.WriteLine("Character position after teleportation: " + fight.ActiveCharacter.Parameters.Position);
     }
@@ -17,11 +17,11 @@ public class Spells
     {
         if(fight.InactiveCharacter.Parameters.Position < fight.ActiveCharacter.Parameters.Position)
         {
-            fight.InactiveCharacter.Parameters.Position = 0;
+            fight.ChangeInactiveCharacterPosition(0);
         }
         else
         {
-            fight.InactiveCharacter.Parameters.Position = 1000;
+            fight.ChangeInactiveCharacterPosition(1000);
         }    
     }
 
@@ -32,7 +32,7 @@ public class Spells
 
     public static void Command(Fight fight)
     {
-        fight.InactiveCharacter.Parameters.Position = fight.ActiveCharacter.Parameters.Position;
+        fight.ChangeInactiveCharacterPosition(fight.ActiveCharacter.Parameters.Position);
     }
     
     public static void Fireball(Fight fight)

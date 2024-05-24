@@ -420,8 +420,8 @@ namespace ConsoleApp
         
         static void Main()
         {
-            Character player = CharacterFactory.createRandomCharacterBasedOnLevel(50, swords, axes, helmets, chestplates, leggings, boots, spells, effects);
-            Character enemy = CharacterFactory.createRandomCharacterBasedOnLevel(50, swords, axes, helmets, chestplates, leggings, boots, spells, effects);
+            Character player = CharacterFactory.CreateRandomCharacterBasedOnLevel(50, swords, axes, helmets, chestplates, leggings, boots, spells, effects);
+            Character enemy = CharacterFactory.CreateRandomCharacterBasedOnLevel(50, swords, axes, helmets, chestplates, leggings, boots, spells, effects);
             
             Console.WriteLine(player.Inventory.Weapon.Name);
             Console.WriteLine(player.Inventory.ArmourSet.Helmet.Name);
