@@ -187,24 +187,45 @@ public class CharacterFightActions
     public void MoveLeft()
     {
         CharacterParameters characterParameters = ActiveCharacter.Parameters;
+        int prevPos = characterParameters.Position;
         
         characterParameters.ActualStamina -= 20;
         characterParameters.Position -= characterParameters.PossibleDistance;
+        if (ActiveCharacter == Fight.Player)
+        {
+            Fight.OnPlayerMove(prevPos, characterParameters.Position);
+        } 
+        else
+        {
+            Fight.OnEnemyMove(prevPos, characterParameters.Position);
+        }
+        Fight.Log("w lewo");
+        
     }
         
     public void MoveRight()
     {
         CharacterParameters characterParameters = ActiveCharacter.Parameters;
+        int prevPos = characterParameters.Position;
 
         characterParameters.ActualStamina -= 20;
         characterParameters.Position += characterParameters.PossibleDistance;
+        if (ActiveCharacter == Fight.Player)
+        {
+            Fight.OnPlayerMove(prevPos, characterParameters.Position);
+        }
+        else
+        {
+            Fight.OnEnemyMove(prevPos, characterParameters.Position);
+        }
+        Fight.Log("w prawo");
     }
     
     public void Sleep()
     {
         ActiveCharacter.Parameters.ActualHP += ActiveCharacter.ActualStatistics.Stamina;
         ActiveCharacter.Parameters.ActualStamina += Convert.ToInt32(ActiveCharacter.Parameters.MaxStamina * 0.2);
-        Console.WriteLine(ActiveCharacter.Name + " slept!");
+        Fight.Log(ActiveCharacter.Name + " slept!");
     }
     
     public void SatisfyTheCrowd()

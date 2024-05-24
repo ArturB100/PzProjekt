@@ -103,6 +103,7 @@
             arenaBtn.TabIndex = 5;
             arenaBtn.Text = "arena";
             arenaBtn.UseVisualStyleBackColor = true;
+            arenaBtn.Click += arenaBtn_Click;
             // 
             // menuStrip1
             // 

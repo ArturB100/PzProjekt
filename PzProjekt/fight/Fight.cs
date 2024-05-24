@@ -1,7 +1,14 @@
 ﻿using PzProjekt.exceptions;
+using System;
+using System.Diagnostics;
 
 namespace PzProjekt;
 
+
+public delegate int OnPlayerTurn();
+public delegate void OnCharacterMove(int prevPos, int nextPos);
+public delegate void OnCharacterHPChange(Character character);
+public delegate void OnActionDispatched(string msg);
 public abstract class Fight
 {
     private const int InitialPlayerPosition = 450;
@@ -9,6 +16,36 @@ public abstract class Fight
     
     public EnemyBehavior EnemyBehavior { get; set; }
     public CharacterFightActions CharacterFightActions { get; set; }
+    private Character activeCharacter;
+
+
+    // delegates
+    public OnPlayerTurn OnPlayerTurn;
+    protected OnCharacterMove onPlayerMove;
+    protected OnCharacterMove onEnemyMove;
+    public event OnActionDispatched onActionDispatched;
+
+
+    public OnCharacterMove OnPlayerMove  
+    {
+        get { return onPlayerMove; }
+    }
+
+    public OnCharacterMove OnEnemyMove 
+    {
+        get {  return onEnemyMove; }
+    }
+
+    public void SetOnPlayerMove (OnCharacterMove onCharacterMove)
+    {
+        this.onPlayerMove = onCharacterMove;
+    }
+
+    public void SetOnEnemyMove(OnCharacterMove onCharacterMove)
+    {
+        this.onEnemyMove = onCharacterMove;
+    }
+
     private Character _activeCharacter;
     public Character ActiveCharacter
     {
@@ -91,14 +128,19 @@ public abstract class Fight
             Player.Parameters.Money -= MoneyToLose;
         }
     } 
+
+    public void Log (string msg)
+    {
+        onActionDispatched?.Invoke(msg);
+    }
     
     public void NextTurn()
     {
-        ChangeActiveCharacter();
-        ActiveCharacter.Parameters.ActualHP += ActiveCharacter.ActualStatistics.Stamina;
         
-        Console.WriteLine("It's " + ActiveCharacter.Name + "'s turn!");
+        Debug.WriteLine("It's " + ActiveCharacter.Name + "'s turn!");
         
+
+
         if (ActiveCharacter.ActiveEffect != null)
         {
             if(ActiveCharacter.ActiveEffect.TurnsLeft == 0)
@@ -130,14 +172,51 @@ public abstract class Fight
 
         if (ActiveCharacter == Player)
         {
-            waitForAction();
+            Log("ruch gracza \n");
+            int moveChoosenByPlayer = OnPlayerTurn.Invoke();
+            DoAction(moveChoosenByPlayer);
         }
         else
         {
+            Log("ruch przeciwnika");
             EnemyBehavior.MakeMove();
         }
+
+        ChangeActiveCharacter();
+
     }
 
+    private void DoAction (int actionNo)
+    {
+        switch (actionNo)
+        {
+            case 1:
+                CharacterFightActions.Attack(AttackType.STRONG);
+                break;
+            case 2:
+                CharacterFightActions.Attack(AttackType.MEDIUM);
+                break;
+            case 3:
+                CharacterFightActions.Attack(AttackType.WEAK);
+                break;
+            case 4:
+                CharacterFightActions.MoveTowardsEnemy();
+                break;
+            case 5:
+                CharacterFightActions.MoveFromEnemy();
+                break;
+            case 6:
+                CharacterFightActions.Sleep();
+                break;
+            case 7:
+                CharacterFightActions.SatisfyTheCrowd();
+                break;
+            case 8:
+                CharacterFightActions.UseSpell(ChooseSpell());
+                break;
+        }
+    }
+   
     private void waitForAction()
     {
         if (CharacterFightActions.IsAttackPossible())

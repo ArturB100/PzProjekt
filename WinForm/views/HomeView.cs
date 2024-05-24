@@ -63,5 +63,10 @@ namespace WinForm.views
         {
             ProgramCtx.ChangeView(new ChurchView(ProgramCtx));
         }
+
+        private void arenaBtn_Click(object sender, EventArgs e)
+        {
+            ProgramCtx.ChangeView(new ArenaView(ProgramCtx));
+        }
     }
 }

@@ -56,4 +56,20 @@ namespace WinForm
                    $"statistics : | {character.BaseStatistics} \n";
         }
     }
+
+    public static string DisplayInformationInFight(this Character character)
+    {
+        return $"" +
+            $"imie: {character.Name} \n " +
+            $"pozycja {character.Parameters.Position}" +
+            $"zdrowie {character.Parameters.ActualHP}" +
+            $"stamina {character.Parameters.ActualStamina}" +
+            $"" +
+            $"";
+    }
+
+    public static string SpellDescription(this Spell s)
+    {
+        return $"{s.Name}, koszt: {s.ValueInGold}";
+    }
 }

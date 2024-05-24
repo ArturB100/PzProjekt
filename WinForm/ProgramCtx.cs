@@ -14,7 +14,7 @@ namespace WinForm
 
         public GameSetup GameSetup { get; set; }
 
-       
+        public Tournament ActiveTournament { get; set; }
 
         public ProgramCtx()
         {
