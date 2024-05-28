@@ -42,13 +42,11 @@ namespace WinForm
             } 
             catch (Exception ex) 
             {
-                WarningMessage(ex.Message);
+                ErrorMessage(ex.Message);
             }
-            if (PlayableCharacters == null)
-            {
-                PlayableCharacters = new PlayableCharacters();
 
-            }
+            PlayableCharacters ??= new PlayableCharacters();
+
         }
 
         public void SelectCharacter (Character character)
@@ -60,7 +58,7 @@ namespace WinForm
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
-            SaveGame();
+            //SaveGame();
             Application.Exit();
         }
 
@@ -88,6 +86,11 @@ namespace WinForm
         public void ErrorMessage(Error error)
         {           
             MessageBox.Show(TranslateToString(error), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public void ErrorMessage(string error)
+        {
+            MessageBox.Show(error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
 
