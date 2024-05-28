@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArenaView));
             pictureBox1 = new PictureBox();
             trainingFightBtn = new Button();
+            tournamentFightBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -54,10 +55,21 @@
             trainingFightBtn.UseVisualStyleBackColor = true;
             trainingFightBtn.Click += trainingFightBtn_Click_1;
             // 
+            // tournamentFightBtn
+            // 
+            tournamentFightBtn.Location = new Point(1045, 284);
+            tournamentFightBtn.Name = "tournamentFightBtn";
+            tournamentFightBtn.Size = new Size(429, 137);
+            tournamentFightBtn.TabIndex = 4;
+            tournamentFightBtn.Text = "turniej";
+            tournamentFightBtn.UseVisualStyleBackColor = true;
+            tournamentFightBtn.Click += tournamentFightBtn_Click;
+            // 
             // ArenaView
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(tournamentFightBtn);
             Controls.Add(trainingFightBtn);
             Controls.Add(pictureBox1);
             Name = "ArenaView";
@@ -69,5 +81,6 @@
         #endregion
         private PictureBox pictureBox1;
         private Button trainingFightBtn;
+        private Button tournamentFightBtn;
     }
 }

@@ -166,7 +166,7 @@ public abstract class Fight
     public void NextTurn()
     {
         
-        Debug.WriteLine("It's " + ActiveCharacter.Name + "'s turn!");
+        
         
 
 
@@ -301,7 +301,12 @@ public abstract class Fight
         }
     }
 
-    private Spell ChooseSpell()
+    private Spell ChooseSpell ()
+    {
+        return Player.Inventory.SelectedSpell;
+    }
+
+    /*private Spell ChooseSpell()
     {
         CharacterFightActions.ListSpells();
         
@@ -319,4 +324,5 @@ public abstract class Fight
 
         return ActiveCharacter.Inventory.AvailableSpells[action];
     }
+    */
 }

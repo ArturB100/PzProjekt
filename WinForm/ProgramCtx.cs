@@ -1,5 +1,6 @@
 
 using PzProjekt;
+using System.Diagnostics;
 
 namespace WinForm
 {
@@ -24,6 +25,7 @@ namespace WinForm
 
             this.ChangeView(new FirstPage(this));
 
+           
         }
 
         public void SaveGame ()

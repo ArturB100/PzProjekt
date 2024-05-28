@@ -60,6 +60,7 @@
             logTextBox = new RichTextBox();
             menuStrip1 = new MenuStrip();
             poddajSięToolStripMenuItem = new ToolStripMenuItem();
+            spellsList = new ComboBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             endFightResultsPanel.SuspendLayout();
@@ -93,6 +94,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(spellsList);
             panel1.Controls.Add(useSpellBtn);
             panel1.Controls.Add(satisfyTheCrowdBtn);
             panel1.Controls.Add(sleepBtn);
@@ -304,7 +306,7 @@
             // 
             playerPanel.Controls.Add(playerHeadPic);
             playerPanel.Controls.Add(playerBodyPic);
-            playerPanel.Location = new Point(191, 260);
+            playerPanel.Location = new Point(191, 250);
             playerPanel.Name = "playerPanel";
             playerPanel.Size = new Size(126, 245);
             playerPanel.TabIndex = 0;
@@ -362,6 +364,15 @@
             poddajSięToolStripMenuItem.Size = new Size(109, 29);
             poddajSięToolStripMenuItem.Text = "Poddaj się";
             poddajSięToolStripMenuItem.Click += poddajSięToolStripMenuItem_Click;
+            // 
+            // spellsList
+            // 
+            spellsList.FormattingEnabled = true;
+            spellsList.Location = new Point(1028, 52);
+            spellsList.Name = "spellsList";
+            spellsList.Size = new Size(182, 33);
+            spellsList.TabIndex = 10;
+            spellsList.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // FightView
             // 
@@ -425,5 +436,6 @@
         private ProgressBar playerArmorBar;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem poddajSięToolStripMenuItem;
+        private ComboBox spellsList;
     }
 }

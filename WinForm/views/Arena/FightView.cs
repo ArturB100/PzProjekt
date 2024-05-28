@@ -41,8 +41,9 @@ namespace WinForm.views.Arena
             enemyHeadPic.SizeMode = PictureBoxSizeMode.StretchImage;
 
 
-            playerPanel.Location = new Point((int)(Convert.ToDouble(player.Parameters.Position) / 1000 * 1747 + 3), playerPanel.Location.Y);
-            enemyPanel.Location = new Point((int)(Convert.ToDouble(enemy.Parameters.Position) / 1000 * 1747 + 3), enemyPanel.Location.Y);
+
+            playerPanel.Location = new Point(ConvertPositionOfCharacterToLocation(player.Parameters.Position), playerPanel.Location.Y);
+            enemyPanel.Location = new Point(ConvertPositionOfCharacterToLocation(enemy.Parameters.Position), enemyPanel.Location.Y);
 
 
             // progress bars
@@ -69,8 +70,8 @@ namespace WinForm.views.Arena
             RefreshText();
             RefreshControlButtons();
 
-            // test
-            logTextBox.Text = player.Parameters.AttackRange.ToString() ;
+            RefreshSpellsList();
+
         }
 
         private int decision = 0;
@@ -134,15 +135,14 @@ namespace WinForm.views.Arena
             return (int)(Convert.ToDouble(position) / 1000 * 1747 + 3);
         }
 
-
+        private void RefreshSpellsList ()
+        {            
+            spellsList.DataSource = player.Inventory.AvailableSpells;
+        }
 
         private void NextTurn(int playerDecision)
         {
-            CheckIfFightIsOver();
-            if (isFightOver)
-            {
-                return;
-            }
+
 
             Character activeCharacter = fight.ActiveCharacter;
 
@@ -150,25 +150,30 @@ namespace WinForm.views.Arena
             fight.NextTurn();
 
             if (activeCharacter == player)
-            {                
+            {
                 RefreshPlayerText();
                 RefreshProgressBars();
                 RefreshControlButtons();
-
+                RefreshEnemyText();
                 // recursive call 
                 NextTurn(0);
-            } 
+            }
             else if (activeCharacter == enemy)
             {
                 //Thread.Sleep(200);
                 RefreshProgressBars();
                 RefreshControlButtons();
                 RefreshEnemyText();
+                RefreshPlayerText();
             }
 
             RefreshTurnIndicator();
 
-
+            CheckIfFightIsOver();
+            if (isFightOver)
+            {
+                return;
+            }
             decision = 0;
         }
 
@@ -334,7 +339,16 @@ namespace WinForm.views.Arena
 
         private void useSpellBtn_Click(object sender, EventArgs e)
         {
-            NextTurn(8);
+            if (player.Inventory.SelectedSpell == null)
+            {
+                ProgramCtx.WarningMessage("najpierw musisz wybrac czar");               
+            }
+            else
+            {
+                NextTurn(8);
+                RefreshSpellsList();
+            }
+            
         }
 
         private void exitBtn_Click(object sender, EventArgs e)
@@ -354,6 +368,20 @@ namespace WinForm.views.Arena
             isFightOver = true;
             endFightResultsPanel.Visible = true;
             fight.EndFight(Result.LOST);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = spellsList.SelectedIndex;
+            if (player.Inventory.AvailableSpells.Count <= index)
+            {
+                ProgramCtx.WarningMessage("Nie ma takiego czaru");
+            } 
+            else
+            {
+                player.Inventory.SelectedSpell = player.Inventory.AvailableSpells[index];
+            }
+
         }
     }
 }

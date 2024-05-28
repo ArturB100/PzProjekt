@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -64,7 +65,7 @@ namespace WinForm
                 $"zdrowie {character.Parameters.ActualHP} \n" +
                 $"stamina {character.Parameters.ActualStamina} \n" +
                 $"pancerz {character.Inventory.ArmourSet.ActualArmorPoints} / {character.Inventory.ArmourSet.MaxArmorPoints}" +
-                $"";
+                $"czary {character.Inventory.AvailableSpells.Aggregate(string.Empty, (acc, spell) => acc += spell.ToString())}";
         }
 
         public static string SpellDescription(this Spell s)

@@ -23,7 +23,7 @@ namespace WinForm.views
 
         }
 
-       
+
 
         private void trainingFightBtn_Click_1(object sender, EventArgs e)
         {
@@ -42,10 +42,15 @@ namespace WinForm.views
                 );
 
             FightToFirstBlood fight = new FightToFirstBlood(player, enemy);
-            
+
 
             ProgramCtx.ChangeView(new FightView(ProgramCtx, fight));
 
+        }
+
+        private void tournamentFightBtn_Click(object sender, EventArgs e)
+        {
+            //Tournament tournament = new Tournament(player);
         }
     }
 }
