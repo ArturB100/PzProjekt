@@ -39,9 +39,19 @@ public class Tournament
     {
         get => _enemies.Dequeue();
     }
+
+    public Character ShowNextEnemy ()
+    {
+        return _enemies.Peek();
+    }
     
     public FightToDeath CreateNextFightToDeath(Character player)
     {
         return new FightToDeath(player, NextEnemy);
+    }
+
+    public override string ToString()
+    {
+        return $"minimalny level: {MinimalLevel}, liczba walk: {NumberOfEnemies}, boss: {Boss.Name}";
     }
 }

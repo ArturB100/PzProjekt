@@ -189,41 +189,18 @@ namespace WinForm.views.Arena
             crowdSatisfactionTextBox.Text = "satysfakcja tłumu " + fight.CrowdSatisfaction.ToString();
         }
 
-        /*private void NextTurn(int playerDecision)
-        {
-            CheckIfFightIsOver();
-            if (isFightOver)
-            {
-                return;
-            }
-            SetDecision(playerDecision);
-
-
-            fight.NextTurn();
-            RefreshPlayerText();
-            RefreshProgressBars();
-            Thread.Sleep(1000);
-            if (fight.ActiveCharacter == enemy)
-            {
-                fight.NextTurn();
-                RefreshEnemyText();
-                RefreshProgressBars();
-            }
-
-            RefreshControlButtons();
-
-            decision = 0;
-        }*/
-
+       
         private bool isFightOver = false;
+
+        Result fightResult;
         private void CheckIfFightIsOver()
         {
-            Result result = fight.CheckFightResult();
-            if (Result.WON == result)
+            fightResult = fight.CheckFightResult();
+            if (Result.WON == fightResult)
             {
                 ProgramCtx.SuccessMessage("Congratulations, you won!");
             }
-            else if (Result.LOST == result)
+            else if (Result.LOST == fightResult)
             {
                 ProgramCtx.WarningMessage("Ooops, you lost!");
             }
@@ -234,7 +211,7 @@ namespace WinForm.views.Arena
 
             isFightOver = true;
             endFightResultsPanel.Visible = true;
-            fight.EndFight(result);
+            fight.EndFight(fightResult);
         }
 
 
@@ -402,7 +379,16 @@ namespace WinForm.views.Arena
             }
             else
             {
-                // TODO
+                if (fightResult == Result.WON)
+                {
+                    ProgramCtx.ChangeView(new TournamentView(ProgramCtx));
+                }
+                else if (fightResult == Result.LOST)
+                {
+                    ProgramCtx.ChangeView(new FirstPage(ProgramCtx));
+                    ProgramCtx.SelectedCharacter = null;
+                }
+
             }
         }
 

@@ -13,6 +13,9 @@
     <Compile Update="views\Arena\FightView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="views\Arena\TournamentView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="views\CreateCharacterView.cs">
       <SubType>UserControl</SubType>
     </Compile>

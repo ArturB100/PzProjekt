@@ -32,6 +32,7 @@
             pictureBox1 = new PictureBox();
             trainingFightBtn = new Button();
             tournamentFightBtn = new Button();
+            tournamentsList = new ListBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             // 
             // trainingFightBtn
             // 
-            trainingFightBtn.Location = new Point(362, 284);
+            trainingFightBtn.Location = new Point(1032, 256);
             trainingFightBtn.Name = "trainingFightBtn";
             trainingFightBtn.Size = new Size(399, 134);
             trainingFightBtn.TabIndex = 3;
@@ -57,7 +58,7 @@
             // 
             // tournamentFightBtn
             // 
-            tournamentFightBtn.Location = new Point(1045, 284);
+            tournamentFightBtn.Location = new Point(1032, 683);
             tournamentFightBtn.Name = "tournamentFightBtn";
             tournamentFightBtn.Size = new Size(429, 137);
             tournamentFightBtn.TabIndex = 4;
@@ -65,10 +66,21 @@
             tournamentFightBtn.UseVisualStyleBackColor = true;
             tournamentFightBtn.Click += tournamentFightBtn_Click;
             // 
+            // tournamentsList
+            // 
+            tournamentsList.FormattingEnabled = true;
+            tournamentsList.ItemHeight = 25;
+            tournamentsList.Location = new Point(97, 607);
+            tournamentsList.Name = "tournamentsList";
+            tournamentsList.Size = new Size(859, 304);
+            tournamentsList.TabIndex = 5;
+            tournamentsList.SelectedIndexChanged += tournamentsList_SelectedIndexChanged;
+            // 
             // ArenaView
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(tournamentsList);
             Controls.Add(tournamentFightBtn);
             Controls.Add(trainingFightBtn);
             Controls.Add(pictureBox1);
@@ -82,5 +94,6 @@
         private PictureBox pictureBox1;
         private Button trainingFightBtn;
         private Button tournamentFightBtn;
+        private ListBox tournamentsList;
     }
 }
