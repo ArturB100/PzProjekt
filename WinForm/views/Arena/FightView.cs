@@ -71,6 +71,9 @@ namespace WinForm.views.Arena
             RefreshControlButtons();
 
             RefreshSpellsList();
+            RefreshCrowdSatisfaction();
+
+
 
         }
 
@@ -135,9 +138,12 @@ namespace WinForm.views.Arena
             return (int)(Convert.ToDouble(position) / 1000 * 1747 + 3);
         }
 
-        private void RefreshSpellsList ()
-        {            
+        private void RefreshSpellsList()
+        {
+            spellsList.DataSource = null;
             spellsList.DataSource = player.Inventory.AvailableSpells;
+
+
         }
 
         private void NextTurn(int playerDecision)
@@ -168,6 +174,7 @@ namespace WinForm.views.Arena
             }
 
             RefreshTurnIndicator();
+            RefreshCrowdSatisfaction();
 
             CheckIfFightIsOver();
             if (isFightOver)
@@ -175,6 +182,11 @@ namespace WinForm.views.Arena
                 return;
             }
             decision = 0;
+        }
+
+        private void RefreshCrowdSatisfaction()
+        {
+            crowdSatisfactionTextBox.Text = "satysfakcja tłumu " + fight.CrowdSatisfaction.ToString();
         }
 
         /*private void NextTurn(int playerDecision)
@@ -266,14 +278,15 @@ namespace WinForm.views.Arena
 
         private void RefreshControlButtons()
         {
-            strongAttackBtn.Enabled = fight.CharacterFightActions.IsAttackPossible(AttackType.STRONG);
-            mediumAttackbtn.Enabled = fight.CharacterFightActions.IsAttackPossible(AttackType.MEDIUM); ;
-            weakAttackBtn.Enabled = fight.CharacterFightActions.IsAttackPossible(AttackType.WEAK); ;
+            strongAttackBtn.BackColor = fight.CharacterFightActions.IsAttackPossible(AttackType.STRONG) ? Color.Transparent : Color.Red;
+            mediumAttackbtn.BackColor = fight.CharacterFightActions.IsAttackPossible(AttackType.MEDIUM) ? Color.Transparent : Color.Red;
+            weakAttackBtn.BackColor = fight.CharacterFightActions.IsAttackPossible(AttackType.WEAK) ? Color.Transparent : Color.Red;
+
 
             int stamina = player.Parameters.ActualStamina;
             bool movePossible = stamina > 20;
-            moveForwardBtn.Enabled = movePossible;
-            moveBackBtn.Enabled = movePossible;
+            moveForwardBtn.BackColor = movePossible ? Color.Transparent : Color.Red;
+            moveBackBtn.BackColor = movePossible ? Color.Transparent : Color.Red;
 
         }
 
@@ -304,12 +317,27 @@ namespace WinForm.views.Arena
 
         private void moveForwardBtn_Click(object sender, EventArgs e)
         {
-            NextTurn(4);
+            if (player.Parameters.ActualStamina > 20)
+            {
+                NextTurn(4);
+            }
+            else
+            {
+                DisplayOperationImpossible();
+            }
+
         }
 
         private void moveBackBtn_Click(object sender, EventArgs e)
         {
-            NextTurn(5);
+            if (player.Parameters.ActualStamina > 20)
+            {
+                NextTurn(5);
+            }
+            else
+            {
+                DisplayOperationImpossible();
+            }
         }
 
         private void sleepBtn_Click(object sender, EventArgs e)
@@ -319,17 +347,31 @@ namespace WinForm.views.Arena
 
         private void strongAttackBtn_Click(object sender, EventArgs e)
         {
-            NextTurn(1);
+            if (fight.CharacterFightActions.IsAttackPossible(AttackType.STRONG))
+                NextTurn(1);
+            else
+                DisplayOperationImpossible();
+        }
+
+        private void DisplayOperationImpossible()
+        {
+            ProgramCtx.WarningMessage("Operacja nie mozliwa");
         }
 
         private void mediumAttackbtn_Click(object sender, EventArgs e)
         {
-            NextTurn(2);
+            if (fight.CharacterFightActions.IsAttackPossible(AttackType.MEDIUM))
+                NextTurn(2);
+            else
+                DisplayOperationImpossible();
         }
 
         private void weakAttackBtn_Click(object sender, EventArgs e)
         {
-            NextTurn(3);
+            if (fight.CharacterFightActions.IsAttackPossible(AttackType.WEAK))
+                NextTurn(3);
+            else
+                DisplayOperationImpossible();
         }
 
         private void satisfyTheCrowdBtn_Click(object sender, EventArgs e)
@@ -341,14 +383,15 @@ namespace WinForm.views.Arena
         {
             if (player.Inventory.SelectedSpell == null)
             {
-                ProgramCtx.WarningMessage("najpierw musisz wybrac czar");               
+                ProgramCtx.WarningMessage("najpierw musisz wybrac czar");
             }
             else
             {
                 NextTurn(8);
                 RefreshSpellsList();
+                player.Inventory.SelectedSpell = null;
             }
-            
+
         }
 
         private void exitBtn_Click(object sender, EventArgs e)
@@ -376,11 +419,55 @@ namespace WinForm.views.Arena
             if (player.Inventory.AvailableSpells.Count <= index)
             {
                 ProgramCtx.WarningMessage("Nie ma takiego czaru");
-            } 
+                RefreshSpellsList();
+            }
             else
             {
                 player.Inventory.SelectedSpell = player.Inventory.AvailableSpells[index];
+
             }
+
+        }
+
+        private void weakAttackBtn_Hover(object sender, EventArgs e)
+        {
+            helperTextBox.Text = $"szansa trafienia: {fight.CharacterFightActions.GetAttackChanceToHit(AttackType.WEAK)} \n" +
+                $"czy atak możliwy: {fight.CharacterFightActions.IsAttackPossible(AttackType.WEAK)} \n";
+            
+        }
+
+        private void mediumAttackBtn_Hover(object sender, EventArgs e)
+        {
+            helperTextBox.Text = $"szansa trafienia: {fight.CharacterFightActions.GetAttackChanceToHit(AttackType.MEDIUM)}";
+        }
+
+        private void strongAttackBtn_Hover(object sender, EventArgs e)
+        {
+            helperTextBox.Text = $"szansa trafienia: {fight.CharacterFightActions.GetAttackChanceToHit(AttackType.STRONG)}";
+        }
+
+        private void moveForwardBtn_Hover(object sender, EventArgs e)
+        {
+            helperTextBox.Text = "potrzebna stamina: 20";
+        }
+
+        private void sleepBtn_Hoveer(object sender, EventArgs e)
+        {
+
+        }
+
+        private void moveBackBtn_Hover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sattisfyTheCrowdBtn_Hover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void useSpellBtn_Hover(object sender, EventArgs e)
+        {
 
         }
     }

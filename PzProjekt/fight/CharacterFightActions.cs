@@ -74,6 +74,12 @@ public class CharacterFightActions
         }
     }
 
+    public double GetAttackChanceToHit (AttackType attackType)
+    {
+        AttackProperties attackProperties = new AttackProperties(attackType);
+        return ActiveCharacter.ActualStatistics.Attack / (double)InactiveCharacter.ActualStatistics.Defence * attackProperties.ChanceMultiplier;
+    }
+
     public void Attack(AttackType attackType)
     {
         Character attacker = ActiveCharacter;
@@ -244,7 +250,7 @@ public class CharacterFightActions
     
     public void SatisfyTheCrowd()
     {
-        Fight.CrowdSatisfaction += Convert.ToInt32(ActiveCharacter.ActualStatistics.Charisma * 0.01);
+        Fight.CrowdSatisfaction += ActiveCharacter.ActualStatistics.Charisma * 0.01;
     }
 
     public void ListSpells()

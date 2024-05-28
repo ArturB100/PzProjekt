@@ -93,7 +93,7 @@ public abstract class Fight
     
     public Character Player { get; set; }
     public Character Enemy { get; set; }
-    public int CrowdSatisfaction { get; set; }
+    public double CrowdSatisfaction { get; set; }
     
     public int ExperiencePointsToGet
     {
@@ -102,7 +102,7 @@ public abstract class Fight
     
     public int MoneyToGet
     {
-        get => 100 * (Player.Parameters.Level * Math.Abs(Player.Parameters.Level / Enemy.Parameters.Level)) * (1 + CrowdSatisfaction);
+        get => Convert.ToInt32(100 * (Player.Parameters.Level * Math.Abs(Player.Parameters.Level / Enemy.Parameters.Level)) * (1 + CrowdSatisfaction));
     }
     
     public int MoneyToLose

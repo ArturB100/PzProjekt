@@ -116,6 +116,7 @@ namespace WinForm.views
         {
             ProgramCtx.PlayableCharacters.Remove(index);
             RefreshPanels();
+            ProgramCtx.SaveGame();
         }
 
         private void deleteBtn1_Click(object sender, EventArgs e)
