@@ -30,11 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WeaponsmithView));
             label1 = new Label();
-            resultBox = new ListBox();
             swordPic = new PictureBox();
             axePic = new PictureBox();
-            buyBtn = new components.WoodButton();
-            characterStatistics = new RichTextBox();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)swordPic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)axePic).BeginInit();
@@ -49,16 +46,6 @@
             label1.Size = new Size(63, 25);
             label1.TabIndex = 0;
             label1.Text = "Kuźnia";
-            // 
-            // resultBox
-            // 
-            resultBox.FormattingEnabled = true;
-            resultBox.ItemHeight = 25;
-            resultBox.Location = new Point(443, 434);
-            resultBox.Name = "resultBox";
-            resultBox.Size = new Size(1442, 504);
-            resultBox.TabIndex = 2;
-            resultBox.SelectedIndexChanged += resultBox_SelectedIndexChanged;
             // 
             // swordPic
             // 
@@ -82,29 +69,6 @@
             axePic.TabStop = false;
             axePic.Click += axePic_Click;
             // 
-            // buyBtn
-            // 
-            buyBtn.BackColor = Color.SaddleBrown;
-            buyBtn.FlatAppearance.BorderSize = 0;
-            buyBtn.FlatStyle = FlatStyle.Flat;
-            buyBtn.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            buyBtn.ForeColor = Color.White;
-            buyBtn.Location = new Point(1427, 972);
-            buyBtn.Name = "buyBtn";
-            buyBtn.Size = new Size(112, 34);
-            buyBtn.TabIndex = 5;
-            buyBtn.Text = "Kup";
-            buyBtn.UseVisualStyleBackColor = false;
-            buyBtn.Click += buyBtn_Click_1;
-            // 
-            // characterStatistics
-            // 
-            characterStatistics.Location = new Point(35, 434);
-            characterStatistics.Name = "characterStatistics";
-            characterStatistics.Size = new Size(326, 504);
-            characterStatistics.TabIndex = 7;
-            characterStatistics.Text = "";
-            // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
@@ -119,11 +83,8 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(characterStatistics);
-            Controls.Add(buyBtn);
             Controls.Add(axePic);
             Controls.Add(swordPic);
-            Controls.Add(resultBox);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Name = "WeaponsmithView";
@@ -138,11 +99,8 @@
         #endregion
 
         private Label label1;
-        private ListBox resultBox;
         private PictureBox swordPic;
         private PictureBox axePic;
-        private components.WoodButton buyBtn;
-        private RichTextBox characterStatistics;
         private PictureBox pictureBox1;
     }
 }

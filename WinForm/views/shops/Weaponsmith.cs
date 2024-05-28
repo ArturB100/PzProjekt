@@ -9,30 +9,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinForm.views.shops;
 
 namespace WinForm.views
 {
-    public partial class WeaponsmithView : UserControlBase
+    public partial class WeaponsmithView : BasicShopView
     {
 
 
 
         private List<Weapon> weapons;
 
-        private Weapon selectedWeapon;
+        
+
+        private Weapon selectedWeapon { get => (Weapon)selectedInventoryItem; }
 
 
-
-        public WeaponsmithView(ProgramCtx form) : base(form, true)
-
+        public WeaponsmithView(ProgramCtx form) : base(form)
         {
             InitializeComponent();
             resultBox.Visible = false;
             weapons = ProgramCtx.GameSetup.WeaponShop.GetItems();
 
-            characterStatistics.Visible = false;
-            characterStatistics.Text = ProgramCtx.SelectedCharacter.DisplayInformationsInShop();
+            OnBuyClick += WeaponsmithView_OnBuyClick;
+
+
+
+
             DeleteAllBordersFromPictures();
+        }
+
+        private void WeaponsmithView_OnBuyClick()
+        {
+            ProgramCtx.GameSetup.WeaponShop.BuyItem(ProgramCtx.SelectedCharacter, selectedWeapon);
+            ProgramCtx.SuccessMessage("przedmiot zostal zakupiony");
         }
 
         private void swordPic_Click(object sender, EventArgs e)
@@ -54,59 +64,34 @@ namespace WinForm.views
             DeleteAllBordersFromPictures();
             weapons = ProgramCtx.GameSetup.WeaponShop.GetItems().FindAll(w => w.WeaponType == weaponType);
 
-            characterStatistics.Visible = true;
+            FeedInventoryItemsListWithData();
 
             resultBox.Visible = true;
             resultBox.DataSource = weapons.GetStringListFromInventoryList();
         }
 
-        private void resultBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FeedInventoryItemsListWithData ()
         {
-            int selectedIndex = resultBox.SelectedIndex;
-            selectedWeapon = weapons[selectedIndex];
+            foreach (var item in weapons)
+            {
+                inventoryItems.Add(item);
+            }
         }
 
-        public bool CheckIfSelectedItemCanBeBought()
+      
+
+        public override bool CheckIfSelectedItemCanBeBought()
         {
             return
             (
-                selectedWeapon != null &&
+                base.CheckIfSelectedItemCanBeBought() &&
                 ProgramCtx.GameSetup.WeaponShop.CanBeBoughtByPlayer(ProgramCtx.SelectedCharacter, selectedWeapon)
             );
         }
 
 
         
-        private void buyBtn_Click_1(object sender, EventArgs e)
-        {
-
-            bool canBeBuy = false;
-
-            try
-            {
-                canBeBuy = CheckIfSelectedItemCanBeBought();
-            } 
-            catch (NoEnoughMoneyException ex)
-            {
-                ProgramCtx.ErrorMessage(Error.NOT_ENOUGHT_MONEY);
-            } 
-            catch (TooWeakLevelException ex)
-            {
-                ProgramCtx.ErrorMessage(Error.TOO_WEAK_LEVEL);
-            }
-            catch (TooWeakStatisticsException)
-            {
-                ProgramCtx.ErrorMessage(Error.TOO_WEAK_STATISTICS);
-            }
-
-
-            if (canBeBuy)
-            {
-                ProgramCtx.GameSetup.WeaponShop.BuyItem(ProgramCtx.SelectedCharacter, selectedWeapon);
-                ProgramCtx.SuccessMessage("przedmiot zostal zakupiony");
-            }
-            
-        }
+        
 
 
         private void DeleteAllBordersFromPictures()
