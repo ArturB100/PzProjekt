@@ -41,8 +41,6 @@ namespace WinForm
                     if (character.Inventory.Weapon?.Effect != null)
                     {
                         character.Inventory.Weapon.Effect.ApplyEffect = null;
-                        character.Inventory.Weapon.Effect.OnEffectEnd = null;
-                        character.Inventory.Weapon.Effect.OnEffectBegin = null;
                     }
 
                 }
@@ -84,18 +82,10 @@ namespace WinForm
                             Debug.WriteLine("Reading Weapon Effect ...");
                             Effect effect = character.Inventory.Weapon.Effect;
                             Weapon weapon = character.Inventory.Weapon;
-                            if (effect.OnEffectBeginDelegateStr != null)
-                            {
-                                AssignWeaponEffectBeginDelegate(weapon);
-                            }
-                            if (effect.OnEffectEndDelegateStr != null)
-                            {
-                                AssignWeaponEffectEndDelegate(weapon);
-                            }
-                            if (effect.ApplyEffectDelegateStr != null)
-                            {
-                                AssignWeaponEffectApplyDelegate(weapon);
-                            }
+                            // if (effect.ApplyEffectDelegateStr != null)
+                            // {
+                            //     AssignWeaponEffectApplyDelegate(weapon);
+                            // }
                         }
                     }
                 }
@@ -119,41 +109,17 @@ namespace WinForm
             }
         }
 
-        private static void AssignWeaponEffectBeginDelegate(Weapon weapon)
-        {
-            if (weapon.Effect == null || weapon.Effect.OnEffectBegin == null) return;
-            Type type = typeof(Effects);
-            MethodInfo methodInfo = type.GetMethod(weapon.Effect.OnEffectBeginDelegateStr, BindingFlags.Static | BindingFlags.Public);
-            if (methodInfo != null)
-            {
-                EffectAction effectAction = (EffectAction)Delegate.CreateDelegate(typeof(EffectAction), methodInfo);
-                weapon.Effect.OnEffectBegin = effectAction;
-            }
-        }
-
-        private static void AssignWeaponEffectEndDelegate(Weapon weapon)
-        {
-            if (weapon.Effect == null || weapon.Effect.OnEffectEnd == null) return;
-            Type type = typeof(Effects);
-            MethodInfo methodInfo = type.GetMethod(weapon.Effect.OnEffectEndDelegateStr, BindingFlags.Static | BindingFlags.Public);
-            if (methodInfo != null)
-            {
-                EffectAction effectAction = (EffectAction)Delegate.CreateDelegate(typeof(EffectAction), methodInfo);
-                weapon.Effect.OnEffectEnd = effectAction;
-            }
-        }
-
-        private static void AssignWeaponEffectApplyDelegate(Weapon weapon)
-        {
-            if (weapon.Effect == null || weapon.Effect.ApplyEffect == null) return;
-            Type type = typeof(Effects);
-            MethodInfo methodInfo = type.GetMethod(weapon.Effect.ApplyEffectDelegateStr, BindingFlags.Static | BindingFlags.Public);
-            if (methodInfo != null)
-            {
-                EffectAction effectAction = (EffectAction)Delegate.CreateDelegate(typeof(EffectAction), methodInfo);
-                weapon.Effect.ApplyEffect = effectAction;
-            }
-        }
+        // private static void AssignWeaponEffectApplyDelegate(Weapon weapon)
+        // {
+        //     if (weapon.Effect == null || weapon.Effect.ApplyEffect == null) return;
+        //     Type type = typeof(Effects);
+        //     MethodInfo methodInfo = type.GetMethod(weapon.Effect.ApplyEffectDelegateStr, BindingFlags.Static | BindingFlags.Public);
+        //     if (methodInfo != null)
+        //     {
+        //         EffectAction effectAction = (EffectAction)Delegate.CreateDelegate(typeof(EffectAction), methodInfo);
+        //         weapon.Effect.ApplyEffect = effectAction;
+        //     }
+        // }
 
 
     }

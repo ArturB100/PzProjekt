@@ -290,4 +290,30 @@ public class CharacterFightActions
             }
         }
     }
+
+    public string GetAttackChanceToHit(AttackType attackType)
+    {
+        double multiplier = 1.0;
+
+        switch (attackType)
+        {
+            case AttackType.WEAK:
+                multiplier = WeakAttackChance;
+                break;
+            case AttackType.STRONG:
+                multiplier = StrongAttackChance;
+                break;
+        }
+        
+        Character attacker = ActiveCharacter;
+        Character defender = InactiveCharacter;
+        double chance = attacker.BaseStatistics.Attack / (double)defender.BaseStatistics.Defence * multiplier;
+
+        if (chance > 1)
+        {
+            chance = 1;
+        }
+        
+        return chance.ToString();
+    }
 }

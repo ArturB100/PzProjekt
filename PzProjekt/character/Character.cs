@@ -80,7 +80,9 @@ namespace PzProjekt
 
         public object Clone()
         {
-            return new Character(Name, BaseStatistics, Parameters.Level, Inventory.Weapon.Clone() as Weapon,
+            Weapon? weapon = Inventory.Weapon == null? null : Inventory.Weapon.Clone() as Weapon;
+            
+            return new Character(Name, BaseStatistics, Parameters.Level, weapon,
                 Inventory.ArmourSet.Clone() as ArmourSet, Inventory.CharacterSpells);
         }
     }
