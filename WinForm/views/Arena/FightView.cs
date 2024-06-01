@@ -41,8 +41,9 @@ namespace WinForm.views.Arena
             enemyHeadPic.SizeMode = PictureBoxSizeMode.StretchImage;
 
 
-            playerPanel.Location = new Point((int)(Convert.ToDouble(player.Parameters.Position) / 1000 * 1747 + 3), playerPanel.Location.Y);
-            enemyPanel.Location = new Point((int)(Convert.ToDouble(enemy.Parameters.Position) / 1000 * 1747 + 3), enemyPanel.Location.Y);
+
+            playerPanel.Location = new Point(ConvertPositionOfCharacterToLocation(player.Parameters.Position), playerPanel.Location.Y);
+            enemyPanel.Location = new Point(ConvertPositionOfCharacterToLocation(enemy.Parameters.Position), enemyPanel.Location.Y);
 
 
             // progress bars
@@ -69,8 +70,11 @@ namespace WinForm.views.Arena
             RefreshText();
             RefreshControlButtons();
 
-            // test
-            logTextBox.Text = player.Parameters.AttackRange.ToString() ;
+            RefreshSpellsList();
+            RefreshCrowdSatisfaction();
+
+
+
         }
 
         private int decision = 0;
@@ -134,15 +138,17 @@ namespace WinForm.views.Arena
             return (int)(Convert.ToDouble(position) / 1000 * 1747 + 3);
         }
 
+        private void RefreshSpellsList()
+        {
+            spellsList.DataSource = null;
+            spellsList.DataSource = player.Inventory.AvailableSpells;
 
+
+        }
 
         private void NextTurn(int playerDecision)
         {
-            CheckIfFightIsOver();
-            if (isFightOver)
-            {
-                return;
-            }
+
 
             Character activeCharacter = fight.ActiveCharacter;
 
@@ -150,63 +156,51 @@ namespace WinForm.views.Arena
             fight.NextTurn();
 
             if (activeCharacter == player)
-            {                
+            {
                 RefreshPlayerText();
                 RefreshProgressBars();
                 RefreshControlButtons();
-
+                RefreshEnemyText();
                 // recursive call 
                 NextTurn(0);
-            } 
+            }
             else if (activeCharacter == enemy)
             {
                 //Thread.Sleep(200);
                 RefreshProgressBars();
                 RefreshControlButtons();
                 RefreshEnemyText();
+                RefreshPlayerText();
             }
 
             RefreshTurnIndicator();
+            RefreshCrowdSatisfaction();
 
-
-            decision = 0;
-        }
-
-        /*private void NextTurn(int playerDecision)
-        {
             CheckIfFightIsOver();
             if (isFightOver)
             {
                 return;
             }
-            SetDecision(playerDecision);
-
-
-            fight.NextTurn();
-            RefreshPlayerText();
-            RefreshProgressBars();
-            Thread.Sleep(1000);
-            if (fight.ActiveCharacter == enemy)
-            {
-                fight.NextTurn();
-                RefreshEnemyText();
-                RefreshProgressBars();
-            }
-
-            RefreshControlButtons();
-
             decision = 0;
-        }*/
+        }
 
+        private void RefreshCrowdSatisfaction()
+        {
+            crowdSatisfactionTextBox.Text = "satysfakcja tłumu " + fight.CrowdSatisfaction.ToString();
+        }
+
+       
         private bool isFightOver = false;
+
+        Result fightResult;
         private void CheckIfFightIsOver()
         {
-            Result result = fight.CheckFightResult();
-            if (Result.WON == result)
+            fightResult = fight.CheckFightResult();
+            if (Result.WON == fightResult)
             {
                 ProgramCtx.SuccessMessage("Congratulations, you won!");
             }
-            else if (Result.LOST == result)
+            else if (Result.LOST == fightResult)
             {
                 ProgramCtx.WarningMessage("Ooops, you lost!");
             }
@@ -217,7 +211,7 @@ namespace WinForm.views.Arena
 
             isFightOver = true;
             endFightResultsPanel.Visible = true;
-            fight.EndFight(result);
+            fight.EndFight(fightResult);
         }
 
 
@@ -261,14 +255,15 @@ namespace WinForm.views.Arena
 
         private void RefreshControlButtons()
         {
-            strongAttackBtn.Enabled = fight.CharacterFightActions.IsAttackPossible(AttackType.STRONG);
-            mediumAttackbtn.Enabled = fight.CharacterFightActions.IsAttackPossible(AttackType.MEDIUM); ;
-            weakAttackBtn.Enabled = fight.CharacterFightActions.IsAttackPossible(AttackType.WEAK); ;
+            strongAttackBtn.BackColor = fight.CharacterFightActions.IsAttackPossible(AttackType.STRONG) ? Color.Transparent : Color.Red;
+            mediumAttackbtn.BackColor = fight.CharacterFightActions.IsAttackPossible(AttackType.MEDIUM) ? Color.Transparent : Color.Red;
+            weakAttackBtn.BackColor = fight.CharacterFightActions.IsAttackPossible(AttackType.WEAK) ? Color.Transparent : Color.Red;
+
 
             int stamina = player.Parameters.ActualStamina;
             bool movePossible = stamina > 20;
-            moveForwardBtn.Enabled = movePossible;
-            moveBackBtn.Enabled = movePossible;
+            moveForwardBtn.BackColor = movePossible ? Color.Transparent : Color.Red;
+            moveBackBtn.BackColor = movePossible ? Color.Transparent : Color.Red;
 
         }
 
@@ -299,12 +294,27 @@ namespace WinForm.views.Arena
 
         private void moveForwardBtn_Click(object sender, EventArgs e)
         {
-            NextTurn(4);
+            if (player.Parameters.ActualStamina > 20)
+            {
+                NextTurn(4);
+            }
+            else
+            {
+                DisplayOperationImpossible();
+            }
+
         }
 
         private void moveBackBtn_Click(object sender, EventArgs e)
         {
-            NextTurn(5);
+            if (player.Parameters.ActualStamina > 20)
+            {
+                NextTurn(5);
+            }
+            else
+            {
+                DisplayOperationImpossible();
+            }
         }
 
         private void sleepBtn_Click(object sender, EventArgs e)
@@ -314,17 +324,31 @@ namespace WinForm.views.Arena
 
         private void strongAttackBtn_Click(object sender, EventArgs e)
         {
-            NextTurn(1);
+            if (fight.CharacterFightActions.IsAttackPossible(AttackType.STRONG))
+                NextTurn(1);
+            else
+                DisplayOperationImpossible();
+        }
+
+        private void DisplayOperationImpossible()
+        {
+            ProgramCtx.WarningMessage("Operacja nie mozliwa");
         }
 
         private void mediumAttackbtn_Click(object sender, EventArgs e)
         {
-            NextTurn(2);
+            if (fight.CharacterFightActions.IsAttackPossible(AttackType.MEDIUM))
+                NextTurn(2);
+            else
+                DisplayOperationImpossible();
         }
 
         private void weakAttackBtn_Click(object sender, EventArgs e)
         {
-            NextTurn(3);
+            if (fight.CharacterFightActions.IsAttackPossible(AttackType.WEAK))
+                NextTurn(3);
+            else
+                DisplayOperationImpossible();
         }
 
         private void satisfyTheCrowdBtn_Click(object sender, EventArgs e)
@@ -334,7 +358,17 @@ namespace WinForm.views.Arena
 
         private void useSpellBtn_Click(object sender, EventArgs e)
         {
-            NextTurn(8);
+            if (player.Inventory.SelectedSpell == null)
+            {
+                ProgramCtx.WarningMessage("najpierw musisz wybrac czar");
+            }
+            else
+            {
+                NextTurn(8);
+                RefreshSpellsList();
+                player.Inventory.SelectedSpell = null;
+            }
+
         }
 
         private void exitBtn_Click(object sender, EventArgs e)
@@ -345,7 +379,16 @@ namespace WinForm.views.Arena
             }
             else
             {
-                // TODO
+                if (fightResult == Result.WON)
+                {
+                    ProgramCtx.ChangeView(new TournamentView(ProgramCtx));
+                }
+                else if (fightResult == Result.LOST)
+                {
+                    ProgramCtx.ChangeView(new FirstPage(ProgramCtx));
+                    ProgramCtx.SelectedCharacter = null;
+                }
+
             }
         }
 
@@ -354,6 +397,64 @@ namespace WinForm.views.Arena
             isFightOver = true;
             endFightResultsPanel.Visible = true;
             fight.EndFight(Result.LOST);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = spellsList.SelectedIndex;
+            if (player.Inventory.AvailableSpells.Count <= index)
+            {
+                ProgramCtx.WarningMessage("Nie ma takiego czaru");
+                RefreshSpellsList();
+            }
+            else
+            {
+                player.Inventory.SelectedSpell = player.Inventory.AvailableSpells[index];
+
+            }
+
+        }
+
+        private void weakAttackBtn_Hover(object sender, EventArgs e)
+        {
+            helperTextBox.Text = $"szansa trafienia: {fight.CharacterFightActions.GetAttackChanceToHit(AttackType.WEAK)} \n" +
+                $"czy atak możliwy: {fight.CharacterFightActions.IsAttackPossible(AttackType.WEAK)} \n";
+            
+        }
+
+        private void mediumAttackBtn_Hover(object sender, EventArgs e)
+        {
+            helperTextBox.Text = $"szansa trafienia: {fight.CharacterFightActions.GetAttackChanceToHit(AttackType.MEDIUM)}";
+        }
+
+        private void strongAttackBtn_Hover(object sender, EventArgs e)
+        {
+            helperTextBox.Text = $"szansa trafienia: {fight.CharacterFightActions.GetAttackChanceToHit(AttackType.STRONG)}";
+        }
+
+        private void moveForwardBtn_Hover(object sender, EventArgs e)
+        {
+            helperTextBox.Text = "potrzebna stamina: 20";
+        }
+
+        private void sleepBtn_Hoveer(object sender, EventArgs e)
+        {
+
+        }
+
+        private void moveBackBtn_Hover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sattisfyTheCrowdBtn_Hover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void useSpellBtn_Hover(object sender, EventArgs e)
+        {
+
         }
     }
 }

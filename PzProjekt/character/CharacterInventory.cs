@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.Json.Serialization;
 using PzProjekt.exceptions;
 
 namespace PzProjekt;
@@ -30,6 +31,9 @@ public class CharacterInventory
     public ArmourSet ArmourSet { get; set; }
     public List<Spell> CharacterSpells { get; set; }
     public List<Spell> AvailableSpells { get; set; }
+
+    [JsonIgnore]
+    public Spell SelectedSpell { get; set; }
 
     public void ChangeSpell(int index, Spell spell)
     {

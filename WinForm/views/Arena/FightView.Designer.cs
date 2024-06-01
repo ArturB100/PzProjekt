@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FightView));
             playerInfoTextBox = new RichTextBox();
             moveForwardBtn = new Button();
             panel1 = new Panel();
+            helperTextBox = new RichTextBox();
+            spellsList = new ComboBox();
             useSpellBtn = new Button();
             satisfyTheCrowdBtn = new Button();
             sleepBtn = new Button();
@@ -60,6 +63,8 @@
             logTextBox = new RichTextBox();
             menuStrip1 = new MenuStrip();
             poddajSięToolStripMenuItem = new ToolStripMenuItem();
+            weakAttackBtnToolTip = new ToolTip(components);
+            crowdSatisfactionTextBox = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             endFightResultsPanel.SuspendLayout();
@@ -90,9 +95,12 @@
             moveForwardBtn.Text = "na przód";
             moveForwardBtn.UseVisualStyleBackColor = true;
             moveForwardBtn.Click += moveForwardBtn_Click;
+            moveForwardBtn.MouseHover += moveForwardBtn_Hover;
             // 
             // panel1
             // 
+            panel1.Controls.Add(helperTextBox);
+            panel1.Controls.Add(spellsList);
             panel1.Controls.Add(useSpellBtn);
             panel1.Controls.Add(satisfyTheCrowdBtn);
             panel1.Controls.Add(sleepBtn);
@@ -101,10 +109,27 @@
             panel1.Controls.Add(strongAttackBtn);
             panel1.Controls.Add(moveBackBtn);
             panel1.Controls.Add(moveForwardBtn);
-            panel1.Location = new Point(14, 864);
+            panel1.Location = new Point(14, 879);
             panel1.Name = "panel1";
             panel1.Size = new Size(1882, 140);
             panel1.TabIndex = 2;
+            // 
+            // helperTextBox
+            // 
+            helperTextBox.Location = new Point(1294, 0);
+            helperTextBox.Name = "helperTextBox";
+            helperTextBox.Size = new Size(476, 140);
+            helperTextBox.TabIndex = 12;
+            helperTextBox.Text = "";
+            // 
+            // spellsList
+            // 
+            spellsList.FormattingEnabled = true;
+            spellsList.Location = new Point(1028, 52);
+            spellsList.Name = "spellsList";
+            spellsList.Size = new Size(182, 33);
+            spellsList.TabIndex = 10;
+            spellsList.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // useSpellBtn
             // 
@@ -115,6 +140,7 @@
             useSpellBtn.Text = "użyj czaru";
             useSpellBtn.UseVisualStyleBackColor = true;
             useSpellBtn.Click += useSpellBtn_Click;
+            useSpellBtn.MouseHover += useSpellBtn_Hover;
             // 
             // satisfyTheCrowdBtn
             // 
@@ -125,6 +151,7 @@
             satisfyTheCrowdBtn.Text = "usatysfakcjonuj tłum";
             satisfyTheCrowdBtn.UseVisualStyleBackColor = true;
             satisfyTheCrowdBtn.Click += satisfyTheCrowdBtn_Click;
+            satisfyTheCrowdBtn.MouseHover += sattisfyTheCrowdBtn_Hover;
             // 
             // sleepBtn
             // 
@@ -135,6 +162,7 @@
             sleepBtn.Text = "śpij";
             sleepBtn.UseVisualStyleBackColor = true;
             sleepBtn.Click += sleepBtn_Click;
+            sleepBtn.MouseHover += sleepBtn_Hoveer;
             // 
             // weakAttackBtn
             // 
@@ -145,6 +173,7 @@
             weakAttackBtn.Text = "atak słaby";
             weakAttackBtn.UseVisualStyleBackColor = true;
             weakAttackBtn.Click += weakAttackBtn_Click;
+            weakAttackBtn.MouseHover += weakAttackBtn_Hover;
             // 
             // mediumAttackbtn
             // 
@@ -155,6 +184,7 @@
             mediumAttackbtn.Text = "atak średni";
             mediumAttackbtn.UseVisualStyleBackColor = true;
             mediumAttackbtn.Click += mediumAttackbtn_Click;
+            mediumAttackbtn.MouseHover += mediumAttackBtn_Hover;
             // 
             // strongAttackBtn
             // 
@@ -165,6 +195,7 @@
             strongAttackBtn.Text = "atak silny";
             strongAttackBtn.UseVisualStyleBackColor = true;
             strongAttackBtn.Click += strongAttackBtn_Click;
+            strongAttackBtn.MouseHover += strongAttackBtn_Hover;
             // 
             // moveBackBtn
             // 
@@ -175,6 +206,7 @@
             moveBackBtn.Text = "do tyłu";
             moveBackBtn.UseVisualStyleBackColor = true;
             moveBackBtn.Click += moveBackBtn_Click;
+            moveBackBtn.MouseHover += moveBackBtn_Hover;
             // 
             // turnIndicator
             // 
@@ -304,7 +336,7 @@
             // 
             playerPanel.Controls.Add(playerHeadPic);
             playerPanel.Controls.Add(playerBodyPic);
-            playerPanel.Location = new Point(191, 260);
+            playerPanel.Location = new Point(191, 250);
             playerPanel.Name = "playerPanel";
             playerPanel.Size = new Size(126, 245);
             playerPanel.TabIndex = 0;
@@ -340,7 +372,7 @@
             // 
             // logTextBox
             // 
-            logTextBox.Location = new Point(557, 81);
+            logTextBox.Location = new Point(452, 81);
             logTextBox.Name = "logTextBox";
             logTextBox.Size = new Size(693, 232);
             logTextBox.TabIndex = 6;
@@ -363,10 +395,18 @@
             poddajSięToolStripMenuItem.Text = "Poddaj się";
             poddajSięToolStripMenuItem.Click += poddajSięToolStripMenuItem_Click;
             // 
+            // crowdSatisfactionTextBox
+            // 
+            crowdSatisfactionTextBox.Location = new Point(1221, 81);
+            crowdSatisfactionTextBox.Name = "crowdSatisfactionTextBox";
+            crowdSatisfactionTextBox.Size = new Size(150, 31);
+            crowdSatisfactionTextBox.TabIndex = 8;
+            // 
             // FightView
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(crowdSatisfactionTextBox);
             Controls.Add(logTextBox);
             Controls.Add(panel2);
             Controls.Add(enemyInfoTextBox);
@@ -425,5 +465,9 @@
         private ProgressBar playerArmorBar;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem poddajSięToolStripMenuItem;
+        private ComboBox spellsList;
+        private ToolTip weakAttackBtnToolTip;
+        private RichTextBox helperTextBox;
+        private TextBox crowdSatisfactionTextBox;
     }
 }

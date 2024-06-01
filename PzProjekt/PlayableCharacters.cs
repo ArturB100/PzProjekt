@@ -32,6 +32,11 @@ namespace PzProjekt
 			characters.Add(character);
 		}
 
+		public void Remove (int index)
+		{
+			this.characters.RemoveAt(index);
+		}
+
 		public int Count { get { return characters.Count; } }
 		
 

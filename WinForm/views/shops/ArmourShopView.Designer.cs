@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArmourShopView));
-            resultsBox = new ListBox();
-            buyBtn = new components.WoodButton();
             helmetsPic = new PictureBox();
             chestplatePic = new PictureBox();
             leggingsPic = new PictureBox();
@@ -42,31 +40,6 @@
             ((System.ComponentModel.ISupportInitialize)bootsPic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // resultsBox
-            // 
-            resultsBox.FormattingEnabled = true;
-            resultsBox.ItemHeight = 25;
-            resultsBox.Location = new Point(208, 478);
-            resultsBox.Name = "resultsBox";
-            resultsBox.Size = new Size(1370, 404);
-            resultsBox.TabIndex = 0;
-            resultsBox.SelectedIndexChanged += resultsBox_SelectedIndexChanged;
-            // 
-            // buyBtn
-            // 
-            buyBtn.BackColor = Color.SaddleBrown;
-            buyBtn.FlatAppearance.BorderSize = 0;
-            buyBtn.FlatStyle = FlatStyle.Flat;
-            buyBtn.Font = new Font("Arial", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            buyBtn.ForeColor = Color.White;
-            buyBtn.Location = new Point(1432, 942);
-            buyBtn.Name = "buyBtn";
-            buyBtn.Size = new Size(112, 34);
-            buyBtn.TabIndex = 1;
-            buyBtn.Text = "Kup";
-            buyBtn.UseVisualStyleBackColor = false;
-            buyBtn.Click += buyBtn_Click;
             // 
             // helmetsPic
             // 
@@ -130,8 +103,6 @@
             Controls.Add(leggingsPic);
             Controls.Add(chestplatePic);
             Controls.Add(helmetsPic);
-            Controls.Add(buyBtn);
-            Controls.Add(resultsBox);
             Controls.Add(pictureBox1);
             Name = "ArmourShopView";
             Size = new Size(1920, 1080);
@@ -144,9 +115,6 @@
         }
 
         #endregion
-
-        private ListBox resultsBox;
-        private components.WoodButton buyBtn;
         private PictureBox helmetsPic;
         private PictureBox chestplatePic;
         private PictureBox leggingsPic;

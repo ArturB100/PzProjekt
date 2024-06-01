@@ -21,20 +21,20 @@ namespace WinForm
         public DataFeeder DataFeeder { get; set; }
 
         public GameSetup() 
-        { 
-            DataFeeder dataFeeder = new DataFeeder();
+        {
+            DataFeeder = new DataFeeder();
 
             ArmourShop = new ArmourShop();
-            ArmourShop.AddItems(dataFeeder.GetArmours());
+            ArmourShop.AddItems(DataFeeder.GetArmours());
             
             WeaponShop = new WeaponShop();
-            WeaponShop.AddItems(dataFeeder.GetWeapons());
+            WeaponShop.AddItems(DataFeeder.GetWeapons());
 
             SpellShop = new SpellShop();
-            SpellShop.AddItems(dataFeeder.GetSpells());
+            SpellShop.AddItems(DataFeeder.GetSpells());
 
             EffectShop = new EffectShop();
-            EffectShop.AddItems(dataFeeder.GetEffects());
+            EffectShop.AddItems(DataFeeder.GetEffects());
 
         }
 
@@ -440,6 +440,12 @@ namespace WinForm
             )
         };
 
+        public List<Tournament> GetTournaments (Character character)
+        {
+            AddTournamentWithCloneBoss ( character );
+            return _tournaments;
+        }
+
         private List<Tournament> _tournaments = new List<Tournament>()
         {
             new Tournament(4, 2, bosses[0]),
@@ -459,10 +465,11 @@ namespace WinForm
             new Tournament(48, 17, bosses[14]),
         };
 
-        public void AddTournamentWithCloneBoss(Character character)
+        private void AddTournamentWithCloneBoss(Character character)
         {
             _tournaments.Add(new Tournament(45, 16, character.Clone() as Character));
         }
+
         
         public List<Armour> GetArmours () {
             List<Armour> results = new List<Armour> () ;

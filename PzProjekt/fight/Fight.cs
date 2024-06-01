@@ -93,7 +93,7 @@ public abstract class Fight
     
     public Character Player { get; set; }
     public Character Enemy { get; set; }
-    public int CrowdSatisfaction { get; set; }
+    public double CrowdSatisfaction { get; set; }
     
     public int ExperiencePointsToGet
     {
@@ -102,7 +102,7 @@ public abstract class Fight
     
     public int MoneyToGet
     {
-        get => 1000 * (Player.Parameters.Level * Math.Abs(Player.Parameters.Level / Enemy.Parameters.Level)) * (1 + CrowdSatisfaction);
+        get => Convert.ToInt32(1000 * (Player.Parameters.Level * Math.Abs(Player.Parameters.Level / Enemy.Parameters.Level)) * (1 + CrowdSatisfaction));
     }
     
     public int MoneyToLose
@@ -171,6 +171,7 @@ public abstract class Fight
     {
         
         Console.WriteLine("It's " + ActiveCharacter.Name + "'s turn!");
+        
         
         if (ActiveCharacter.ActiveEffect != null)
         {
@@ -302,7 +303,7 @@ public abstract class Fight
         }
     }
 
-    private Spell ChooseSpell()
+    private Spell ChooseSpell ()
     {
         CharacterFightActions.ListSpells();
         
