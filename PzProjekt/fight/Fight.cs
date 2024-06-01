@@ -169,24 +169,25 @@ public abstract class Fight
     
     public void NextTurn()
     {
-        
         Console.WriteLine("It's " + ActiveCharacter.Name + "'s turn!");
-        
-        
+        Log("It's " + ActiveCharacter.Name + "'s turn! \n");
+
         if (ActiveCharacter.ActiveEffect != null)
         {
             if(ActiveCharacter.ActiveEffect.TurnsLeft == 0)
             {
+                Log("Effect has ended! \n");
                 Console.WriteLine("Effect has ended!");
             }
             else
             {
-                Console.WriteLine("Effect is still active!");
                 ActiveCharacter.ActiveEffect.TurnsLeft--;
-                Console.WriteLine("Turns left: " + ActiveCharacter.ActiveEffect.TurnsLeft);
-
+                Console.WriteLine("Turns until the effect ends: " + ActiveCharacter.ActiveEffect.TurnsLeft);
+                Log("Turns until the effect ends: " + ActiveCharacter.ActiveEffect.TurnsLeft + "\n");
+                
                 if (ActiveCharacter.ActiveEffect.Effect.IsFrozen())
                 {
+                    Log(ActiveCharacter.Name + " is frozen!" + "\n");
                     Console.WriteLine(ActiveCharacter.Name + " is frozen!");
                     return;
                 }
@@ -201,13 +202,11 @@ public abstract class Fight
         }
         else if (ActiveCharacter == Player)
         {
-            Log("ruch gracza \n");
             int moveChoosenByPlayer = OnPlayerTurn.Invoke();
             DoAction(moveChoosenByPlayer);
         }
         else
         {
-            Log("ruch przeciwnika");
             EnemyBehavior.MakeMove();
         }
 

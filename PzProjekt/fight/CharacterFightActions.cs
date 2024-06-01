@@ -106,6 +106,7 @@ public class CharacterFightActions
         else
         {
             Console.WriteLine(defender.Name + " dodged the attack!");
+            Fight.Log(defender.Name + " dodged the attack! \n");
         }
         
         attacker.Parameters.ActualStamina -= attackProperties.NeededStamina;
@@ -151,6 +152,7 @@ public class CharacterFightActions
         double probability = ActiveCharacter.BaseStatistics.Magica / (double)InactiveCharacter.BaseStatistics.Magica * 0.1;
         
         Console.WriteLine("Probability to use the effect: " + probability);
+        Fight.Log("Probability to use the effect: " + probability + "\n");
         
         Random random = new Random();
         double chance = random.NextDouble();
@@ -158,6 +160,8 @@ public class CharacterFightActions
         if (chance <= probability)
         {
             Console.WriteLine("Effect used!");
+            Fight.Log("Effect used! \n");
+            
             InactiveCharacter.ActiveEffect = new ActiveEffect(ActiveCharacter.Inventory.Weapon.Effect);
         }
     }
@@ -216,8 +220,6 @@ public class CharacterFightActions
         {
             Fight.OnEnemyMove(prevPos, characterParameters.Position);
         }
-        Fight.Log("w lewo");
-        
     }
         
     public void MoveRight()
@@ -235,14 +237,13 @@ public class CharacterFightActions
         {
             Fight.OnEnemyMove(prevPos, characterParameters.Position);
         }
-        Fight.Log("w prawo");
     }
     
     public void Sleep()
     {
         ActiveCharacter.Parameters.ActualHP += ActiveCharacter.BaseStatistics.Stamina;
         ActiveCharacter.Parameters.ActualStamina += Convert.ToInt32(ActiveCharacter.Parameters.MaxStamina * 0.2);
-        Fight.Log(ActiveCharacter.Name + " slept!");
+        Fight.Log(ActiveCharacter.Name + " slept! \n");
     }
     
     public void SatisfyTheCrowd()
