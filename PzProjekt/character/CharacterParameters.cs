@@ -29,7 +29,6 @@ public class CharacterParameters
         _character = character;
         MaxHP = CalculateMaxHp();
         ActualHP = MaxHP;
-        MaxStamina = CalculateMaxStamina();
         ActualStamina = MaxStamina;
         Level = 1;
         Money = BaseMoney;
@@ -40,7 +39,6 @@ public class CharacterParameters
         _character = character;
         MaxHP = CalculateMaxHp();
         ActualHP = MaxHP;
-        MaxStamina = CalculateMaxStamina();
         ActualStamina = MaxStamina;
         Level = level;
     }
@@ -70,7 +68,7 @@ public class CharacterParameters
             }
         }
     }
-    public int MaxStamina { get; }
+    public int MaxStamina { get => CalculateMaxStamina(); }
     
     private int _actualStamina;
     public int ActualStamina
@@ -95,15 +93,17 @@ public class CharacterParameters
     
     private int CalculateMaxHp()
     {
-        return BaseMaxHp + Level * MaxHpLevelMultiplier + _character.ActualStatistics.Vitality * MaxHpVitalityMultiplier;
+        return BaseMaxHp + Level * MaxHpLevelMultiplier + _character.BaseStatistics.Vitality * MaxHpVitalityMultiplier;
     }
 
     private int CalculateMaxStamina()
     {
-        return BaseMaxStamina + _character.ActualStatistics.Stamina * MaxStaminaStaminaMultiplier;
+        Console.WriteLine(_character.BaseStatistics.Stamina);
+        
+        return BaseMaxStamina + _character.BaseStatistics.Stamina * MaxStaminaStaminaMultiplier;
     }
     
-    public int PossibleDistance { get { return BasePossibleDistance + PossibleDistanceAgilityMultiplier * _character.ActualStatistics.Agility; } }
+    public int PossibleDistance { get { return BasePossibleDistance + PossibleDistanceAgilityMultiplier * _character.BaseStatistics.Agility; } }
     
     private int _charcterMoney;
     public int Money
@@ -122,17 +122,17 @@ public class CharacterParameters
     
     public int MinimalDamage
     {
-        get => _character.Inventory.Weapon == null ? _character.ActualStatistics.Strength + Level : _character.Inventory.Weapon.MinimalDamage + _character.ActualStatistics.Strength + Level;
+        get => _character.Inventory.Weapon == null ? _character.BaseStatistics.Strength + Level : _character.Inventory.Weapon.MinimalDamage + _character.BaseStatistics.Strength + Level;
     } 
         
     public int MaximalDamage
     {
-        get => _character.Inventory.Weapon == null ? _character.ActualStatistics.Strength + Level + 2 : _character.Inventory.Weapon.MaximalDamage + _character.ActualStatistics.Strength + Level + 2;
+        get => _character.Inventory.Weapon == null ? _character.BaseStatistics.Strength + Level + 2 : _character.Inventory.Weapon.MaximalDamage + _character.BaseStatistics.Strength + Level + 2;
     }
 
     public int AttackRange
     {
-        get => BasePossibleDistance + PossibleDistanceAgilityMultiplier * _character.ActualStatistics.Agility;
+        get => BasePossibleDistance + PossibleDistanceAgilityMultiplier * _character.BaseStatistics.Agility;
     }
 
     private int _position;

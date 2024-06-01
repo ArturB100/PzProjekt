@@ -37,7 +37,6 @@ namespace WinForm.views.shops
             charismaCurVal.Text = characterStatistics.Charisma.ToString();
             staminaCurVal.Text = characterStatistics.Stamina.ToString();
             magicaCurVal.Text = characterStatistics.Magica.ToString();
-            intelligenceCurVal.Text = characterStatistics.Intelligence.ToString();
         }
 
         private void InvestPoint (int dictionaryIndex)

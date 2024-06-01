@@ -75,21 +75,31 @@ public class CharacterFactory
         
         if (weapon != null)
         {
-            if (random.NextDouble() <= ChanceToGetEffect)
-            {
-                Effect randomEffect = GetRandomElement(effects);
-                weapon.Effect = randomEffect;
-            }
+            weapon.Effect = effects[0];
+            // if (random.NextDouble() <= ChanceToGetEffect)
+            // {
+            //     Effect randomEffect = GetRandomElement(effects);
+            //     weapon.Effect = randomEffect;
+            // }
         }
         
-        Armour? helmet = GetRandomElement(getArmorsBasedOnLevel(level, helmets));
-        Armour? chestplate = GetRandomElement(getArmorsBasedOnLevel(level, chestplates));
-        Armour? characterLeggings = GetRandomElement(getArmorsBasedOnLevel(level, leggings));
-        Armour? characterBoots = GetRandomElement(getArmorsBasedOnLevel(level, boots));
+        List<Armour> possibleHelmets = getArmorsBasedOnLevel(level, helmets);
+        List<Armour> possibleChestplates = getArmorsBasedOnLevel(level, chestplates);
+        List<Armour> possibleLeggings= getArmorsBasedOnLevel(level, leggings);
+        List<Armour> possibleBoots = getArmorsBasedOnLevel(level, boots);
+        
+        int totalValue = possibleHelmets.Sum(helmet => helmet.ValueInGold) + possibleChestplates.Sum(chestplate => chestplate.ValueInGold) + possibleLeggings.Sum(legging => legging.ValueInGold) + possibleBoots.Sum(boot => boot.ValueInGold);
+        
+        Armour? helmet = GetRandomArmour(possibleHelmets, totalValue, level);
+        Armour? chestplate = GetRandomArmour(possibleChestplates, totalValue, level);
+        Armour? characterLeggings = GetRandomArmour(possibleLeggings, totalValue, level);
+        Armour? characterBoots = GetRandomArmour(possibleBoots, totalValue, level);
         
         ArmourSet armourSet = new ArmourSet(helmet, chestplate, characterLeggings, characterBoots);
 
         Character character = new Character(randomName, characterStatistics, level, weapon, armourSet);
+        
+        Console.WriteLine(weapon);
         
         int spellCount = random.Next(0, character.Parameters.MaxSpells);
         List<Spell> availableSpells = spells.Where(spell => spell.MinimalStatistics.Magica <= characterStatistics.Magica).ToList();
@@ -110,16 +120,6 @@ public class CharacterFactory
     
     private static List<Armour> getArmorsBasedOnLevel(int level, List<Armour> armours)
     {
-        Random random = new Random();
-
-        if (level < 6)
-        {
-            if (random.NextDouble() <= 0.5)
-            {
-                return null;
-            }
-        }
-    
         return armours.Where(armour => armour.MinLevel <= level && armour.MinLevel >= level - ArmorLevelDifference).ToList();
     }
     
@@ -129,9 +129,61 @@ public class CharacterFactory
         {
             return default;
         }
-
         Random random = new Random();
         int randomIndex = random.Next(list.Count);
         return list[randomIndex];
+    }
+    
+    private static Armour GetRandomArmour(List<Armour> list, int totalValue, int level)
+    {
+        if (list == null || !list.Any())
+        {
+            return default;
+        }
+        
+        Random random = new Random();
+        int totalArmourValue = list.Sum(armour => armour.ValueInGold);
+        
+        double chance = random.NextDouble();
+        double chanceToGetNothing = totalArmourValue / (double)totalValue + 0.2 - level * 0.05;
+        
+        Console.WriteLine(chance);
+        Console.WriteLine(chanceToGetNothing);
+        
+        if (chance <= chanceToGetNothing)
+        {
+            return null;
+        }
+        
+        Dictionary<Armour, int> weightedItems = new Dictionary<Armour, int>();
+        int totalWeight = 0;
+
+        foreach (Armour armour in list)
+        {
+            int weight = GetWeight(armour);
+            weightedItems[armour] = weight;
+            totalWeight += weight;
+        }
+
+        int randomWeight = random.Next(totalWeight);
+
+        foreach (KeyValuePair<Armour, int> weightedItem in weightedItems)
+        {
+            randomWeight -= weightedItem.Value;
+            if (randomWeight <= 0)
+            {
+                Console.WriteLine(weightedItem.Key);
+                return weightedItem.Key;
+            }
+        }
+
+        return null;
+    }
+
+    private static int GetWeight(Armour armour)
+    {
+        int weight = 1000 / armour.ValueInGold;
+
+        return weight;
     }
 }

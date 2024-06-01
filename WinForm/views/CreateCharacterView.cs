@@ -27,7 +27,7 @@ namespace WinForm.views
             UpdateCharacterPointsToInvestLabel();
             pointsLabels.AddRange(new List<Label>()
             {
-                intelligenceCurrentValue, strengthCurrentValue, AgilityCurrentValue, AttackCurrentValue, defenceCurrentValue, vitalityCurrentValue, charismaCurrentValue, staminaCurrentValue, magicaCurrentValue
+                strengthCurrentValue, AgilityCurrentValue, AttackCurrentValue, defenceCurrentValue, vitalityCurrentValue, charismaCurrentValue, staminaCurrentValue, magicaCurrentValue
             });
             character = ProgramCtx.SelectedCharacter;
             UpdateCharacterStatisticsLabels();
@@ -63,7 +63,6 @@ namespace WinForm.views
         private void UpdateCharacterStatisticsLabels()
         {
             CharacterStatistics characterStatistics = character.BaseStatistics;
-            intelligenceCurrentValue.Text = characterStatistics.Intelligence.ToString();
             strengthCurrentValue.Text = characterStatistics.Strength.ToString();
             AgilityCurrentValue.Text = characterStatistics.Agility.ToString();
             AttackCurrentValue.Text = characterStatistics.Attack.ToString();
@@ -199,16 +198,7 @@ namespace WinForm.views
         {
             ChangeStatistic((value) => { character.BaseStatistics.Magica += value; }, 1);
         }
-
-        private void intelligenceMinusBtn_Click(object sender, EventArgs e)
-        {
-            ChangeStatistic((value) => { character.BaseStatistics.Intelligence += value; }, -1);
-        }
-
-        private void intelligencePlusBtn_Click(object sender, EventArgs e)
-        {
-            ChangeStatistic((value) => { character.BaseStatistics.Intelligence += value; }, -1);
-        }
+        
 
         private void nameInp_TextChanged(object sender, EventArgs e)
         {

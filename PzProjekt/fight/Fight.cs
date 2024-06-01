@@ -102,12 +102,12 @@ public abstract class Fight
     
     public int MoneyToGet
     {
-        get => 100 * (Player.Parameters.Level * Math.Abs(Player.Parameters.Level / Enemy.Parameters.Level)) * (1 + CrowdSatisfaction);
+        get => 1000 * (Player.Parameters.Level * Math.Abs(Player.Parameters.Level / Enemy.Parameters.Level)) * (1 + CrowdSatisfaction);
     }
     
     public int MoneyToLose
     {
-        get => 50 * (1 + Math.Abs(Player.Parameters.Level - Enemy.Parameters.Level));
+        get => 250 * (1 + Math.Abs(Player.Parameters.Level - Enemy.Parameters.Level));
     }
     
     public int DistanceBetweenCharacters
@@ -123,6 +123,10 @@ public abstract class Fight
         player.Refill();
         enemy.Refill();
         
+        Console.WriteLine(player.Parameters.MaxStamina);
+        
+        player.Parameters.ActualStamina = player.Parameters.MaxStamina;
+        
         player.Parameters.Position = InitialPlayerPosition;
         enemy.Parameters.Position = InitialEnemyPosition;
         
@@ -134,7 +138,7 @@ public abstract class Fight
 
     private int CalcBaseCrowdSatisfaction()
     {
-        return Convert.ToInt32(Player.ActualStatistics.Charisma * 0.01 + Enemy.ActualStatistics.Charisma * 0.01);
+        return Convert.ToInt32(Player.BaseStatistics.Charisma * 0.01 + Enemy.BaseStatistics.Charisma * 0.01);
     }
 
     public abstract Result CheckFightResult();
@@ -166,20 +170,17 @@ public abstract class Fight
     public void NextTurn()
     {
         
-        Debug.WriteLine("It's " + ActiveCharacter.Name + "'s turn!");
+        Console.WriteLine("It's " + ActiveCharacter.Name + "'s turn!");
         
-
-
         if (ActiveCharacter.ActiveEffect != null)
         {
             if(ActiveCharacter.ActiveEffect.TurnsLeft == 0)
             {
                 Console.WriteLine("Effect has ended!");
-                ActiveCharacter.ActiveEffect.Effect.EndEffect(this);
-                ActiveCharacter.ActiveEffect = null;
             }
             else
             {
+                Console.WriteLine("Effect is still active!");
                 ActiveCharacter.ActiveEffect.TurnsLeft--;
                 Console.WriteLine("Turns left: " + ActiveCharacter.ActiveEffect.TurnsLeft);
 

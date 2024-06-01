@@ -16,7 +16,7 @@ namespace PzProjekt
             { 
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[0] = 1;
                 }
                 else
                 {
@@ -31,7 +31,7 @@ namespace PzProjekt
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[1] = 1;
                 }
                 else
                 {
@@ -47,7 +47,7 @@ namespace PzProjekt
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[2] = 1;
                 }
                 else
                 {
@@ -63,7 +63,7 @@ namespace PzProjekt
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[3] = 1;
                 }
                 else
                 {
@@ -79,7 +79,7 @@ namespace PzProjekt
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[4] = 1;
                 }
                 else
                 {
@@ -95,7 +95,7 @@ namespace PzProjekt
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[5] = 1;
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace PzProjekt
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[6] = 1;
                 }
                 else
                 {
@@ -127,27 +127,11 @@ namespace PzProjekt
             {
                 if (value < 1)
                 {
-                    throw new NegativeStatisticPointsException();
+                    StatisticsDictionary[7] = 1;
                 }
                 else
                 {
                     StatisticsDictionary[7] = value;
-                }
-            }
-        }
-
-        public int Intelligence
-        {
-            get { return StatisticsDictionary[8]; }
-            set
-            {
-                if (value < 1)
-                {
-                    throw new NegativeStatisticPointsException();
-                }
-                else
-                {
-                    StatisticsDictionary[8] = value;
                 }
             }
         }
@@ -179,7 +163,6 @@ namespace PzProjekt
             Charisma = 1;
             Stamina = 1;
             Magica = 1;
-            Intelligence = 1;
         }
 
         public bool IsGreater(CharacterStatistics statistics)
@@ -207,7 +190,6 @@ namespace PzProjekt
                 Charisma = Charisma,
                 Stamina = Stamina,
                 Magica = Magica,
-                Intelligence = Intelligence
             };
         }
         

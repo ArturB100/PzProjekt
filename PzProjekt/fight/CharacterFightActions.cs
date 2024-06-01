@@ -27,7 +27,7 @@ public class CharacterFightActions
         {
             Character attacker = ActiveCharacter;
             Character defender = InactiveCharacter;
-            double chance = attacker.ActualStatistics.Attack / (double)defender.ActualStatistics.Defence * 0.5;
+            double chance = attacker.BaseStatistics.Attack / (double)defender.BaseStatistics.Defence * 0.5;
 
             if (chance > 1)
             {
@@ -45,7 +45,7 @@ public class CharacterFightActions
             Character attacker = ActiveCharacter;
             Character defender = InactiveCharacter;
             
-            double chance = attacker.ActualStatistics.Attack / (double)defender.ActualStatistics.Defence;
+            double chance = attacker.BaseStatistics.Attack / (double)defender.BaseStatistics.Defence;
             
             if (chance > 1)
             {
@@ -63,7 +63,7 @@ public class CharacterFightActions
             Character attacker = ActiveCharacter;
             Character defender = InactiveCharacter;
             
-            double chance = attacker.ActualStatistics.Attack / (double)defender.ActualStatistics.Defence * 1.5;
+            double chance = attacker.BaseStatistics.Attack / (double)defender.BaseStatistics.Defence * 1.5;
             
             if (chance > 1)
             {
@@ -86,7 +86,10 @@ public class CharacterFightActions
             throw new AttackNotPossibleException();
         }
         
-        double probability = attacker.ActualStatistics.Attack / (double)defender.ActualStatistics.Defence * attackProperties.ChanceMultiplier;
+        double probability = attacker.BaseStatistics.Attack / (double)defender.BaseStatistics.Defence * attackProperties.ChanceMultiplier;
+        
+        Console.WriteLine("Probability to attack: " + probability);
+        
         Random random = new Random();
         double chance = random.NextDouble();
         
@@ -145,7 +148,7 @@ public class CharacterFightActions
     
     private void TryToUseEffect()
     {
-        double probability = ActiveCharacter.ActualStatistics.Magica / (double)InactiveCharacter.ActualStatistics.Magica * 0.1;
+        double probability = ActiveCharacter.BaseStatistics.Magica / (double)InactiveCharacter.BaseStatistics.Magica * 0.1;
         
         Console.WriteLine("Probability to use the effect: " + probability);
         
@@ -155,7 +158,7 @@ public class CharacterFightActions
         if (chance <= probability)
         {
             Console.WriteLine("Effect used!");
-            InactiveCharacter.ActiveEffect = new ActiveEffect(ActiveCharacter.Inventory.Weapon.Effect, Fight);
+            InactiveCharacter.ActiveEffect = new ActiveEffect(ActiveCharacter.Inventory.Weapon.Effect);
         }
     }
     
@@ -237,14 +240,14 @@ public class CharacterFightActions
     
     public void Sleep()
     {
-        ActiveCharacter.Parameters.ActualHP += ActiveCharacter.ActualStatistics.Stamina;
+        ActiveCharacter.Parameters.ActualHP += ActiveCharacter.BaseStatistics.Stamina;
         ActiveCharacter.Parameters.ActualStamina += Convert.ToInt32(ActiveCharacter.Parameters.MaxStamina * 0.2);
         Fight.Log(ActiveCharacter.Name + " slept!");
     }
     
     public void SatisfyTheCrowd()
     {
-        Fight.CrowdSatisfaction += Convert.ToInt32(ActiveCharacter.ActualStatistics.Charisma * 0.01);
+        Fight.CrowdSatisfaction += Convert.ToInt32(ActiveCharacter.BaseStatistics.Charisma * 0.01);
     }
 
     public void ListSpells()

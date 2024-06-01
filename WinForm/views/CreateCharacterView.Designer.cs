@@ -62,9 +62,6 @@
             staminaPlusBtn = new Button();
             staminaMinusBtn = new Button();
             label15 = new Label();
-            intelligenceCurrentValue = new Label();
-            intelligencePlusBtn = new Button();
-            intelligenceMinusBtn = new Button();
             label17 = new Label();
             magicaCurrentValue = new Label();
             magicaPlusBtn = new Button();
@@ -379,44 +376,6 @@
             staminaMinusBtn.UseVisualStyleBackColor = true;
             staminaMinusBtn.Click += staminaMinusBtn_Click;
             // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(558, 867);
-            label15.Name = "label15";
-            label15.Size = new Size(101, 25);
-            label15.TabIndex = 36;
-            label15.Text = "Intelligence";
-            // 
-            // intelligenceCurrentValue
-            // 
-            intelligenceCurrentValue.AutoSize = true;
-            intelligenceCurrentValue.Location = new Point(473, 867);
-            intelligenceCurrentValue.Name = "intelligenceCurrentValue";
-            intelligenceCurrentValue.Size = new Size(59, 25);
-            intelligenceCurrentValue.TabIndex = 35;
-            intelligenceCurrentValue.Text = "label2";
-            // 
-            // intelligencePlusBtn
-            // 
-            intelligencePlusBtn.Location = new Point(424, 861);
-            intelligencePlusBtn.Name = "intelligencePlusBtn";
-            intelligencePlusBtn.Size = new Size(35, 36);
-            intelligencePlusBtn.TabIndex = 34;
-            intelligencePlusBtn.Text = "+";
-            intelligencePlusBtn.UseVisualStyleBackColor = true;
-            intelligencePlusBtn.Click += intelligencePlusBtn_Click;
-            // 
-            // intelligenceMinusBtn
-            // 
-            intelligenceMinusBtn.Location = new Point(373, 861);
-            intelligenceMinusBtn.Name = "intelligenceMinusBtn";
-            intelligenceMinusBtn.Size = new Size(35, 36);
-            intelligenceMinusBtn.TabIndex = 33;
-            intelligenceMinusBtn.Text = "-";
-            intelligenceMinusBtn.UseVisualStyleBackColor = true;
-            intelligenceMinusBtn.Click += intelligenceMinusBtn_Click;
-            // 
             // label17
             // 
             label17.AutoSize = true;
@@ -509,9 +468,6 @@
             Controls.Add(magicaPlusBtn);
             Controls.Add(magicaMinusBtn);
             Controls.Add(label15);
-            Controls.Add(intelligenceCurrentValue);
-            Controls.Add(intelligencePlusBtn);
-            Controls.Add(intelligenceMinusBtn);
             Controls.Add(label13);
             Controls.Add(staminaCurrentValue);
             Controls.Add(staminaPlusBtn);
@@ -587,9 +543,6 @@
         private Button staminaPlusBtn;
         private Button staminaMinusBtn;
         private Label label15;
-        private Label intelligenceCurrentValue;
-        private Button intelligencePlusBtn;
-        private Button intelligenceMinusBtn;
         private Label label17;
         private Label magicaCurrentValue;
         private Button magicaPlusBtn;

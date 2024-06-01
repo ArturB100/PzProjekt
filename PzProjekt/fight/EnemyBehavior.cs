@@ -37,7 +37,7 @@ public class EnemyBehavior
                 return;
             }
 
-            AttackType attackType = (AttackType)_random.Next(Enum.GetNames(typeof(AttackType)).Length);
+            AttackType attackType = _fight.CharacterFightActions.IsAttackPossible(AttackType.STRONG) ? AttackType.STRONG : _fight.CharacterFightActions.IsAttackPossible(AttackType.MEDIUM) ? AttackType.MEDIUM : AttackType.WEAK;
             bool success = false;
             while (!success)
             {

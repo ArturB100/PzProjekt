@@ -30,11 +30,11 @@ namespace PzProjekt
         {
             if (WeaponType == WeaponType.Sword)
             {
-                return base.ToString() + " | Required agility: " + MinimalStatistics.Agility;
+                return base.ToString() + " | Required agility: " + MinimalStatistics.Agility + " | Minimal damage: " + MinimalDamage + " | Maximal damage: " + MaximalDamage;
             }
             else
             {
-                return base.ToString() + " | Required strength: " + MinimalStatistics.Strength;
+                return base.ToString() + " | Required strength: " + MinimalStatistics.Strength + " | Minimal damage: " + MinimalDamage + " | Maximal damage: " + MaximalDamage;
             }
         }
     }

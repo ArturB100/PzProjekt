@@ -12,8 +12,18 @@ namespace PzProjekt
     {
         private const int BasePointsToInvest = 10;
         public string Name { get; set; }
-        public CharacterStatistics BaseStatistics { get; set; }
-        public CharacterStatistics ActualStatistics { get; set; }
+
+        private CharacterStatistics _baseStatistics;
+        
+        public CharacterStatistics BaseStatistics
+        {
+            get => _baseStatistics;
+            set
+            {
+                _baseStatistics = value;
+            }
+        }
+
         public CharacterParameters Parameters { get; set; }
         public CharacterInventory Inventory { get; set; }
         public ActiveEffect? ActiveEffect { get; set; }
@@ -22,7 +32,6 @@ namespace PzProjekt
         public Character()
         {
             BaseStatistics = new CharacterStatistics();
-            ActualStatistics = BaseStatistics.Clone() as CharacterStatistics;
 
             Parameters = new CharacterParameters(this);
 
@@ -35,7 +44,6 @@ namespace PzProjekt
         {
             Name = name;
             BaseStatistics = baseStatistics;
-            ActualStatistics = BaseStatistics.Clone() as CharacterStatistics;
 
             Parameters = new CharacterParameters(this, level);
             Inventory = new CharacterInventory(this, weapon, armourSet);
@@ -46,8 +54,7 @@ namespace PzProjekt
         {
             Name = name;
             BaseStatistics = baseStatistics;
-            ActualStatistics = BaseStatistics.Clone() as CharacterStatistics;
-
+            
             Parameters = new CharacterParameters(this, level);
             Inventory = new CharacterInventory(this, weapon, armourSet);
             Inventory.CharacterSpells = spells;

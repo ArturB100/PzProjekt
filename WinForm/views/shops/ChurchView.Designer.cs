@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChurchView));
             label1 = new Label();
             panel1 = new Panel();
-            intelligenceCurVal = new Label();
             magicaCurVal = new Label();
             staminaCurVal = new Label();
             charismaCurVal = new Label();
@@ -39,7 +38,6 @@
             defenceCurVal = new Label();
             agilityCurVal = new Label();
             attackCurVal = new Label();
-            intelligenceBtn = new Button();
             magicaBtn = new Button();
             staminaBtn = new Button();
             charismaBtn = new Button();
@@ -74,7 +72,6 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(intelligenceCurVal);
             panel1.Controls.Add(magicaCurVal);
             panel1.Controls.Add(staminaCurVal);
             panel1.Controls.Add(charismaCurVal);
@@ -82,7 +79,6 @@
             panel1.Controls.Add(defenceCurVal);
             panel1.Controls.Add(agilityCurVal);
             panel1.Controls.Add(attackCurVal);
-            panel1.Controls.Add(intelligenceBtn);
             panel1.Controls.Add(magicaBtn);
             panel1.Controls.Add(staminaBtn);
             panel1.Controls.Add(charismaBtn);
@@ -105,15 +101,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(437, 662);
             panel1.TabIndex = 1;
-            // 
-            // intelligenceCurVal
-            // 
-            intelligenceCurVal.AutoSize = true;
-            intelligenceCurVal.Location = new Point(162, 563);
-            intelligenceCurVal.Name = "intelligenceCurVal";
-            intelligenceCurVal.Size = new Size(59, 25);
-            intelligenceCurVal.TabIndex = 26;
-            intelligenceCurVal.Text = "label2";
             // 
             // magicaCurVal
             // 
@@ -178,16 +165,6 @@
             attackCurVal.TabIndex = 19;
             attackCurVal.Text = "label2";
             // 
-            // intelligenceBtn
-            // 
-            intelligenceBtn.Location = new Point(291, 554);
-            intelligenceBtn.Name = "intelligenceBtn";
-            intelligenceBtn.Size = new Size(112, 34);
-            intelligenceBtn.TabIndex = 18;
-            intelligenceBtn.Text = "+";
-            intelligenceBtn.UseVisualStyleBackColor = true;
-            intelligenceBtn.Click += intelligenceBtn_Click;
-            // 
             // magicaBtn
             // 
             magicaBtn.Location = new Point(291, 489);
@@ -247,15 +224,6 @@
             agilityBtn.Text = "+";
             agilityBtn.UseVisualStyleBackColor = true;
             agilityBtn.Click += agilityBtn_Click;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(17, 563);
-            label9.Name = "label9";
-            label9.Size = new Size(101, 25);
-            label9.TabIndex = 11;
-            label9.Text = "Intelligence";
             // 
             // label8
             // 
@@ -395,7 +363,6 @@
         private Label label3;
         private Label label2;
         private Button attackBtn;
-        private Button intelligenceBtn;
         private Button magicaBtn;
         private Button staminaBtn;
         private Button charismaBtn;
@@ -407,7 +374,6 @@
         private Label label7;
         private Label label6;
         private Label label5;
-        private Label intelligenceCurVal;
         private Label magicaCurVal;
         private Label staminaCurVal;
         private Label charismaCurVal;

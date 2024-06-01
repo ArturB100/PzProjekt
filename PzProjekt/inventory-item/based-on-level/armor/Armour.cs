@@ -20,7 +20,7 @@ namespace PzProjekt
         
         public override string ToString()
         {
-            return base.ToString() + " | Required lvl: " + MinLevel;
+            return base.ToString() + " | Required lvl: " + MinLevel + " | Armour points: " + ArmourPoints;
         }
     }
 }

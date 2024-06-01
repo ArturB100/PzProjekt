@@ -65,9 +65,9 @@ namespace WinForm
 
         public static List<Effect> effects = new List<Effect>
         {
-            new Effect("Freeze", 1000, null, null, Effects.Freeze, 1),
-            new Effect("Weakness", 1000, Effects.BeginWeakness, Effects.EndWeakness, null, 2),
-            new Effect("Poison", 1000, null, null, Effects.Poison, 3),
+            new Effect("Freeze", 1000, Effects.Freeze, 1),
+            new Effect("Weakness", 1000, Effects.Weakness, 6),
+            new Effect("Poison", 1000, Effects.Poison, 3),
         };
 
         public static List<Armour> helmets = new List<Armour>
