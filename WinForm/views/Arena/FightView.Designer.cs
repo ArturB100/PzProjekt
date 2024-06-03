@@ -48,6 +48,7 @@
             enemyArmorBar = new ProgressBar();
             playerArmorBar = new ProgressBar();
             endFightResultsPanel = new Panel();
+            fightResultsTextBox = new RichTextBox();
             exitBtn = new Button();
             enemyStaminaBar = new ProgressBar();
             enemyHpBar = new ProgressBar();
@@ -125,17 +126,17 @@
             // spellsList
             // 
             spellsList.FormattingEnabled = true;
-            spellsList.Location = new Point(1028, 52);
+            spellsList.Location = new Point(606, 94);
             spellsList.Name = "spellsList";
-            spellsList.Size = new Size(182, 33);
+            spellsList.Size = new Size(656, 33);
             spellsList.TabIndex = 10;
             spellsList.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // useSpellBtn
             // 
-            useSpellBtn.Location = new Point(894, 52);
+            useSpellBtn.Location = new Point(1021, 35);
             useSpellBtn.Name = "useSpellBtn";
-            useSpellBtn.Size = new Size(112, 34);
+            useSpellBtn.Size = new Size(241, 51);
             useSpellBtn.TabIndex = 9;
             useSpellBtn.Text = "użyj czaru";
             useSpellBtn.UseVisualStyleBackColor = true;
@@ -144,9 +145,9 @@
             // 
             // satisfyTheCrowdBtn
             // 
-            satisfyTheCrowdBtn.Location = new Point(592, 41);
+            satisfyTheCrowdBtn.Location = new Point(667, 12);
             satisfyTheCrowdBtn.Name = "satisfyTheCrowdBtn";
-            satisfyTheCrowdBtn.Size = new Size(258, 57);
+            satisfyTheCrowdBtn.Size = new Size(243, 34);
             satisfyTheCrowdBtn.TabIndex = 8;
             satisfyTheCrowdBtn.Text = "usatysfakcjonuj tłum";
             satisfyTheCrowdBtn.UseVisualStyleBackColor = true;
@@ -259,12 +260,21 @@
             // 
             // endFightResultsPanel
             // 
+            endFightResultsPanel.Controls.Add(fightResultsTextBox);
             endFightResultsPanel.Controls.Add(exitBtn);
             endFightResultsPanel.Location = new Point(492, 47);
             endFightResultsPanel.Name = "endFightResultsPanel";
             endFightResultsPanel.Size = new Size(839, 448);
             endFightResultsPanel.TabIndex = 7;
             endFightResultsPanel.Visible = false;
+            // 
+            // fightResultsTextBox
+            // 
+            fightResultsTextBox.Location = new Point(237, 74);
+            fightResultsTextBox.Name = "fightResultsTextBox";
+            fightResultsTextBox.Size = new Size(357, 241);
+            fightResultsTextBox.TabIndex = 1;
+            fightResultsTextBox.Text = "";
             // 
             // exitBtn
             // 
@@ -469,5 +479,6 @@
         private ToolTip weakAttackBtnToolTip;
         private RichTextBox helperTextBox;
         private TextBox crowdSatisfactionTextBox;
+        private RichTextBox fightResultsTextBox;
     }
 }

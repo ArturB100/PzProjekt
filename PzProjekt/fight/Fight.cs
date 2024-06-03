@@ -143,7 +143,7 @@ public abstract class Fight
 
     public abstract Result CheckFightResult();
     
-    public void EndFight(Result result)
+    public string EndFight(Result result)
     {
         if (result == Result.WON)
         {
@@ -155,11 +155,14 @@ public abstract class Fight
             {
                 Player.Parameters.PointsToInvest += 5;
             }
+            return $"money earned: {MoneyToGet} \n experience points earned {ExperiencePointsToGet}";
         }
         else if(result == Result.LOST)
         {
             Player.Parameters.Money -= MoneyToLose;
+            return $"money lost {MoneyToLose}";
         }
+        return "";
     } 
 
     public void Log (string msg)
@@ -240,67 +243,13 @@ public abstract class Fight
                 CharacterFightActions.SatisfyTheCrowd();
                 break;
             case 8:
-                CharacterFightActions.UseSpell(ChooseSpell());
+                CharacterFightActions.UseSpell(Player.Inventory.SelectedSpell);
                 break;
+               
         }
     }
    
-    private void waitForAction()
-    {
-        if (CharacterFightActions.IsAttackPossible(AttackType.STRONG))
-        {
-            Console.WriteLine("1. Strong Attack: " + CharacterFightActions.StrongAttackChance);
-            Console.WriteLine("2. Medium Attack: " + CharacterFightActions.MediumAttackChance);
-            Console.WriteLine("3. Weak Attack: " + CharacterFightActions.WeakAttackChance);
-        }
-        
-        Console.WriteLine("4. Move Towards Enemy");
-        Console.WriteLine("5. Move From Enemy");
-        Console.WriteLine("6. Sleep");
-        Console.WriteLine("7. Satisfy The Crowd");
-        Console.WriteLine("8. Use Spell");
-        
-        Console.WriteLine("Choose action: ");
-        int action;
-        
-        while (true)
-        {
-            try
-            {
-                action = int.Parse(Console.ReadLine());
-                break;
-            }
-            catch (Exception e) {}
-        }
-        
-        switch (action)
-        {
-            case 1:
-                CharacterFightActions.Attack(AttackType.STRONG);
-                break;
-            case 2:
-                CharacterFightActions.Attack(AttackType.MEDIUM);
-                break;
-            case 3:
-                CharacterFightActions.Attack(AttackType.WEAK);
-                break;
-            case 4:
-                CharacterFightActions.MoveTowardsEnemy();
-                break;
-            case 5:
-                CharacterFightActions.MoveFromEnemy();
-                break;
-            case 6:
-                CharacterFightActions.Sleep();
-                break;
-            case 7:
-                CharacterFightActions.SatisfyTheCrowd();
-                break;
-            case 8:
-                CharacterFightActions.UseSpell(ChooseSpell());
-                break;
-        }
-    }
+   
 
     private Spell ChooseSpell ()
     {

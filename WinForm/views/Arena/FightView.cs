@@ -148,7 +148,11 @@ namespace WinForm.views.Arena
 
         private void NextTurn(int playerDecision)
         {
-
+            CheckIfFightIsOver();
+            if (isFightOver)
+            {
+                return;
+            }
 
             Character activeCharacter = fight.ActiveCharacter;
 
@@ -176,11 +180,7 @@ namespace WinForm.views.Arena
             RefreshTurnIndicator();
             RefreshCrowdSatisfaction();
 
-            CheckIfFightIsOver();
-            if (isFightOver)
-            {
-                return;
-            }
+            
             decision = 0;
         }
 
@@ -199,22 +199,79 @@ namespace WinForm.views.Arena
             if (Result.WON == fightResult)
             {
                 ProgramCtx.SuccessMessage("Congratulations, you won!");
+                TakeDownCharacterHeadIfTournament(playerHeadPic);
             }
             else if (Result.LOST == fightResult)
             {
                 ProgramCtx.WarningMessage("Ooops, you lost!");
+                TakeDownCharacterHeadIfTournament(enemyHeadPic);
             }
             else
             {
                 return;
             }
-
+            Thread.Sleep(1000);
             isFightOver = true;
             endFightResultsPanel.Visible = true;
-            fight.EndFight(fightResult);
+            fightResultsTextBox.Text = fight.EndFight(fightResult);
         }
 
+        private int iteratorCounter = 10;
 
+        private void TakeDownCharacterHeadIfTournament (PictureBox pictureBox)
+        {
+            if (ProgramCtx.ActiveTournament != null)
+            {
+                TakeDownCharacterHead(pictureBox);
+            }
+        }
+
+        private void TakeDownCharacterHead (PictureBox pictureBox)
+        {
+            DistanceTwoCharactersFromEachOther();
+
+            pictureBox.Image = RotateImageBy90Degrees(pictureBox.Image);
+
+            for (int i = 0; i < iteratorCounter; i++)
+            {
+                pictureBox.Location = new System.Drawing.Point(pictureBox.Location.X, pictureBox.Location.Y + (138 / iteratorCounter));
+                pictureBox.BringToFront();
+                this.Refresh();
+                Thread.Sleep (1000 / iteratorCounter);
+            }
+            this.Refresh();
+
+        }
+
+        public void DistanceTwoCharactersFromEachOther ()
+        {
+            int distanceToMove = 140;
+            if (player.Parameters.Position < enemy.Parameters.Position)
+            {
+                distanceToMove = -distanceToMove;
+            }
+            playerPanel.Location = new System.Drawing.Point(playerPanel.Location.X + distanceToMove, playerPanel.Location.Y);
+            enemyPanel.Location = new System.Drawing.Point(enemyPanel.Location.X - distanceToMove, enemyPanel.Location.Y);
+            this.Refresh();
+
+        }
+
+        private Image RotateImageBy90Degrees(Image img)
+        {
+            Bitmap rotatedBmp = new Bitmap(img.Height, img.Width);
+
+            Graphics g = Graphics.FromImage(rotatedBmp);
+
+            g.TranslateTransform((float)rotatedBmp.Width / 2, (float)rotatedBmp.Height / 2);
+
+            g.RotateTransform(90);
+
+            g.TranslateTransform(-(float)img.Width / 2, -(float)img.Height / 2);
+
+            g.DrawImage(img, new Point(0, 0));
+
+            return rotatedBmp;
+        }
         private void nextRoundBtn_Click(object sender, EventArgs e)
         {
             //
