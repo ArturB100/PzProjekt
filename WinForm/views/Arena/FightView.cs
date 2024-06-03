@@ -21,6 +21,11 @@ namespace WinForm.views.Arena
         {
             InitializeComponent();
 
+
+
+
+
+
             this.player = fight.Player;
             this.enemy = fight.Enemy;
             this.fight = fight;
@@ -30,17 +35,19 @@ namespace WinForm.views.Arena
             fight.onActionDispatched += Fight_OnActionDispatched;
 
             Image playerImage = Image.FromFile(player.HeadImage != null ? player.HeadImage : "images/head.png");
-
             playerHeadPic.Image = playerImage;
             playerHeadPic.SizeMode = PictureBoxSizeMode.StretchImage;
 
 
             Image enemyImage = Image.FromFile(enemy.HeadImage != null ? enemy.HeadImage : "images/head.png");
-
             enemyHeadPic.Image = enemyImage;
             enemyHeadPic.SizeMode = PictureBoxSizeMode.StretchImage;
 
-
+            // start screen that disappears after a couple of seconds
+            new Thread(() =>
+            {
+                PrefightScreen(playerImage, enemyImage);
+            }).Start();
 
             playerPanel.Location = new Point(ConvertPositionOfCharacterToLocation(player.Parameters.Position), playerPanel.Location.Y);
             enemyPanel.Location = new Point(ConvertPositionOfCharacterToLocation(enemy.Parameters.Position), enemyPanel.Location.Y);
@@ -77,6 +84,17 @@ namespace WinForm.views.Arena
 
         }
 
+        private void PrefightScreen(Image playerImage, Image enemyImage)
+        {
+            PrefightPanel.Show();
+            PrefightPanel.BringToFront();
+            PrefightPlayerHeadPic.Image = playerImage;
+            PrefightenemyHeadPic.Image = enemyImage;
+            Thread.Sleep(2000);
+            PrefightPanel.Hide();
+
+        }
+
         private int decision = 0;
         private void SetDecision(int value)
         {
@@ -108,6 +126,8 @@ namespace WinForm.views.Arena
         private void Fight_OnActionDispatched(string msg)
         {
             logTextBox.Text += msg;
+            logTextBox.SelectionStart = logTextBox.Text.Length;
+            logTextBox.ScrollToCaret();
         }
 
 
@@ -180,7 +200,7 @@ namespace WinForm.views.Arena
             RefreshTurnIndicator();
             RefreshCrowdSatisfaction();
 
-            
+
             decision = 0;
         }
 
@@ -189,7 +209,7 @@ namespace WinForm.views.Arena
             crowdSatisfactionTextBox.Text = "satysfakcja tłumu " + fight.CrowdSatisfaction.ToString();
         }
 
-       
+
         private bool isFightOver = false;
 
         Result fightResult;
@@ -216,9 +236,8 @@ namespace WinForm.views.Arena
             fightResultsTextBox.Text = fight.EndFight(fightResult);
         }
 
-        private int iteratorCounter = 10;
 
-        private void TakeDownCharacterHeadIfTournament (PictureBox pictureBox)
+        private void TakeDownCharacterHeadIfTournament(PictureBox pictureBox)
         {
             if (ProgramCtx.ActiveTournament != null)
             {
@@ -226,10 +245,11 @@ namespace WinForm.views.Arena
             }
         }
 
-        private void TakeDownCharacterHead (PictureBox pictureBox)
+
+        private void TakeDownCharacterHead(PictureBox pictureBox)
         {
             DistanceTwoCharactersFromEachOther();
-
+            int iteratorCounter = 10;
             pictureBox.Image = RotateImageBy90Degrees(pictureBox.Image);
 
             for (int i = 0; i < iteratorCounter; i++)
@@ -237,13 +257,13 @@ namespace WinForm.views.Arena
                 pictureBox.Location = new System.Drawing.Point(pictureBox.Location.X, pictureBox.Location.Y + (138 / iteratorCounter));
                 pictureBox.BringToFront();
                 this.Refresh();
-                Thread.Sleep (1000 / iteratorCounter);
+                Thread.Sleep(1000 / iteratorCounter);
             }
             this.Refresh();
 
         }
 
-        public void DistanceTwoCharactersFromEachOther ()
+        public void DistanceTwoCharactersFromEachOther()
         {
             int distanceToMove = 140;
             if (player.Parameters.Position < enemy.Parameters.Position)
@@ -476,7 +496,7 @@ namespace WinForm.views.Arena
         {
             helperTextBox.Text = $"szansa trafienia: {fight.CharacterFightActions.GetAttackChanceToHit(AttackType.WEAK)} \n" +
                 $"czy atak możliwy: {fight.CharacterFightActions.IsAttackPossible(AttackType.WEAK)} \n";
-            
+
         }
 
         private void mediumAttackBtn_Hover(object sender, EventArgs e)
@@ -510,6 +530,11 @@ namespace WinForm.views.Arena
         }
 
         private void useSpellBtn_Hover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void crowdSatisfactionTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }

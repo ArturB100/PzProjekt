@@ -162,7 +162,7 @@ public abstract class Fight
             Player.Parameters.Money -= MoneyToLose;
             return $"money lost {MoneyToLose}";
         }
-        return "";
+        return $"money lost {MoneyToLose}";
     } 
 
     public void Log (string msg)

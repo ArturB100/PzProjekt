@@ -230,7 +230,7 @@ namespace WinForm
             new Weapon("Pilum", 57156, new CharacterStatistics() {Strength = 57}, WeaponType.Axe, 150, 400),
         };
 
-        public  static List<Character> bosses = new List<Character>()
+        public static List<Character> bosses = new List<Character>()
         {
             new Character(
                 "John The Butcher",
@@ -242,7 +242,7 @@ namespace WinForm
                 5,
                 axes[3],
                 new ArmourSet(new Armour(1, "Hat of the Pig", 0, ArmourType.Helmet, 25), null, leggings[0], null)
-            ),
+            ) { HeadImage = "images/przemek.png" },
             
             new Character(
                 "The Evil Ninja",

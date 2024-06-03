@@ -11,6 +11,8 @@ namespace WinForm
             backgroundImg.SendToBack();
             backgroundImg.BackgroundImageLayout = ImageLayout.Stretch;
             backgroundImg.SizeMode = PictureBoxSizeMode.StretchImage;
+
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -18,6 +20,7 @@ namespace WinForm
             ProgramCtx.ChangeView(new GameSelectView(ProgramCtx));
         }
 
+        
         private void FirstPage_Load(object sender, EventArgs e)
         {
 

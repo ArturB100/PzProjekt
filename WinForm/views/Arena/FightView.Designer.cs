@@ -66,6 +66,10 @@
             poddajSięToolStripMenuItem = new ToolStripMenuItem();
             weakAttackBtnToolTip = new ToolTip(components);
             crowdSatisfactionTextBox = new TextBox();
+            PrefightPanel = new Panel();
+            PrefightenemyHeadPic = new PictureBox();
+            PrefightPlayerHeadPic = new PictureBox();
+            pictureBox4 = new PictureBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             endFightResultsPanel.SuspendLayout();
@@ -77,6 +81,10 @@
             ((System.ComponentModel.ISupportInitialize)playerBodyPic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
+            PrefightPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PrefightenemyHeadPic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PrefightPlayerHeadPic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // playerInfoTextBox
@@ -326,7 +334,7 @@
             // 
             // enemyHeadPic
             // 
-            enemyHeadPic.Location = new Point(21, 22);
+            enemyHeadPic.Location = new Point(22, 22);
             enemyHeadPic.Name = "enemyHeadPic";
             enemyHeadPic.Size = new Size(78, 62);
             enemyHeadPic.TabIndex = 3;
@@ -353,7 +361,7 @@
             // 
             // playerHeadPic
             // 
-            playerHeadPic.Location = new Point(22, 22);
+            playerHeadPic.Location = new Point(26, 22);
             playerHeadPic.Name = "playerHeadPic";
             playerHeadPic.Size = new Size(78, 62);
             playerHeadPic.SizeMode = PictureBoxSizeMode.Zoom;
@@ -409,8 +417,47 @@
             // 
             crowdSatisfactionTextBox.Location = new Point(1221, 81);
             crowdSatisfactionTextBox.Name = "crowdSatisfactionTextBox";
-            crowdSatisfactionTextBox.Size = new Size(150, 31);
+            crowdSatisfactionTextBox.Size = new Size(227, 31);
             crowdSatisfactionTextBox.TabIndex = 8;
+            crowdSatisfactionTextBox.TextChanged += crowdSatisfactionTextBox_TextChanged;
+            // 
+            // PrefightPanel
+            // 
+            PrefightPanel.Controls.Add(PrefightenemyHeadPic);
+            PrefightPanel.Controls.Add(PrefightPlayerHeadPic);
+            PrefightPanel.Controls.Add(pictureBox4);
+            PrefightPanel.Location = new Point(3, 0);
+            PrefightPanel.Name = "PrefightPanel";
+            PrefightPanel.Size = new Size(1914, 1077);
+            PrefightPanel.TabIndex = 9;
+            // 
+            // PrefightenemyHeadPic
+            // 
+            PrefightenemyHeadPic.Location = new Point(1188, 251);
+            PrefightenemyHeadPic.Name = "PrefightenemyHeadPic";
+            PrefightenemyHeadPic.Size = new Size(428, 472);
+            PrefightenemyHeadPic.SizeMode = PictureBoxSizeMode.Zoom;
+            PrefightenemyHeadPic.TabIndex = 1;
+            PrefightenemyHeadPic.TabStop = false;
+            // 
+            // PrefightPlayerHeadPic
+            // 
+            PrefightPlayerHeadPic.Location = new Point(188, 251);
+            PrefightPlayerHeadPic.Name = "PrefightPlayerHeadPic";
+            PrefightPlayerHeadPic.Size = new Size(428, 472);
+            PrefightPlayerHeadPic.SizeMode = PictureBoxSizeMode.Zoom;
+            PrefightPlayerHeadPic.TabIndex = 0;
+            PrefightPlayerHeadPic.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(-3, 52);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(1914, 1022);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 0;
+            pictureBox4.TabStop = false;
             // 
             // FightView
             // 
@@ -424,6 +471,7 @@
             Controls.Add(panel1);
             Controls.Add(playerInfoTextBox);
             Controls.Add(menuStrip1);
+            Controls.Add(PrefightPanel);
             Name = "FightView";
             Size = new Size(1920, 1080);
             panel1.ResumeLayout(false);
@@ -438,6 +486,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            PrefightPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)PrefightenemyHeadPic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PrefightPlayerHeadPic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -480,5 +532,9 @@
         private RichTextBox helperTextBox;
         private TextBox crowdSatisfactionTextBox;
         private RichTextBox fightResultsTextBox;
+        private Panel PrefightPanel;
+        private PictureBox PrefightenemyHeadPic;
+        private PictureBox PrefightPlayerHeadPic;
+        private PictureBox pictureBox4;
     }
 }

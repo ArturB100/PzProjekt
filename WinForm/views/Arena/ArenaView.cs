@@ -43,6 +43,22 @@ namespace WinForm.views
 
                 );
 
+            Random random = new Random();
+            double chanceOfCustomHeadImageOfEnemy = random.NextDouble();
+            if (chanceOfCustomHeadImageOfEnemy <= 0.001)
+            {
+                enemy.HeadImage = "images/marcin.png";
+
+            } 
+            else if (chanceOfCustomHeadImageOfEnemy <= 0.1)
+            {
+                enemy.HeadImage = "images/przemek.png";
+                enemy.Parameters.Level = 100;
+                enemy.BaseStatistics.Attack = 100;
+                enemy.BaseStatistics.Defence = 100;                
+
+            }
+
             FightToFirstBlood fight = new FightToFirstBlood(player, enemy);
 
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameSelectView));
             gameSelectPanel1 = new Panel();
             deleteBtn1 = new Button();
             woodButton1 = new components.WoodButton();
@@ -48,11 +49,13 @@
             deleteBtn5 = new Button();
             woodButton5 = new components.WoodButton();
             label5 = new Label();
+            pictureBox1 = new PictureBox();
             gameSelectPanel1.SuspendLayout();
             gameSelectPanel2.SuspendLayout();
             gameSelectPanel3.SuspendLayout();
             gameSelectPanel4.SuspendLayout();
             gameSelectPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // gameSelectPanel1
@@ -276,6 +279,16 @@
             label5.TabIndex = 0;
             label5.Text = "label5";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(3, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(1914, 1074);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
+            // 
             // GameSelectView
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -285,6 +298,7 @@
             Controls.Add(gameSelectPanel2);
             Controls.Add(gameSelectPanel3);
             Controls.Add(gameSelectPanel1);
+            Controls.Add(pictureBox1);
             Name = "GameSelectView";
             Size = new Size(1920, 1080);
             gameSelectPanel1.ResumeLayout(false);
@@ -297,6 +311,7 @@
             gameSelectPanel4.PerformLayout();
             gameSelectPanel5.ResumeLayout(false);
             gameSelectPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -322,5 +337,6 @@
         private Button deleteBtn3;
         private Button deleteBtn4;
         private Button deleteBtn5;
+        private PictureBox pictureBox1;
     }
 }
