@@ -46,7 +46,9 @@ namespace WinForm.views.Arena
             // start screen that disappears after a couple of seconds
             new Thread(() =>
             {
-                PrefightScreen(playerImage, enemyImage);
+                
+                 PrefightScreen(playerImage, enemyImage);
+               
             }).Start();
 
             playerPanel.Location = new Point(ConvertPositionOfCharacterToLocation(player.Parameters.Position), playerPanel.Location.Y);
@@ -91,8 +93,23 @@ namespace WinForm.views.Arena
             PrefightPlayerHeadPic.Image = playerImage;
             PrefightenemyHeadPic.Image = enemyImage;
             Thread.Sleep(2000);
-            PrefightPanel.Hide();
+            HidePanel();
 
+        }
+
+        private void HidePanel()
+        {
+            if (PrefightPanel.InvokeRequired)
+            {
+                PrefightPanel.Invoke((MethodInvoker)delegate
+                {
+                    PrefightPanel.Visible = false;
+                });
+            }
+            else
+            {
+                PrefightPanel.Visible = false;
+            }
         }
 
         private int decision = 0;
@@ -473,7 +490,9 @@ namespace WinForm.views.Arena
         {
             isFightOver = true;
             endFightResultsPanel.Visible = true;
-            fight.EndFight(Result.LOST);
+            fightResult = Result.LOST;
+            fightResultsTextBox.Text = fight.EndFight(Result.LOST);
+            ProgramCtx.ActiveTournament = null;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

@@ -64,6 +64,9 @@ namespace WinForm.views
             DeleteAllBordersFromPictures();
             weapons = ProgramCtx.GameSetup.WeaponShop.GetItems().FindAll(w => w.WeaponType == weaponType);
 
+            inventoryItems.Clear();
+            inventoryItems.AddRange(weapons);
+
             FeedInventoryItemsListWithData();
 
             resultBox.Visible = true;

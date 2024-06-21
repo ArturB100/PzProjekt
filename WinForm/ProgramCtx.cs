@@ -1,13 +1,14 @@
 
 using PzProjekt;
 using System.Diagnostics;
+using System.Media;
 
 namespace WinForm
 {
     public partial class ProgramCtx : Form
     {
 
-    
+        public SoundPlayer Music { get; set; }
 
         public PlayableCharacters PlayableCharacters { get; set; } = new PlayableCharacters();
 
@@ -22,7 +23,8 @@ namespace WinForm
             InitializeComponent();
             LoadSavedGame();
             GameSetup = new GameSetup();
-
+            Music = new SoundPlayer("sound/The-Elder-Scrolls-IV-Oblivion-Soundtrack-04-Harvest-Dawn.wav");
+            Music.Play();
             this.ChangeView(new FirstPage(this));
 
            

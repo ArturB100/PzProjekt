@@ -29,8 +29,16 @@ namespace WinForm.views
 
         private void trainingFightBtn_Click_1(object sender, EventArgs e)
         {
-            DataFeeder dataFeeder = ProgramCtx.GameSetup.DataFeeder;
-            Character enemy = CharacterFactory.CreateRandomCharacterBasedOnLevel(
+            if (player.Inventory.ArmourSet.MaxArmorPoints == 0)
+            {
+                ProgramCtx.WarningMessage("Musisz mieć na sobie pancerz, aby wejść do tej walki");
+                return;
+            }
+            Character enemy = null;
+
+            while (enemy == null || enemy.Inventory.ArmourSet.MaxArmorPoints == 0)
+            {
+                enemy = CharacterFactory.CreateRandomCharacterBasedOnLevel(
                 player.Parameters.Level,
                 DataFeeder.swords,
                 DataFeeder.axes,
@@ -42,6 +50,7 @@ namespace WinForm.views
                 DataFeeder.effects
 
                 );
+            }
 
             Random random = new Random();
             double chanceOfCustomHeadImageOfEnemy = random.NextDouble();

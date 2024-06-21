@@ -107,6 +107,10 @@ namespace WinForm.views.shops
 
             FeedInventoryItemsListWithData();
 
+            inventoryItems.Clear();
+            inventoryItems.AddRange(armours);
+                       
+
             resultBox.DataSource = armours.GetStringListFromInventoryList();
         }
 
