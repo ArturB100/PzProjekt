@@ -177,9 +177,10 @@ public abstract class Fight
 
         if (ActiveCharacter.ActiveEffect != null)
         {
-            if(ActiveCharacter.ActiveEffect.TurnsLeft == 0)
+            if(ActiveCharacter.ActiveEffect.TurnsLeft <= 0)
             {
                 Log("Effect has ended! \n");
+                ActiveCharacter.ActiveEffect = null;
                 Console.WriteLine("Effect has ended!");
             }
             else

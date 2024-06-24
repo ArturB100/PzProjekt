@@ -119,12 +119,7 @@ namespace WinForm.views.Arena
 
         }
         private int Fight_OnPlayerTurn()
-        {
-
-            while (decision == 0)
-            {
-                //Thread.Sleep(100);
-            }
+        {         
 
             return decision;
         }
@@ -236,12 +231,12 @@ namespace WinForm.views.Arena
             if (Result.WON == fightResult)
             {
                 ProgramCtx.SuccessMessage("Congratulations, you won!");
-                TakeDownCharacterHeadIfTournament(playerHeadPic);
+                TakeDownCharacterHeadIfTournament(enemyHeadPic);
             }
             else if (Result.LOST == fightResult)
             {
                 ProgramCtx.WarningMessage("Ooops, you lost!");
-                TakeDownCharacterHeadIfTournament(enemyHeadPic);
+                TakeDownCharacterHeadIfTournament(playerHeadPic);
             }
             else
             {
@@ -282,14 +277,34 @@ namespace WinForm.views.Arena
 
         public void DistanceTwoCharactersFromEachOther()
         {
-            int distanceToMove = 140;
-            if (player.Parameters.Position < enemy.Parameters.Position)
+
+            if (player.Parameters.Position < 100 || player.Parameters.Position > 900 || 
+                enemy.Parameters.Position < 100 || enemy.Parameters.Position > 900
+               )
             {
-                distanceToMove = -distanceToMove;
+                int distanceFromEachOther = 100;
+                playerPanel.Location = new System.Drawing.Point(
+                        player.Parameters.Position < enemy.Parameters.Position ? 500 - distanceFromEachOther : 500 + distanceFromEachOther, 
+                        playerPanel.Location.Y);
+
+                enemyPanel.Location = new System.Drawing.Point(
+                        player.Parameters.Position > enemy.Parameters.Position ? 500 - distanceFromEachOther : 500 + distanceFromEachOther,
+                        enemyPanel.Location.Y);
+            } 
+            else
+            {
+                int distanceToMove = 140;
+                if (player.Parameters.Position < enemy.Parameters.Position)
+                {
+                    distanceToMove = -distanceToMove;
+                }
+                playerPanel.Location = new System.Drawing.Point(playerPanel.Location.X + distanceToMove, playerPanel.Location.Y);
+                enemyPanel.Location = new System.Drawing.Point(enemyPanel.Location.X - distanceToMove, enemyPanel.Location.Y);
             }
-            playerPanel.Location = new System.Drawing.Point(playerPanel.Location.X + distanceToMove, playerPanel.Location.Y);
-            enemyPanel.Location = new System.Drawing.Point(enemyPanel.Location.X - distanceToMove, enemyPanel.Location.Y);
+
             this.Refresh();
+
+
 
         }
 
