@@ -207,6 +207,26 @@ public abstract class Fight
         else if (ActiveCharacter == Player)
         {
             int moveChoosenByPlayer = OnPlayerTurn.Invoke();
+            FileService.WriteToFile(
+                moveChoosenByPlayer, 
+                this.DistanceBetweenCharacters, 
+                Player.Parameters.ActualStamina,
+                Player.Parameters.MaxStamina,
+                Player.Parameters.ActualHP,
+                Player.Parameters.MaxHP,
+                Player.BaseStatistics.Stamina,
+                Player.BaseStatistics.Magica,
+                Player.BaseStatistics.Vitality,
+                Player.BaseStatistics.Charisma,
+                Player.BaseStatistics.Agility,
+                Player.BaseStatistics.Attack,
+                Player.BaseStatistics.Defence,
+
+                Enemy.Parameters.ActualStamina,
+                Enemy.Parameters.MaxStamina,
+                Enemy.Parameters.ActualHP,
+                Enemy.Parameters.MaxHP
+            );
             DoAction(moveChoosenByPlayer);
         }
         else
