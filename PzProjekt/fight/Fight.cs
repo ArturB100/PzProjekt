@@ -177,7 +177,7 @@ public abstract class Fight
         onActionDispatched?.Invoke(msg);
     }
     
-    public void NextTurn()
+    public async Task NextTurn()
     {
         Console.WriteLine("It's " + ActiveCharacter.Name + "'s turn!");
         Log("It's " + ActiveCharacter.Name + "'s turn! \n");
@@ -218,7 +218,7 @@ public abstract class Fight
         }
         else
         {
-            EnemyBehavior.MakeMove(botAction);
+            await EnemyBehavior.MakeMove(botAction);
         }
 
         ChangeActiveCharacter();

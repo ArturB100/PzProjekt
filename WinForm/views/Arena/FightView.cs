@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace WinForm.views.Arena
         public FightView(ProgramCtx programCtx, Fight fight) : base(programCtx, false)
         {
             InitializeComponent();
-
+            ProgramCtx.SoundPlayer.PlayFightMusic();
 
 
 
@@ -177,8 +178,13 @@ namespace WinForm.views.Arena
 
         }
 
-        private void NextTurn(int playerDecision)
+        private async Task NextTurn(int playerDecision)
         {
+            int playerPrevHp = player.Parameters.ActualHP;  
+            int enemyPrevHp = enemy.Parameters.ActualHP;
+            int playerPrevArmour = player.Inventory.ArmourSet.ActualArmorPoints;
+            int enemyPrevArmour = enemy.Inventory.ArmourSet.ActualArmorPoints;
+
             CheckIfFightIsOver();
             if (isFightOver)
             {
@@ -188,7 +194,7 @@ namespace WinForm.views.Arena
             Character activeCharacter = fight.ActiveCharacter;
 
             SetDecision(playerDecision);
-            fight.NextTurn();
+            await fight.NextTurn();
 
             if (activeCharacter == player)
             {
@@ -197,7 +203,7 @@ namespace WinForm.views.Arena
                 RefreshControlButtons();
                 RefreshEnemyText();
                 // recursive call 
-                NextTurn(0);
+                await NextTurn(0);
             }
             else if (activeCharacter == enemy)
             {
@@ -212,12 +218,35 @@ namespace WinForm.views.Arena
             RefreshCrowdSatisfaction();
 
 
+            if (activeCharacter == player)
+            {
+                Debug.WriteLine(enemyPrevArmour);
+                Debug.WriteLine(enemy.Inventory.ArmourSet.ActualArmorPoints);
+            }
+
+            if (
+                activeCharacter == enemy && (
+                    playerPrevHp > player.Parameters.ActualHP
+                    ||                    
+                    playerPrevArmour > player.Inventory.ArmourSet.ActualArmorPoints                   
+                )
+                ||
+                activeCharacter == player && (
+                   enemyPrevHp > enemy.Parameters.ActualHP
+                    ||
+                    enemyPrevArmour > enemy.Inventory.ArmourSet.ActualArmorPoints
+                )
+
+            )
+            {
+                ProgramCtx.SoundPlayer.PlaySwordHit();
+            }
             decision = 0;
         }
 
         private void RefreshCrowdSatisfaction()
         {
-            crowdSatisfactionTextBox.Text = "satysfakcja tłumu " + fight.CrowdSatisfaction.ToString();
+            crowdSatisfactionTextBox.Text = "satysfakcja tłumu " + fight.CrowdSatisfaction.ToString();            
         }
 
 
@@ -231,6 +260,7 @@ namespace WinForm.views.Arena
             {
                 SuccessMessage("Congratulations, you won!");
                 TakeDownCharacterHeadIfTournament(enemyHeadPic);
+                ProgramCtx.SoundPlayer.PlayGameBonus();
             }
             else if (Result.LOST == fightResult)
             {
@@ -243,7 +273,7 @@ namespace WinForm.views.Arena
             }
             Thread.Sleep(1000);
             isFightOver = true;
-            endFightResultsPanel.Visible = true;
+            endFightResultsPanel.Visible = true;            
             fightResultsTextBox.Text = fight.EndFight(fightResult);
         }
 
@@ -252,6 +282,7 @@ namespace WinForm.views.Arena
         {
             if (ProgramCtx.ActiveTournament != null)
             {
+                ProgramCtx.SoundPlayer.PlayDeath();
                 TakeDownCharacterHead(pictureBox);
             }
         }

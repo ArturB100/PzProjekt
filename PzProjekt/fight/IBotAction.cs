@@ -9,7 +9,7 @@ namespace PzProjekt.fight
 {
     public interface IBotAction
     {
-        public void MakeMove(Fight fight);
+        public Task MakeMove(Fight fight);
         public string NameOfPlugin ();
     }
 }

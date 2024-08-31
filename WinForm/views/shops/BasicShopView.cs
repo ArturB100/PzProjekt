@@ -27,7 +27,7 @@ namespace WinForm.views.shops
         public BasicShopView(ProgramCtx programCtx) : base(programCtx, true)
         {
             InitializeComponent();
-
+            ProgramCtx.SoundPlayer.PlayShopEnter();
             resultBox = listBox;
             UpdateCharacterStatisticsTextBox();
         }
@@ -74,6 +74,7 @@ namespace WinForm.views.shops
             if (canBeBuy)
             {
                 OnBuyClick?.Invoke();
+                ProgramCtx.SoundPlayer.PlayCoinsSpent();
             }
 
             UpdateCharacterStatisticsTextBox();

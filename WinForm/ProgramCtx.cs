@@ -10,8 +10,8 @@ namespace WinForm
     public partial class ProgramCtx : Form
     {
 
-        public SoundPlayer Music { get; set; }
 
+        public AppSoundPlayer SoundPlayer { get; set; }
         public PlayableCharacters PlayableCharacters { get; set; } = new PlayableCharacters();
 
         public Character SelectedCharacter { get; set; } = null;
@@ -28,8 +28,7 @@ namespace WinForm
             InitializeComponent();
             LoadSavedGame();
             GameSetup = new GameSetup();
-            Music = new SoundPlayer("sound/The-Elder-Scrolls-IV-Oblivion-Soundtrack-04-Harvest-Dawn.wav");
-            Music.Play();
+            SoundPlayer = new AppSoundPlayer();
             this.ChangeView(new FirstPage(this));
             this.ReadPlugins();
            
@@ -42,8 +41,6 @@ namespace WinForm
             foreach (FileInfo file in directory.GetFiles())
             {
                 Assembly assembly = Assembly.LoadFrom(file.FullName);
-                Debug.WriteLine(assembly);
-                Debug.WriteLine(assembly.GetTypes());
                 Type[] types = assembly.GetTypes()
                     .Where(t => t.IsClass && t.GetInterface(nameof(IBotAction)) != null)
                     .ToArray();

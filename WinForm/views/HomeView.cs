@@ -17,6 +17,7 @@ namespace WinForm.views
         public HomeView(ProgramCtx form) : base(form, false)
         {
             InitializeComponent();
+            ProgramCtx.SoundPlayer.PlayThemeSong();
             foreach (var item in ProgramCtx.BotActions)
             {
                 ToolStripMenuItem menuItem = new ToolStripMenuItem(item.NameOfPlugin());

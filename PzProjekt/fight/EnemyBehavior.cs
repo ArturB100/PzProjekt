@@ -13,11 +13,11 @@ public class EnemyBehavior
         _random = new Random();
     }
 
-    public void MakeMove(IBotAction? botAction)
+    public async Task MakeMove(IBotAction? botAction)
     {
         if (botAction != null)
         {
-            botAction.MakeMove(_fight);
+            await botAction.MakeMove(_fight);
             return;
         }
 

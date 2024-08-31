@@ -19,6 +19,7 @@ namespace WinForm.views.shops
         public ChurchView(ProgramCtx programCtx) : base(programCtx, true)
         {
             InitializeComponent();
+            ProgramCtx.SoundPlayer.PlayMagicShop();
             character = ProgramCtx.SelectedCharacter;
             characterStatistics = character.BaseStatistics;
             PrintCurrentCharacterStatistics();
