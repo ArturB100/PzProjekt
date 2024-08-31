@@ -57,8 +57,8 @@
             messageLabel.BackColor = SystemColors.ControlLight;
             messageLabel.Location = new Point(312, 172);
             messageLabel.Name = "messageLabel";
-            messageLabel.Padding = new Padding(10);
-            messageLabel.Size = new Size(79, 45);
+            messageLabel.Padding = new Padding(50, 10, 50, 10);
+            messageLabel.Size = new Size(159, 45);
             messageLabel.TabIndex = 1;
             messageLabel.Text = "label1";
             messageLabel.Visible = false;
