@@ -42,7 +42,7 @@ namespace WinForm.views
         private void WeaponsmithView_OnBuyClick()
         {
             ProgramCtx.GameSetup.WeaponShop.BuyItem(ProgramCtx.SelectedCharacter, selectedWeapon);
-            ProgramCtx.SuccessMessage("przedmiot zostal zakupiony");
+            SuccessMessage("przedmiot zostal zakupiony");
         }
 
         private void swordPic_Click(object sender, EventArgs e)

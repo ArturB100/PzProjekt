@@ -17,6 +17,15 @@ namespace WinForm.views
         public HomeView(ProgramCtx form) : base(form, false)
         {
             InitializeComponent();
+            foreach (var item in ProgramCtx.BotActions)
+            {
+                ToolStripMenuItem menuItem = new ToolStripMenuItem(item.NameOfPlugin());
+                menuItem.Click += (sender, e) =>
+                {
+                    ProgramCtx.SelectedBotActions = item;
+                };
+                pluginsToolStripMenuItem.DropDownItems.Add(menuItem);
+            }
         }
 
 

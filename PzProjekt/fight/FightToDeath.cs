@@ -1,8 +1,10 @@
-﻿namespace PzProjekt;
+﻿using PzProjekt.fight;
+
+namespace PzProjekt;
 
 public class FightToDeath : Fight
 {
-    public FightToDeath(Character player, Character enemy) : base(player, enemy) { }
+    public FightToDeath(Character player, Character enemy, IBotAction? botAction) : base(player, enemy, botAction) { }
     
     public override Result CheckFightResult()
     {

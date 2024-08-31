@@ -41,6 +41,7 @@
             wyjdzToolStripMenuItem = new ToolStripMenuItem();
             currentCharacterDetailsBtn = new Button();
             EffectShopBtn = new Button();
+            pluginsToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -108,7 +109,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem, pluginsToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1920, 33);
@@ -125,14 +126,14 @@
             // zapiszToolStripMenuItem
             // 
             zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
-            zapiszToolStripMenuItem.Size = new Size(162, 34);
+            zapiszToolStripMenuItem.Size = new Size(270, 34);
             zapiszToolStripMenuItem.Text = "zapisz";
             zapiszToolStripMenuItem.Click += zapiszToolStripMenuItem_Click;
             // 
             // wyjdzToolStripMenuItem
             // 
             wyjdzToolStripMenuItem.Name = "wyjdzToolStripMenuItem";
-            wyjdzToolStripMenuItem.Size = new Size(162, 34);
+            wyjdzToolStripMenuItem.Size = new Size(270, 34);
             wyjdzToolStripMenuItem.Text = "wyjdz";
             wyjdzToolStripMenuItem.Click += wyjdzToolStripMenuItem_Click;
             // 
@@ -155,6 +156,12 @@
             EffectShopBtn.Text = "effects shop";
             EffectShopBtn.UseVisualStyleBackColor = true;
             EffectShopBtn.Click += EffectShopBtn_Click;
+            // 
+            // pluginsToolStripMenuItem
+            // 
+            pluginsToolStripMenuItem.Name = "pluginsToolStripMenuItem";
+            pluginsToolStripMenuItem.Size = new Size(85, 29);
+            pluginsToolStripMenuItem.Text = "Plugins";
             // 
             // HomeView
             // 
@@ -192,5 +199,6 @@
         private ToolStripMenuItem wyjdzToolStripMenuItem;
         private Button currentCharacterDetailsBtn;
         private Button EffectShopBtn;
+        private ToolStripMenuItem pluginsToolStripMenuItem;
     }
 }

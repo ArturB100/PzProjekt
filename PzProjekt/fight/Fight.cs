@@ -1,4 +1,5 @@
 ﻿using PzProjekt.exceptions;
+using PzProjekt.fight;
 using System;
 using System.Diagnostics;
 
@@ -24,6 +25,30 @@ public abstract class Fight
     protected OnCharacterMove onPlayerMove;
     protected OnCharacterMove onEnemyMove;
     public event OnActionDispatched onActionDispatched;
+
+
+    public Fight(Character player, Character enemy, IBotAction? botAction)
+    {
+        Player = player;
+        Enemy = enemy;
+
+        player.Refill();
+        enemy.Refill();
+
+        Console.WriteLine(player.Parameters.MaxStamina);
+
+        player.Parameters.ActualStamina = player.Parameters.MaxStamina;
+
+        player.Parameters.Position = InitialPlayerPosition;
+        enemy.Parameters.Position = InitialEnemyPosition;
+
+        _activeCharacter = player;
+        CharacterFightActions = new CharacterFightActions(this);
+        EnemyBehavior = new EnemyBehavior(this);
+        CrowdSatisfaction = CalcBaseCrowdSatisfaction();
+
+        this.botAction = botAction;
+    }
 
     public void ChangeActiveCharacterPosition(int newPosition)
     {
@@ -114,27 +139,9 @@ public abstract class Fight
     {
         get { return Math.Abs(Player.Parameters.Position - Enemy.Parameters.Position); }
     }
-    
-    public Fight(Character player, Character enemy)
-    {
-        Player = player;
-        Enemy = enemy;
-        
-        player.Refill();
-        enemy.Refill();
-        
-        Console.WriteLine(player.Parameters.MaxStamina);
-        
-        player.Parameters.ActualStamina = player.Parameters.MaxStamina;
-        
-        player.Parameters.Position = InitialPlayerPosition;
-        enemy.Parameters.Position = InitialEnemyPosition;
-        
-        _activeCharacter = player;
-        CharacterFightActions = new CharacterFightActions(this);
-        EnemyBehavior = new EnemyBehavior(this);
-        CrowdSatisfaction = CalcBaseCrowdSatisfaction();
-    }
+
+    private IBotAction botAction;
+   
 
     private int CalcBaseCrowdSatisfaction()
     {
@@ -211,7 +218,7 @@ public abstract class Fight
         }
         else
         {
-            EnemyBehavior.MakeMove();
+            EnemyBehavior.MakeMove(botAction);
         }
 
         ChangeActiveCharacter();

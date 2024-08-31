@@ -59,15 +59,15 @@ namespace WinForm.views.shops
             }
             catch (NoEnoughMoneyException ex)
             {
-                ProgramCtx.ErrorMessage(Error.NOT_ENOUGHT_MONEY);
+                ErrorMessage("Zbyt mało pieniędzy");
             }
             catch (TooWeakLevelException ex)
             {
-                ProgramCtx.ErrorMessage(Error.TOO_WEAK_LEVEL);
+                ErrorMessage("Zbyt słaby level");
             }
             catch (TooWeakStatisticsException)
             {
-                ProgramCtx.ErrorMessage(Error.TOO_WEAK_STATISTICS);
+                ErrorMessage("Zbyt słabe statystyki");
             }
 
 

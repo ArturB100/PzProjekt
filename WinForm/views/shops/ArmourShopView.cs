@@ -34,7 +34,7 @@ namespace WinForm.views.shops
         private void ArmourShopView_OnBuyClick()
         {
             ProgramCtx.GameSetup.ArmourShop.BuyItem(ProgramCtx.SelectedCharacter, selectedArmour);
-            ProgramCtx.SuccessMessage("przedmiot zostal zakupiony");
+            SuccessMessage("przedmiot zostal zakupiony");
         }
 
         public override bool CheckIfSelectedItemCanBeBought()

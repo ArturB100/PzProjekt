@@ -30,6 +30,7 @@
         {
             menu = new MenuStrip();
             stronaGlownaToolStripMenuItem = new ToolStripMenuItem();
+            messageLabel = new Label();
             menu.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,13 +51,25 @@
             stronaGlownaToolStripMenuItem.Text = "Strona glowna";
             stronaGlownaToolStripMenuItem.Click += stronaGlownaToolStripMenuItem_Click;
             // 
+            // messageLabel
+            // 
+            messageLabel.AutoSize = true;
+            messageLabel.BackColor = SystemColors.ControlLight;
+            messageLabel.Location = new Point(312, 172);
+            messageLabel.Name = "messageLabel";
+            messageLabel.Padding = new Padding(10);
+            messageLabel.Size = new Size(79, 45);
+            messageLabel.TabIndex = 1;
+            messageLabel.Text = "label1";
+            messageLabel.Visible = false;
+            // 
             // UserControlBase
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(messageLabel);
             Controls.Add(menu);
             Name = "UserControlBase";
-
             Size = new Size(1920, 1080);
             menu.ResumeLayout(false);
             menu.PerformLayout();
@@ -68,5 +81,6 @@
 
         private MenuStrip menu;
         private ToolStripMenuItem stronaGlownaToolStripMenuItem;
+        private Label messageLabel;
     }
 }

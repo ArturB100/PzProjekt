@@ -127,7 +127,6 @@ namespace WinForm.views.Arena
         private void Fight_OnPlayerMove(int prevPos, int actualPos)
         {
             MoveCharacterAnimation(playerPanel, prevPos, actualPos);
-            //ProgramCtx.WarningMessage("player move");
         }
 
         private void Fight_OnEnemyMove(int prevPos, int actualPos)
@@ -230,12 +229,12 @@ namespace WinForm.views.Arena
             fightResult = fight.CheckFightResult();
             if (Result.WON == fightResult)
             {
-                ProgramCtx.SuccessMessage("Congratulations, you won!");
+                SuccessMessage("Congratulations, you won!");
                 TakeDownCharacterHeadIfTournament(enemyHeadPic);
             }
             else if (Result.LOST == fightResult)
             {
-                ProgramCtx.WarningMessage("Ooops, you lost!");
+                WarningMessage("Ooops, you lost!");
                 TakeDownCharacterHeadIfTournament(playerHeadPic);
             }
             else
@@ -441,7 +440,7 @@ namespace WinForm.views.Arena
 
         private void DisplayOperationImpossible()
         {
-            ProgramCtx.WarningMessage("Operacja nie mozliwa");
+            WarningMessage("Operacja nie mozliwa");
         }
 
         private void mediumAttackbtn_Click(object sender, EventArgs e)
@@ -469,7 +468,7 @@ namespace WinForm.views.Arena
         {
             if (player.Inventory.SelectedSpell == null)
             {
-                ProgramCtx.WarningMessage("najpierw musisz wybrac czar");
+                WarningMessage("najpierw musisz wybrac czar");
             }
             else
             {
@@ -515,7 +514,7 @@ namespace WinForm.views.Arena
             int index = spellsList.SelectedIndex;
             if (player.Inventory.AvailableSpells.Count <= index)
             {
-                ProgramCtx.WarningMessage("Nie ma takiego czaru");
+                WarningMessage("Nie ma takiego czaru");
                 RefreshSpellsList();
             }
             else

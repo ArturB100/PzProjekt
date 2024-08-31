@@ -1,4 +1,6 @@
-﻿namespace PzProjekt;
+﻿using PzProjekt.fight;
+
+namespace PzProjekt;
 
 public class EnemyBehavior
 {
@@ -11,8 +13,14 @@ public class EnemyBehavior
         _random = new Random();
     }
 
-    public void MakeMove()
+    public void MakeMove(IBotAction? botAction)
     {
+        if (botAction != null)
+        {
+            botAction.MakeMove(_fight);
+            return;
+        }
+
         if (_fight.Enemy.Inventory.AvailableSpells.Count > 0 && _random.Next(4) == 0)
         {
             Spell spell = _fight.Enemy.Inventory.AvailableSpells[_random.Next(_fight.Enemy.Inventory.AvailableSpells.Count)];
@@ -51,11 +59,6 @@ public class EnemyBehavior
                     attackType = (AttackType)_random.Next(Enum.GetNames(typeof(AttackType)).Length);
                 }
             }
-
-
-
-            
-
         }
         else
         {

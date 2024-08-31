@@ -1,7 +1,9 @@
 
 using PzProjekt;
+using PzProjekt.fight;
 using System.Diagnostics;
 using System.Media;
+using System.Reflection;
 
 namespace WinForm
 {
@@ -18,6 +20,9 @@ namespace WinForm
 
         public Tournament ActiveTournament { get; set; }
 
+        public List<IBotAction> BotActions { get; set; } = new List<IBotAction> ();
+        public IBotAction? SelectedBotActions { get; set; } = null;
+
         public ProgramCtx()
         {
             InitializeComponent();
@@ -26,8 +31,35 @@ namespace WinForm
             Music = new SoundPlayer("sound/The-Elder-Scrolls-IV-Oblivion-Soundtrack-04-Harvest-Dawn.wav");
             Music.Play();
             this.ChangeView(new FirstPage(this));
-
+            this.ReadPlugins();
            
+        }
+
+        public void ReadPlugins ()
+        {
+            DirectoryInfo directory = new DirectoryInfo("plugins/");
+            Debug.WriteLine(directory.FullName);
+            foreach (FileInfo file in directory.GetFiles())
+            {
+                Assembly assembly = Assembly.LoadFrom(file.FullName);
+                Debug.WriteLine(assembly);
+                Debug.WriteLine(assembly.GetTypes());
+                Type[] types = assembly.GetTypes()
+                    .Where(t => t.IsClass && t.GetInterface(nameof(IBotAction)) != null)
+                    .ToArray();
+
+                foreach (Type type in types)
+                {
+                    Object? obj = Activator.CreateInstance(type);
+                    if (obj != null)
+                    {
+                        IBotAction plugin = (IBotAction)obj;
+                        BotActions.Add(plugin);
+                    }
+
+
+                }
+            }
         }
 
         public void SaveGame ()

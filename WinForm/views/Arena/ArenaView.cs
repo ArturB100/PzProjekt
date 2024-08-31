@@ -31,7 +31,7 @@ namespace WinForm.views
         {
             if (player.Inventory.ArmourSet.MaxArmorPoints == 0)
             {
-                ProgramCtx.WarningMessage("Musisz mieć na sobie pancerz, aby wejść do tej walki");
+                WarningMessage("Musisz mieć na sobie pancerz, aby wejść do tej walki");
                 return;
             }
             Character enemy = null;
@@ -68,8 +68,7 @@ namespace WinForm.views
 
             }
 
-            FightToFirstBlood fight = new FightToFirstBlood(player, enemy);
-
+            FightToFirstBlood fight = new FightToFirstBlood(player, enemy, ProgramCtx.SelectedBotActions);
 
             ProgramCtx.ChangeView(new FightView(ProgramCtx, fight));
 
@@ -79,7 +78,7 @@ namespace WinForm.views
         {
             if (selectedTournament == null)
             {
-                ProgramCtx.WarningMessage("Wybierz turniej");
+                WarningMessage("Wybierz turniej");
                 return;
             }
             ProgramCtx.ActiveTournament = selectedTournament;

@@ -47,7 +47,7 @@ namespace WinForm.views.shops
             } 
             catch (NoPointsToInvestException ex)
             {
-                ProgramCtx.WarningMessage("brak punktów do wydania");
+                WarningMessage("brak punktów do wydania");
             }
             PrintCurrentCharacterStatistics();
         }
