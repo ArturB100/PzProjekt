@@ -17,6 +17,25 @@ namespace WinForm.views
         public HomeView(ProgramCtx form) : base(form, false)
         {
             InitializeComponent();
+            ProgramCtx.SoundPlayer.PlayThemeSong();
+            ToolStripMenuItem menuItemTemp = new ToolStripMenuItem("default");
+            menuItemTemp.Click += (sender, e) =>
+            {
+                ProgramCtx.SelectedBotActions = null;
+                selectedAiLabel.Text = "Default";
+            };
+            pluginsToolStripMenuItem.DropDownItems.Add(menuItemTemp);
+
+            foreach (var item in ProgramCtx.BotActions)
+            {
+                ToolStripMenuItem menuItem = new ToolStripMenuItem(item.NameOfPlugin());
+                menuItem.Click += (sender, e) =>
+                {
+                    ProgramCtx.SelectedBotActions = item;
+                    selectedAiLabel.Text = item.NameOfPlugin();
+                };
+                pluginsToolStripMenuItem.DropDownItems.Add(menuItem);
+            }
         }
 
 
@@ -67,6 +86,11 @@ namespace WinForm.views
         private void arenaBtn_Click(object sender, EventArgs e)
         {
             ProgramCtx.ChangeView(new ArenaView(ProgramCtx));
+        }
+
+        private void pluginsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

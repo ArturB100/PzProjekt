@@ -47,7 +47,7 @@ public class Tournament
     
     public FightToDeath CreateNextFightToDeath(Character player)
     {
-        return new FightToDeath(player, NextEnemy);
+        return new FightToDeath(player, NextEnemy, null);
     }
 
     public override string ToString()

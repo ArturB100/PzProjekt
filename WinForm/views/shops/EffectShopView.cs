@@ -43,12 +43,12 @@ namespace WinForm.views.shops
             try
             {
                 ProgramCtx.GameSetup.EffectShop.BuyItem(ProgramCtx.SelectedCharacter, SelectedEffect);
-                ProgramCtx.SuccessMessage("przedmiot zostal zakupiony");
+                SuccessMessage("przedmiot zostal zakupiony");
 
             }
             catch (NoWeaponInInventoryException ex)
             {
-                ProgramCtx.WarningMessage("musisz miec bron, aby to kupic");
+                WarningMessage("musisz miec bron, aby to kupic");
             }
         }
 

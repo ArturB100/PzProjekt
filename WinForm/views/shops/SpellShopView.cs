@@ -38,7 +38,7 @@ namespace WinForm.views.shops
         {
 
             ProgramCtx.GameSetup.SpellShop.BuyItem(ProgramCtx.SelectedCharacter, SelectedSpell);
-            ProgramCtx.SuccessMessage("przedmiot zostal zakupiony");
+            SuccessMessage("przedmiot zostal zakupiony");
 
         }
 

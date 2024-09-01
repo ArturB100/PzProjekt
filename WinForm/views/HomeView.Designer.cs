@@ -39,8 +39,11 @@
             menuToolStripMenuItem = new ToolStripMenuItem();
             zapiszToolStripMenuItem = new ToolStripMenuItem();
             wyjdzToolStripMenuItem = new ToolStripMenuItem();
+            pluginsToolStripMenuItem = new ToolStripMenuItem();
             currentCharacterDetailsBtn = new Button();
             EffectShopBtn = new Button();
+            selectedAiLabel = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -108,7 +111,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem, pluginsToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1920, 33);
@@ -136,6 +139,13 @@
             wyjdzToolStripMenuItem.Text = "wyjdz";
             wyjdzToolStripMenuItem.Click += wyjdzToolStripMenuItem_Click;
             // 
+            // pluginsToolStripMenuItem
+            // 
+            pluginsToolStripMenuItem.Name = "pluginsToolStripMenuItem";
+            pluginsToolStripMenuItem.Size = new Size(53, 29);
+            pluginsToolStripMenuItem.Text = "AI..";
+            pluginsToolStripMenuItem.Click += pluginsToolStripMenuItem_Click;
+            // 
             // currentCharacterDetailsBtn
             // 
             currentCharacterDetailsBtn.Location = new Point(1301, 102);
@@ -156,10 +166,30 @@
             EffectShopBtn.UseVisualStyleBackColor = true;
             EffectShopBtn.Click += EffectShopBtn_Click;
             // 
+            // selectedAiLabel
+            // 
+            selectedAiLabel.AutoSize = true;
+            selectedAiLabel.Location = new Point(133, 48);
+            selectedAiLabel.Name = "selectedAiLabel";
+            selectedAiLabel.Size = new Size(69, 25);
+            selectedAiLabel.TabIndex = 9;
+            selectedAiLabel.Text = "Default";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(18, 48);
+            label1.Name = "label1";
+            label1.Size = new Size(104, 25);
+            label1.TabIndex = 10;
+            label1.Text = "Selected AI:";
+            // 
             // HomeView
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label1);
+            Controls.Add(selectedAiLabel);
             Controls.Add(EffectShopBtn);
             Controls.Add(currentCharacterDetailsBtn);
             Controls.Add(arenaBtn);
@@ -192,5 +222,8 @@
         private ToolStripMenuItem wyjdzToolStripMenuItem;
         private Button currentCharacterDetailsBtn;
         private Button EffectShopBtn;
+        private ToolStripMenuItem pluginsToolStripMenuItem;
+        private Label selectedAiLabel;
+        private Label label1;
     }
 }

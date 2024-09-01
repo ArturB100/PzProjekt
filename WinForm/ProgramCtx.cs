@@ -1,15 +1,17 @@
 
 using PzProjekt;
+using PzProjekt.fight;
 using System.Diagnostics;
 using System.Media;
+using System.Reflection;
 
 namespace WinForm
 {
     public partial class ProgramCtx : Form
     {
 
-        public SoundPlayer Music { get; set; }
 
+        public AppSoundPlayer SoundPlayer { get; set; }
         public PlayableCharacters PlayableCharacters { get; set; } = new PlayableCharacters();
 
         public Character SelectedCharacter { get; set; } = null;
@@ -18,16 +20,43 @@ namespace WinForm
 
         public Tournament ActiveTournament { get; set; }
 
+        public List<IBotAction> BotActions { get; set; } = new List<IBotAction> ();
+        public IBotAction? SelectedBotActions { get; set; } = null;
+
         public ProgramCtx()
         {
             InitializeComponent();
             LoadSavedGame();
             GameSetup = new GameSetup();
-            Music = new SoundPlayer("sound/The-Elder-Scrolls-IV-Oblivion-Soundtrack-04-Harvest-Dawn.wav");
-            Music.Play();
+            SoundPlayer = new AppSoundPlayer();
             this.ChangeView(new FirstPage(this));
-
+            this.ReadPlugins();
            
+        }
+
+        public void ReadPlugins ()
+        {
+            DirectoryInfo directory = new DirectoryInfo("plugins/");
+            Debug.WriteLine(directory.FullName);
+            foreach (FileInfo file in directory.GetFiles())
+            {
+                Assembly assembly = Assembly.LoadFrom(file.FullName);
+                Type[] types = assembly.GetTypes()
+                    .Where(t => t.IsClass && t.GetInterface(nameof(IBotAction)) != null)
+                    .ToArray();
+
+                foreach (Type type in types)
+                {
+                    Object? obj = Activator.CreateInstance(type);
+                    if (obj != null)
+                    {
+                        IBotAction plugin = (IBotAction)obj;
+                        BotActions.Add(plugin);
+                    }
+
+
+                }
+            }
         }
 
         public void SaveGame ()

@@ -39,7 +39,7 @@ namespace WinForm.views
             }
             catch (Exception ex)
             {
-                ProgramCtx.WarningMessage(ex.Message);
+                WarningMessage(ex.Message);
             }
         }
 
@@ -84,7 +84,7 @@ namespace WinForm.views
         {
             if (character.Parameters.PointsToInvest == 0 && value > 0)
             {
-                ProgramCtx.WarningMessage("brak punktow");
+                WarningMessage("brak punktow");
                 return;
             }
 
@@ -95,7 +95,7 @@ namespace WinForm.views
             }
             catch (NegativeStatisticPointsException exception)
             {
-                ProgramCtx.WarningMessage("nie moze byc mniej niz 1");
+                WarningMessage("nie moze byc mniej niz 1");
                 return;
             }
 
@@ -211,7 +211,7 @@ namespace WinForm.views
             {
                 if (ProgramCtx.PlayableCharacters == null)
                 {
-                    ProgramCtx.WarningMessage("null");
+                    WarningMessage("null");
                 }
                 ProgramCtx.PlayableCharacters.Add(character);
                 ProgramCtx.ChangeView(new HomeView(ProgramCtx));
@@ -219,7 +219,7 @@ namespace WinForm.views
             }
             else
             {
-                ProgramCtx.WarningMessage("Podaj imie, oraz rozdaj wszystkie punkty umiejętności");
+                WarningMessage("Podaj imie, oraz rozdaj wszystkie punkty umiejętności");
             }
 
 
