@@ -140,7 +140,8 @@ namespace WinForm
                     soundToPlay = SwordHit2;
                 }
                 CurrentSoundPlayer.Stop();
-                soundToPlay.PlaySync();
+                soundToPlay.Play();
+                Thread.Sleep(1200);
                 CurrentSoundPlayer.PlayLooping();
             }).Start();
 

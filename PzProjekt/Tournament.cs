@@ -34,7 +34,10 @@ public class Tournament
         
         _enemies.Enqueue(Boss);
     }
-    
+    public int GetLeftEnemiesCount ()
+    {
+        return _enemies.Count();
+    }
     private Character NextEnemy
     {
         get => _enemies.Dequeue();
@@ -42,6 +45,8 @@ public class Tournament
 
     public Character ShowNextEnemy ()
     {
+        if (_enemies == null || _enemies.Count == 0)
+            return null;
         return _enemies.Peek();
     }
     

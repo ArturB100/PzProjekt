@@ -520,7 +520,13 @@ namespace WinForm.views.Arena
             {
                 if (fightResult == Result.WON)
                 {
-                    ProgramCtx.ChangeView(new TournamentView(ProgramCtx));
+                    if (ProgramCtx.ActiveTournament.GetLeftEnemiesCount() == 0)
+                    {
+                        ProgramCtx.ChangeView(new HomeView(ProgramCtx));
+                    } else
+                    {
+                        ProgramCtx.ChangeView(new TournamentView(ProgramCtx));
+                    }
                 }
                 else if (fightResult == Result.LOST)
                 {
