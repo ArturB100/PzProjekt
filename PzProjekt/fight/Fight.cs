@@ -200,6 +200,7 @@ public abstract class Fight
                 {
                     Log(ActiveCharacter.Name + " is frozen!" + "\n");
                     Console.WriteLine(ActiveCharacter.Name + " is frozen!");
+                    ChangeActiveCharacter();
                     return;
                 }
                 
