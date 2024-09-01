@@ -114,9 +114,12 @@ public class CharacterParameters
             if (value < 0)
             {
                 _charcterMoney = 0;
+            } else
+            {
+                _charcterMoney = value;
+
             }
 
-            _charcterMoney = value;
         }
     }
     
